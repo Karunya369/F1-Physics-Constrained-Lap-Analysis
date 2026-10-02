@@ -1,27 +1,35 @@
 /**
  * F1 Physics-Constrained Lap Analysis
- * Application Logic & Scientific Data Visualizations
+ * Application Logic, Interactive Scientific Data Visualizations & Team Switching
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initExperimentTabs();
-  initTeamSwitcher();        // must run before charts so data is correct
   initTelemetryChart();
   initWaterfallChart();
   initSensitivityControls();
   initPlotLightbox();
+  initTeamSwitcher(); // default initializes Ferrari
 });
 
+// ==========================================================================
 // 1. Navigation & ScrollSpy
-let navLinks = [];
-let navSections = [];
-
-function bindNavEvents() {
-  navLinks = document.querySelectorAll('.nav-link');
+// ==========================================================================
+function initNavigation() {
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+  const mobileToggle = document.getElementById('mobileToggle');
   const navMenu = document.getElementById('navMenu');
 
-  // Close mobile menu on link click & smooth scroll
+  // Mobile menu toggle
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-open');
+    });
+  }
+
+  // Smooth scroll & close mobile menu on click
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       if (navMenu) navMenu.classList.remove('mobile-open');
@@ -35,28 +43,13 @@ function bindNavEvents() {
       }
     });
   });
-}
-
-function initNavigation() {
-  navSections = document.querySelectorAll('section[id]');
-  const mobileToggle = document.getElementById('mobileToggle');
-  const navMenu = document.getElementById('navMenu');
-
-  // Mobile menu toggle
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
-    });
-  }
-
-  bindNavEvents();
 
   // ScrollSpy
   window.addEventListener('scroll', () => {
     let currentId = '';
-    const scrollPos = window.scrollY + 120;
+    const scrollPos = window.scrollY + 130;
 
-    navSections.forEach(section => {
+    sections.forEach(section => {
       if (section.offsetParent === null) return; // ignore hidden sections
       const top = section.offsetTop;
       const height = section.offsetHeight;
@@ -65,8 +58,7 @@ function initNavigation() {
       }
     });
 
-    const activeLinks = document.querySelectorAll('.nav-link');
-    activeLinks.forEach(link => {
+    navLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${currentId}`) {
         link.classList.add('active');
@@ -75,28 +67,43 @@ function initNavigation() {
   });
 }
 
+// ==========================================================================
 // 2. Experiment Tabs
+// ==========================================================================
+let activeExpTabIdx = 0;
+
 function initExperimentTabs() {
-  const tabButtons = document.querySelectorAll('.tab-btn[data-tab]');
-  const tabPanes = document.querySelectorAll('.tab-pane');
+  const tabButtons = document.querySelectorAll('#experimentTabsNav .tab-btn');
 
-  tabButtons.forEach(btn => {
+  tabButtons.forEach((btn, idx) => {
     btn.addEventListener('click', () => {
-      const tabTarget = btn.getAttribute('data-tab');
-
-      tabButtons.forEach(b => b.classList.remove('active'));
-      tabPanes.forEach(p => p.classList.remove('active'));
-
-      btn.classList.add('active');
-      const targetPane = document.getElementById(tabTarget);
-      if (targetPane) {
-        targetPane.classList.add('active');
-      }
+      activeExpTabIdx = idx;
+      switchExperimentTab(idx);
     });
   });
 }
 
+function switchExperimentTab(idx) {
+  const tabButtons = document.querySelectorAll('#experimentTabsNav .tab-btn');
+  tabButtons.forEach((b, i) => b.classList.toggle('active', i === idx));
+
+  // Determine active team container
+  const isRbr = document.body.classList.contains('team-rbr');
+  const activeContainer = isRbr
+    ? document.getElementById('rbrExperimentPanes')
+    : document.getElementById('ferrariExperimentPanes');
+
+  if (!activeContainer) return;
+
+  const panes = activeContainer.querySelectorAll('.tab-pane');
+  panes.forEach((pane, i) => {
+    pane.classList.toggle('active', i === idx);
+  });
+}
+
+// ==========================================================================
 // 3. Telemetry Speed Profile Canvas Chart
+// ==========================================================================
 function initTelemetryChart() {
   const canvas = document.getElementById('telemetryCanvas');
   if (!canvas || !window.F1_RESEARCH_DATA) return;
@@ -108,11 +115,9 @@ function initTelemetryChart() {
   let showDonor = true;
   let showDrs = true;
 
-  // Active dataset (starts with Ferrari)
   let activeData = window.F1_RESEARCH_DATA.telemetryProfile;
   let activeTeam = 'ferrari';
 
-  // Toggle buttons
   const toggleFeasibleBtn = document.getElementById('toggleFeasible');
   const toggleDonorBtn = document.getElementById('toggleDonor');
   const toggleDrsBtn = document.getElementById('toggleDrs');
@@ -152,94 +157,89 @@ function initTelemetryChart() {
   const padding = { top: 30, right: 25, bottom: 50, left: 60 };
   const minSpeed = 50;
   const maxSpeed = 340;
-  const maxDist = 5369.0;
 
   function render(hoverIndex = -1) {
     const width = canvas.width / window.devicePixelRatio;
     const height = canvas.height / window.devicePixelRatio;
-
-    ctx.clearRect(0, 0, width, height);
-
     const chartW = width - padding.left - padding.right;
     const chartH = height - padding.top - padding.bottom;
 
-    // Grid & Axes
-    ctx.strokeStyle = '#2F333B';
-    ctx.lineWidth = 1;
+    const maxDist = activeData.length > 0 ? activeData[activeData.length - 1].s : 5369.0;
 
-    // Speed Grid Lines
-    const speedSteps = [80, 140, 200, 260, 320];
-    ctx.font = '10px "JetBrains Mono", monospace';
+    // Background
+    ctx.fillStyle = '#17191D';
+    ctx.fillRect(0, 0, width, height);
+
+    // Grid lines & Y-axis labels
+    ctx.strokeStyle = '#272A30';
+    ctx.lineWidth = 1;
     ctx.fillStyle = '#85847F';
+    ctx.font = '11px "JetBrains Mono", monospace';
     ctx.textAlign = 'right';
 
-    speedSteps.forEach(speed => {
-      const y = padding.top + chartH - ((speed - minSpeed) / (maxSpeed - minSpeed)) * chartH;
+    for (let v = 50; v <= 350; v += 50) {
+      const y = padding.top + chartH - ((v - minSpeed) / (maxSpeed - minSpeed)) * chartH;
       ctx.beginPath();
       ctx.moveTo(padding.left, y);
       ctx.lineTo(width - padding.right, y);
       ctx.stroke();
+      ctx.fillText(`${v}`, padding.left - 10, y + 4);
+    }
 
-      ctx.fillText(`${speed} km/h`, padding.left - 8, y + 3);
-    });
-
-    // Distance Grid Lines
-    const distSteps = [0, 1000, 2000, 3000, 4000, 5000];
+    // X-axis Distance grid & labels
     ctx.textAlign = 'center';
-    distSteps.forEach(dist => {
+    for (let dist = 0; dist <= maxDist; dist += 1000) {
       const x = padding.left + (dist / maxDist) * chartW;
       ctx.beginPath();
       ctx.moveTo(x, padding.top);
       ctx.lineTo(x, padding.top + chartH);
       ctx.stroke();
+      ctx.fillText(`${dist}m`, x, padding.top + chartH + 20);
+    }
 
-      ctx.fillText(`${dist}m`, x, padding.top + chartH + 16);
-    });
-
-    // Driver mini-sector bar at bottom
-    const barY = padding.top + chartH + 24;
-    const barH = 10;
-    activeData.forEach((pt, i) => {
-      const x1 = padding.left + (pt.s / maxDist) * chartW;
-      const x2 = padding.left + ((i + 1 < activeData.length ? activeData[i+1].s : maxDist) / maxDist) * chartW;
-      const isD1 = activeTeam === 'rbr' ? pt.driver === 'VER' : pt.driver === 'LEC';
-      ctx.fillStyle = isD1
-        ? (activeTeam === 'rbr' ? '#3B7DD8' : '#C83E36')
-        : (activeTeam === 'rbr' ? '#E8A620' : '#D97706');
-      ctx.fillRect(x1, barY, Math.max(x2 - x1, 1), barH);
-    });
-    ctx.font = '9px "JetBrains Mono", monospace';
+    // Axis titles
+    ctx.save();
+    ctx.translate(18, padding.top + chartH / 2);
+    ctx.rotate(-Math.PI / 2);
+    ctx.textAlign = 'center';
     ctx.fillStyle = '#A3A199';
-    ctx.textAlign = 'left';
-    const d1Name = activeTeam === 'rbr' ? 'VER' : 'LECLERC';
-    const d2Name = activeTeam === 'rbr' ? 'PER' : 'SAINZ';
-    const d1Color = activeTeam === 'rbr' ? 'BLUE' : 'RED';
-    const d2Color = activeTeam === 'rbr' ? 'AMBER' : 'AMBER';
-    ctx.fillText(`DRIVER SELECTION RIBBON (${d1Color}: ${d1Name}, AMBER: ${d2Name})`, padding.left, barY + 20);
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillText('Velocity (km/h)', 0, 0);
+    ctx.restore();
+
+    ctx.textAlign = 'center';
+    ctx.fillStyle = '#A3A199';
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillText(`Track Distance s (m) — Canonical Domain S = ${maxDist.toFixed(1)} m`, padding.left + chartW / 2, height - 10);
 
     // DRS Zones shading
     if (showDrs) {
-      ctx.fillStyle = 'rgba(101, 120, 135, 0.15)';
+      ctx.fillStyle = 'rgba(34, 197, 94, 0.08)';
       let inDrs = false;
       let drsStart = 0;
-      activeData.forEach(pt => {
-        if (pt.drs && !inDrs) {
+      activeData.forEach((pt) => {
+        if (pt.drs === 1 && !inDrs) {
           inDrs = true;
           drsStart = pt.s;
-        } else if (!pt.drs && inDrs) {
+        } else if (pt.drs === 0 && inDrs) {
           inDrs = false;
           const x1 = padding.left + (drsStart / maxDist) * chartW;
           const x2 = padding.left + (pt.s / maxDist) * chartW;
           ctx.fillRect(x1, padding.top, x2 - x1, chartH);
         }
       });
+      if (inDrs) {
+        const x1 = padding.left + (drsStart / maxDist) * chartW;
+        const x2 = padding.left + chartW;
+        ctx.fillRect(x1, padding.top, x2 - x1, chartH);
+      }
     }
 
-    // 1. Theoretical Donor Speed Line
+    // Theoretical Speed Line
     if (showDonor) {
       ctx.beginPath();
-      ctx.strokeStyle = '#FFAEAA';
-      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = activeTeam === 'rbr' ? '#FFAEAA' : '#FFAEAA';
+      ctx.lineWidth = 1.8;
       ctx.setLineDash([4, 3]);
 
       activeData.forEach((pt, i) => {
@@ -252,10 +252,10 @@ function initTelemetryChart() {
       ctx.setLineDash([]);
     }
 
-    // 2. Physics-Constrained Feasible Speed Line
+    // Feasible Speed Line
     if (showFeasible) {
       ctx.beginPath();
-      ctx.strokeStyle = '#657887';
+      ctx.strokeStyle = activeTeam === 'rbr' ? '#7AB3F0' : '#657887';
       ctx.lineWidth = 2.5;
 
       activeData.forEach((pt, i) => {
@@ -267,7 +267,7 @@ function initTelemetryChart() {
       ctx.stroke();
     }
 
-    // Hover Crosshair & Indicator
+    // Hover Crosshair
     if (hoverIndex >= 0 && hoverIndex < activeData.length) {
       const pt = activeData[hoverIndex];
       const hx = padding.left + (pt.s / maxDist) * chartW;
@@ -282,26 +282,24 @@ function initTelemetryChart() {
       ctx.stroke();
 
       // Feasible dot
-      ctx.fillStyle = '#657887';
+      ctx.fillStyle = activeTeam === 'rbr' ? '#7AB3F0' : '#657887';
       ctx.beginPath();
       ctx.arc(hx, hyFeas, 4.5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
 
       // Donor dot
       ctx.fillStyle = '#FFAEAA';
       ctx.beginPath();
       ctx.arc(hx, hyDonor, 4.5, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
     }
   }
 
-  // Interactive Hover Event
   canvas.addEventListener('mousemove', (e) => {
     const rect = canvas.getBoundingClientRect();
     const mouseX = e.clientX - rect.left;
     const chartW = rect.width - padding.left - padding.right;
+    const maxDist = activeData.length > 0 ? activeData[activeData.length - 1].s : 5369.0;
 
     if (mouseX < padding.left || mouseX > rect.width - padding.right) {
       tooltip.style.display = 'none';
@@ -335,9 +333,10 @@ function initTelemetryChart() {
     const d2Label = activeTeam === 'rbr' ? 'Perez' : 'Sainz';
     const d1Color = activeTeam === 'rbr' ? '#7AB3F0' : '#FFAEAA';
     const d2Color = '#FBBF24';
+
     tooltip.innerHTML = `
       <div style="font-weight:700; color:#F4F1EA; margin-bottom:4px;">s = ${pt.s.toFixed(0)} m</div>
-      <div style="color:#657887;">Feasible: <strong>${pt.v_feas.toFixed(1)} km/h</strong></div>
+      <div style="color:${activeTeam === 'rbr' ? '#7AB3F0' : '#657887'};">Feasible: <strong>${pt.v_feas.toFixed(1)} km/h</strong></div>
       <div style="color:#FFAEAA;">Theoretical: <strong>${pt.v_donor.toFixed(1)} km/h</strong></div>
       <div style="color:#A3A199;">Deficit: <span style="color:#E0564C;">-${deltaV} km/h</span></div>
       <div style="color:#A3A199;">Donor: <span style="color:${pt.driver === d1Code ? d1Color : d2Color}">${pt.driver === d1Code ? d1Label : d2Label}</span></div>
@@ -352,10 +351,6 @@ function initTelemetryChart() {
 
   resizeCanvas();
 
-  // Register team-switch callback
-  if (window._registerTeamRenders) {
-    // We re-register after all three are ready (done in initSensitivityControls)
-  }
   window._telemSwitchFn = (team) => {
     activeTeam = team;
     activeData = team === 'rbr'
@@ -365,7 +360,9 @@ function initTelemetryChart() {
   };
 }
 
+// ==========================================================================
 // 4. Waterfall Gap Attribution Visualization
+// ==========================================================================
 function initWaterfallChart() {
   const container = document.getElementById('waterfallChart');
   if (!container || !window.F1_RESEARCH_DATA) return;
@@ -397,11 +394,10 @@ function initWaterfallChart() {
       `;
     });
 
-    // Total summary
     html += `
       <div class="waterfall-item" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--color-border-dark);">
         <div class="waterfall-header">
-          <span><strong>Total Theoretical-to-Feasible Gap:</strong> (T_feasible &minus; T_theoretical)</span>
+          <span><strong>Total Feasibility Gap:</strong> (T_feasible &minus; T_theoretical)</span>
           <span class="mono" style="color:var(--color-accent-red); font-size:1rem;"><strong>+${totalGap.toFixed(3)} s</strong> (100.0%)</span>
         </div>
         <div class="waterfall-bar-track">
@@ -419,7 +415,9 @@ function initWaterfallChart() {
   window._waterfallSwitchFn = renderWaterfall;
 }
 
+// ==========================================================================
 // 5. Sensitivity Controls (50m, 100m, 250m)
+// ==========================================================================
 function initSensitivityControls() {
   const buttons = document.querySelectorAll('.res-btn');
   const detailsContainer = document.getElementById('resolutionDetails');
@@ -468,9 +466,9 @@ function initSensitivityControls() {
         </div>
       </div>
       <div style="margin-top:1rem; font-size:0.82rem; color:var(--color-text-secondary); line-height:1.5;">
-        <strong>Boundary Kinematics:</strong> Maximum velocity step jump: <strong>${item.max_dv_mps.toFixed(3)} m/s (${item.max_dv_kmh.toFixed(2)} km/h)</strong>. 
+        <strong>Boundary Discontinuities:</strong> Maximum velocity step jump: <strong>${item.max_dv_mps.toFixed(3)} m/s (${item.max_dv_kmh.toFixed(2)} km/h)</strong>. 
         Total absolute kinetic energy mismatch: <strong>${item.total_ke_kj.toFixed(2)} kJ</strong>.
-        Driver distance allocation: ${d1Label} <strong>${item[d1Key]}%</strong> | ${d2Label} <strong>${item[d2Key]}%</strong>.
+        Driver distance allocation: ${d1Label} <strong>${item[d1Key]}%</strong> &bull; ${d2Label} <strong>${item[d2Key]}%</strong>.
       </div>
     `;
   }
@@ -484,7 +482,6 @@ function initSensitivityControls() {
     });
   });
 
-  // Default to 100m canonical
   updateResolution('100m');
 
   window._sensSwitchFn = (team) => {
@@ -494,18 +491,11 @@ function initSensitivityControls() {
       : window.F1_RESEARCH_DATA.sensitivity;
     updateResolution(currentRes);
   };
-
-  // Now all three chart functions are initialized — register them all
-  if (window._registerTeamRenders) {
-    window._registerTeamRenders(
-      (team) => { if (window._telemSwitchFn) window._telemSwitchFn(team); },
-      (team) => { if (window._waterfallSwitchFn) window._waterfallSwitchFn(team); },
-      (team) => { if (window._sensSwitchFn) window._sensSwitchFn(team); }
-    );
-  }
 }
 
+// ==========================================================================
 // 6. Plot Lightbox Modal
+// ==========================================================================
 function initPlotLightbox() {
   const modal = document.getElementById('plotModal');
   const modalImg = document.getElementById('modalImg');
@@ -517,26 +507,20 @@ function initPlotLightbox() {
   document.querySelectorAll('.plot-img-container').forEach(container => {
     container.addEventListener('click', () => {
       const img = container.querySelector('img');
-      const card = container.closest('.plot-card');
-      const title = card ? card.querySelector('.plot-title').innerText : '';
+      const card = container.closest('.plot-card') || container.closest('.card');
+      const title = card ? (card.querySelector('.plot-title') || card.querySelector('.card-title'))?.innerText : '';
       if (img) {
         modalImg.src = img.src;
-        modalCaption.innerText = title;
+        modalCaption.innerText = title || 'Scientific Plot';
         modal.classList.add('active');
       }
     });
   });
 
-  modalClose.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
-
+  modalClose.addEventListener('click', () => modal.classList.remove('active'));
   modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('active');
-    }
+    if (e.target === modal) modal.classList.remove('active');
   });
-
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && modal.classList.contains('active')) {
       modal.classList.remove('active');
@@ -544,66 +528,25 @@ function initPlotLightbox() {
   });
 }
 
-// 7. Team Switcher
+// ==========================================================================
+// 7. Team Switcher & Dynamic Content Updates
+// ==========================================================================
 function initTeamSwitcher() {
   const btnFerrari = document.getElementById('teamBtnFerrari');
   const btnRbr = document.getElementById('teamBtnRbr');
   if (!btnFerrari || !btnRbr) return;
 
-  // Ferrari-specific sections (visible in Ferrari mode)
-  const ferrariSections = [
-    document.getElementById('overview'),
-    document.getElementById('telemetry'),
-    document.getElementById('experiments'),
-    document.getElementById('results'),
-    document.getElementById('conclusion'),
-  ].filter(Boolean);
-
-  // Red Bull-specific sections (visible in Red Bull mode)
-  const rbrSections = [
-    document.getElementById('redbull-study'),
-    document.getElementById('cross-team'),
-  ].filter(Boolean);
-
-  function updateNavForTeam(isRbr) {
-    const navMenu = document.getElementById('navMenu');
-    if (!navMenu) return;
-    if (isRbr) {
-      navMenu.innerHTML = `
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#redbull-study" class="nav-link">RBR Study</a></li>
-        <li><a href="#cross-team" class="nav-link">Cross-Team</a></li>
-        <li><a href="#method" class="nav-link">Methodology</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-      `;
-    } else {
-      navMenu.innerHTML = `
-        <li><a href="#home" class="nav-link active">Home</a></li>
-        <li><a href="#overview" class="nav-link">Overview</a></li>
-        <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
-        <li><a href="#experiments" class="nav-link">Experiments</a></li>
-        <li><a href="#method" class="nav-link">Methodology</a></li>
-        <li><a href="#results" class="nav-link">Results</a></li>
-        <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-      `;
-    }
-    bindNavEvents();
-  }
-
   function applyTeam(team) {
     const isRbr = (team === 'rbr');
 
-    // Button active states
     btnFerrari.classList.toggle('active', !isRbr);
     btnFerrari.setAttribute('aria-pressed', String(!isRbr));
     btnRbr.classList.toggle('active', isRbr);
     btnRbr.setAttribute('aria-pressed', String(isRbr));
 
-    // Body class for CSS theming
     document.body.classList.toggle('team-rbr', isRbr);
 
-    // Hero badge
+    // Hero Badge & Schematic Tag
     const badge = document.getElementById('heroBadge');
     if (badge) {
       badge.innerHTML = isRbr
@@ -611,17 +554,12 @@ function initTeamSwitcher() {
         : '<span class="hero-badge-dot"></span>SCUDERIA FERRARI SF-23 &bull; 2023 BAHRAIN GP Q3';
     }
 
-    // Hero actions
-    const heroExplore = document.querySelector('.hero-actions a.btn-primary');
-    if (heroExplore) {
-      heroExplore.setAttribute('href', isRbr ? '#redbull-study' : '#overview');
-      heroExplore.innerHTML = isRbr ? 'Explore Red Bull Study &rarr;' : 'Explore the Research &rarr;';
+    const tag = document.getElementById('schematicTag');
+    if (tag) {
+      tag.textContent = isRbr ? 'S = 5358.0 m • ds = 1.0 m' : 'S = 5369.0 m • ds = 1.0 m';
     }
 
-    // Dynamic Navbar
-    updateNavForTeam(isRbr);
-
-    // Stat bar update
+    // Stat Bar Numbers
     const data = isRbr ? window.RBR_RESEARCH_DATA : window.F1_RESEARCH_DATA;
     if (data && data.overview) {
       const o = data.overview;
@@ -640,29 +578,117 @@ function initTeamSwitcher() {
         `Velocity step jumps up to ${o.max_boundary_dv_kmh.toFixed(2)} km/h and ${o.sum_boundary_ke_kj.toFixed(2)} kJ unphysical KE mismatch.`;
     }
 
-    // Show/hide sections
-    ferrariSections.forEach(s => { s.style.display = isRbr ? 'none' : ''; });
-    rbrSections.forEach(s => { s.style.display = isRbr ? '' : 'none'; });
+    // Toggle Experiment Containers
+    const ferPanes = document.getElementById('ferrariExperimentPanes');
+    const rbrPanes = document.getElementById('rbrExperimentPanes');
+    if (ferPanes && rbrPanes) {
+      ferPanes.style.display = isRbr ? 'none' : 'block';
+      rbrPanes.style.display = isRbr ? 'block' : 'none';
+    }
 
-    // Re-render charts with active team data
-    if (window._telemetryRenderFn) window._telemetryRenderFn(team);
-    if (window._waterfallRenderFn) window._waterfallRenderFn(team);
-    if (window._sensitivityRenderFn) window._sensitivityRenderFn(team);
+    // Update Experiment Header Title & Tab Labels
+    const expTitle = document.getElementById('experimentsHeaderTitle');
+    const expLead = document.getElementById('experimentsHeaderLead');
+    if (expTitle) {
+      expTitle.textContent = isRbr
+        ? 'Research Experiments (RB-00 through RB-04) — Oracle Red Bull Racing'
+        : 'Research Experiments (00 through 04) — Scuderia Ferrari SF-23';
+    }
+    if (expLead) {
+      expLead.textContent = isRbr
+        ? 'Progression from telemetry validation and RB19 vehicle model calibration through unconstrained composite, physics solve, and sensitivity sweep.'
+        : 'Progression from session selection and SF-23 model hierarchy validation through theoretical composite, physics solve, and sensitivity sweep.';
+    }
 
-    // Scroll to top gently
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const tab0 = document.getElementById('tabBtn0');
+    const tab1 = document.getElementById('tabBtn1');
+    const tab2 = document.getElementById('tabBtn2');
+    const tab3 = document.getElementById('tabBtn3');
+    const tab4 = document.getElementById('tabBtn4');
+    if (tab0) tab0.textContent = isRbr ? 'RB-00: Telemetry Validation' : 'Exp 00: Ingestion & Baseline';
+    if (tab1) tab1.textContent = isRbr ? 'RB-01: Model Calibration' : 'Exp 01: Model Hierarchy Gate';
+    if (tab2) tab2.textContent = isRbr ? 'RB-02: Theoretical Composite' : 'Exp 02: Theoretical Composite';
+    if (tab3) tab3.textContent = isRbr ? 'RB-03: Physics Feasibility' : 'Exp 03: Physics Feasibility';
+    if (tab4) tab4.textContent = isRbr ? 'RB-04: Sensitivity Sweep' : 'Exp 04: Sensitivity Sweep';
+
+    // Update active tab in the visible pane container
+    switchExperimentTab(activeExpTabIdx);
+
+    // Update Plot Images & Titles
+    const plotSpeedComp = document.getElementById('plotSpeedComparison');
+    const titleSpeedComp = document.getElementById('speedCompPlotTitle');
+    if (plotSpeedComp) {
+      plotSpeedComp.src = isRbr
+        ? 'assets/plots/redbull/redbull_speed_comparison.png'
+        : 'assets/plots/speed_comparison.png';
+    }
+    if (titleSpeedComp) {
+      titleSpeedComp.textContent = isRbr
+        ? 'Teammate Speed Profile Comparison (Oracle Red Bull RB19 • VER vs PER)'
+        : 'Teammate Speed Profile Comparison (Scuderia Ferrari SF-23 • LEC vs SAI)';
+    }
+
+    const plotWinners = document.getElementById('plotSegmentWinners');
+    const titleWinners = document.getElementById('segmentWinnersPlotTitle');
+    if (plotWinners) {
+      plotWinners.src = isRbr
+        ? 'assets/plots/redbull/redbull_driver_selection_100m.png'
+        : 'assets/plots/track_segment_winners.png';
+    }
+    if (titleWinners) {
+      titleWinners.textContent = isRbr
+        ? 'Track Segment Winner Allocation (Red Bull RB19 • 100m Canonical)'
+        : 'Track Segment Winner Allocation (Ferrari SF-23 • 100m Canonical)';
+    }
+
+    const plotWaterfall = document.getElementById('plotWaterfall');
+    const titleWaterfall = document.getElementById('waterfallPlotTitle');
+    if (plotWaterfall) {
+      plotWaterfall.src = isRbr
+        ? 'assets/plots/redbull/redbull_exp03_diagnostic_waterfall.png'
+        : 'assets/plots/exp03_diagnostic_waterfall.png';
+    }
+    if (titleWaterfall) {
+      titleWaterfall.textContent = isRbr
+        ? 'Diagnostic Gap Attribution Waterfall (Oracle Red Bull RB19)'
+        : 'Diagnostic Gap Attribution Waterfall (Scuderia Ferrari SF-23)';
+    }
+
+    const plotProfiles = document.getElementById('plotSpeedProfiles');
+    const titleProfiles = document.getElementById('speedProfilesPlotTitle');
+    if (plotProfiles) {
+      plotProfiles.src = isRbr
+        ? 'assets/plots/redbull/redbull_exp03_speed_profiles.png'
+        : 'assets/plots/exp03_speed_profiles.png';
+    }
+    if (titleProfiles) {
+      titleProfiles.textContent = isRbr
+        ? 'Speed Profile Comparison: Theoretical vs Feasible vs Baseline (Red Bull RB19)'
+        : 'Speed Profile Comparison: Theoretical vs Feasible vs Baseline (Ferrari SF-23)';
+    }
+
+    const plotSens = document.getElementById('plotSensitivity');
+    const titleSens = document.getElementById('sensitivityPlotTitle');
+    if (plotSens) {
+      plotSens.src = isRbr
+        ? 'assets/plots/redbull/redbull_segmentation_sensitivity.png'
+        : 'assets/plots/segmentation_sensitivity.png';
+    }
+    if (titleSens) {
+      titleSens.textContent = isRbr
+        ? 'Segmentation Sensitivity & Discontinuity Scaling (Red Bull RB19)'
+        : 'Segmentation Sensitivity & Discontinuity Scaling (Ferrari SF-23)';
+    }
+
+    // Call chart render functions
+    if (window._telemSwitchFn) window._telemSwitchFn(team);
+    if (window._waterfallSwitchFn) window._waterfallSwitchFn(team);
+    if (window._sensSwitchFn) window._sensSwitchFn(team);
   }
 
   btnFerrari.addEventListener('click', () => applyTeam('ferrari'));
   btnRbr.addEventListener('click', () => applyTeam('rbr'));
 
-  // Register render hooks called by applyTeam
-  window._registerTeamRenders = (telem, waterfall, sensitivity) => {
-    window._telemetryRenderFn = telem;
-    window._waterfallRenderFn = waterfall;
-    window._sensitivityRenderFn = sensitivity;
-  };
-
-  // Default: Ferrari
+  // Default to Ferrari
   applyTeam('ferrari');
 }

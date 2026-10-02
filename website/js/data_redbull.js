@@ -4450,5 +4450,1959 @@ window.RBR_RESEARCH_DATA = {
     "kappa": -0.000342,
     "drs": 1
   }
-]
+],
+  segments: {
+  "50m": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 50.0,
+      "winner": "PER",
+      "dt_winner": 0.6061,
+      "delta_dt": 0.0028,
+      "v_entry": 293.5,
+      "v_exit": 299.4
+    },
+    {
+      "id": 1,
+      "start": 50.0,
+      "end": 100.0,
+      "winner": "PER",
+      "dt_winner": 0.5963,
+      "delta_dt": 0.0021,
+      "v_entry": 299.4,
+      "v_exit": 303.9
+    },
+    {
+      "id": 2,
+      "start": 100.0,
+      "end": 150.0,
+      "winner": "PER",
+      "dt_winner": 0.587,
+      "delta_dt": 0.0019,
+      "v_entry": 303.9,
+      "v_exit": 308.1
+    },
+    {
+      "id": 3,
+      "start": 150.0,
+      "end": 200.0,
+      "winner": "PER",
+      "dt_winner": 0.5802,
+      "delta_dt": 0.0026,
+      "v_entry": 308.1,
+      "v_exit": 311.9
+    },
+    {
+      "id": 4,
+      "start": 200.0,
+      "end": 250.0,
+      "winner": "PER",
+      "dt_winner": 0.5739,
+      "delta_dt": 0.0025,
+      "v_entry": 311.9,
+      "v_exit": 315.3
+    },
+    {
+      "id": 5,
+      "start": 250.0,
+      "end": 300.0,
+      "winner": "PER",
+      "dt_winner": 0.5687,
+      "delta_dt": 0.0017,
+      "v_entry": 315.3,
+      "v_exit": 317.7
+    },
+    {
+      "id": 6,
+      "start": 300.0,
+      "end": 350.0,
+      "winner": "PER",
+      "dt_winner": 0.5642,
+      "delta_dt": 0.0022,
+      "v_entry": 317.7,
+      "v_exit": 320.0
+    },
+    {
+      "id": 7,
+      "start": 350.0,
+      "end": 400.0,
+      "winner": "PER",
+      "dt_winner": 0.5624,
+      "delta_dt": 0.0011,
+      "v_entry": 320.0,
+      "v_exit": 320.7
+    },
+    {
+      "id": 8,
+      "start": 400.0,
+      "end": 450.0,
+      "winner": "PER",
+      "dt_winner": 0.5586,
+      "delta_dt": 0.0014,
+      "v_entry": 320.7,
+      "v_exit": 323.0
+    },
+    {
+      "id": 9,
+      "start": 450.0,
+      "end": 500.0,
+      "winner": "PER",
+      "dt_winner": 0.5566,
+      "delta_dt": 0.0015,
+      "v_entry": 323.0,
+      "v_exit": 323.1
+    },
+    {
+      "id": 10,
+      "start": 500.0,
+      "end": 550.0,
+      "winner": "PER",
+      "dt_winner": 0.5553,
+      "delta_dt": 0.002,
+      "v_entry": 323.1,
+      "v_exit": 324.0
+    },
+    {
+      "id": 11,
+      "start": 550.0,
+      "end": 600.0,
+      "winner": "PER",
+      "dt_winner": 0.556,
+      "delta_dt": 0.0072,
+      "v_entry": 324.0,
+      "v_exit": 312.8
+    },
+    {
+      "id": 12,
+      "start": 600.0,
+      "end": 650.0,
+      "winner": "PER",
+      "dt_winner": 0.7395,
+      "delta_dt": 0.0309,
+      "v_entry": 312.8,
+      "v_exit": 189.6
+    },
+    {
+      "id": 13,
+      "start": 650.0,
+      "end": 700.0,
+      "winner": "PER",
+      "dt_winner": 1.4623,
+      "delta_dt": 0.0365,
+      "v_entry": 189.6,
+      "v_exit": 86.7
+    },
+    {
+      "id": 14,
+      "start": 700.0,
+      "end": 750.0,
+      "winner": "PER",
+      "dt_winner": 2.3015,
+      "delta_dt": 0.0646,
+      "v_entry": 86.7,
+      "v_exit": 97.2
+    },
+    {
+      "id": 15,
+      "start": 750.0,
+      "end": 800.0,
+      "winner": "VER",
+      "dt_winner": 1.3858,
+      "delta_dt": 0.024,
+      "v_entry": 98.2,
+      "v_exit": 158.0
+    },
+    {
+      "id": 16,
+      "start": 800.0,
+      "end": 850.0,
+      "winner": "PER",
+      "dt_winner": 1.0291,
+      "delta_dt": 0.0264,
+      "v_entry": 157.2,
+      "v_exit": 192.8
+    },
+    {
+      "id": 17,
+      "start": 850.0,
+      "end": 900.0,
+      "winner": "PER",
+      "dt_winner": 0.8786,
+      "delta_dt": 0.0044,
+      "v_entry": 192.8,
+      "v_exit": 216.1
+    },
+    {
+      "id": 18,
+      "start": 900.0,
+      "end": 950.0,
+      "winner": "PER",
+      "dt_winner": 0.8021,
+      "delta_dt": 0.0002,
+      "v_entry": 216.1,
+      "v_exit": 231.9
+    },
+    {
+      "id": 19,
+      "start": 950.0,
+      "end": 1000.0,
+      "winner": "PER",
+      "dt_winner": 0.7494,
+      "delta_dt": 0.0033,
+      "v_entry": 231.9,
+      "v_exit": 247.7
+    },
+    {
+      "id": 20,
+      "start": 1000.0,
+      "end": 1050.0,
+      "winner": "PER",
+      "dt_winner": 0.7073,
+      "delta_dt": 0.0032,
+      "v_entry": 247.7,
+      "v_exit": 261.1
+    },
+    {
+      "id": 21,
+      "start": 1050.0,
+      "end": 1100.0,
+      "winner": "PER",
+      "dt_winner": 0.6767,
+      "delta_dt": 0.0006,
+      "v_entry": 261.1,
+      "v_exit": 271.6
+    },
+    {
+      "id": 22,
+      "start": 1100.0,
+      "end": 1150.0,
+      "winner": "PER",
+      "dt_winner": 0.649,
+      "delta_dt": 0.0029,
+      "v_entry": 271.6,
+      "v_exit": 282.4
+    },
+    {
+      "id": 23,
+      "start": 1150.0,
+      "end": 1200.0,
+      "winner": "PER",
+      "dt_winner": 0.6315,
+      "delta_dt": 0.001,
+      "v_entry": 282.4,
+      "v_exit": 288.8
+    },
+    {
+      "id": 24,
+      "start": 1200.0,
+      "end": 1250.0,
+      "winner": "PER",
+      "dt_winner": 0.6165,
+      "delta_dt": 0.0025,
+      "v_entry": 288.8,
+      "v_exit": 294.9
+    },
+    {
+      "id": 25,
+      "start": 1250.0,
+      "end": 1300.0,
+      "winner": "PER",
+      "dt_winner": 0.6053,
+      "delta_dt": 0.0021,
+      "v_entry": 294.9,
+      "v_exit": 299.5
+    },
+    {
+      "id": 26,
+      "start": 1300.0,
+      "end": 1350.0,
+      "winner": "PER",
+      "dt_winner": 0.5972,
+      "delta_dt": 0.0023,
+      "v_entry": 299.5,
+      "v_exit": 303.6
+    },
+    {
+      "id": 27,
+      "start": 1350.0,
+      "end": 1400.0,
+      "winner": "PER",
+      "dt_winner": 0.5953,
+      "delta_dt": 0.0043,
+      "v_entry": 303.6,
+      "v_exit": 287.2
+    },
+    {
+      "id": 28,
+      "start": 1400.0,
+      "end": 1450.0,
+      "winner": "VER",
+      "dt_winner": 0.783,
+      "delta_dt": 0.0075,
+      "v_entry": 287.5,
+      "v_exit": 189.3
+    },
+    {
+      "id": 29,
+      "start": 1450.0,
+      "end": 1500.0,
+      "winner": "VER",
+      "dt_winner": 1.1352,
+      "delta_dt": 0.0601,
+      "v_entry": 189.3,
+      "v_exit": 135.7
+    },
+    {
+      "id": 30,
+      "start": 1500.0,
+      "end": 1550.0,
+      "winner": "VER",
+      "dt_winner": 1.3825,
+      "delta_dt": 0.0288,
+      "v_entry": 135.7,
+      "v_exit": 138.6
+    },
+    {
+      "id": 31,
+      "start": 1550.0,
+      "end": 1600.0,
+      "winner": "PER",
+      "dt_winner": 1.1285,
+      "delta_dt": 0.0025,
+      "v_entry": 138.9,
+      "v_exit": 183.5
+    },
+    {
+      "id": 32,
+      "start": 1600.0,
+      "end": 1650.0,
+      "winner": "PER",
+      "dt_winner": 0.9115,
+      "delta_dt": 0.0042,
+      "v_entry": 183.5,
+      "v_exit": 211.4
+    },
+    {
+      "id": 33,
+      "start": 1650.0,
+      "end": 1700.0,
+      "winner": "PER",
+      "dt_winner": 0.8127,
+      "delta_dt": 0.0047,
+      "v_entry": 211.4,
+      "v_exit": 230.3
+    },
+    {
+      "id": 34,
+      "start": 1700.0,
+      "end": 1750.0,
+      "winner": "PER",
+      "dt_winner": 0.7551,
+      "delta_dt": 0.0006,
+      "v_entry": 230.3,
+      "v_exit": 246.0
+    },
+    {
+      "id": 35,
+      "start": 1750.0,
+      "end": 1800.0,
+      "winner": "PER",
+      "dt_winner": 0.7181,
+      "delta_dt": 0.0,
+      "v_entry": 246.0,
+      "v_exit": 253.7
+    },
+    {
+      "id": 36,
+      "start": 1800.0,
+      "end": 1850.0,
+      "winner": "VER",
+      "dt_winner": 0.7567,
+      "delta_dt": 0.0104,
+      "v_entry": 252.4,
+      "v_exit": 224.4
+    },
+    {
+      "id": 37,
+      "start": 1850.0,
+      "end": 1900.0,
+      "winner": "VER",
+      "dt_winner": 0.8377,
+      "delta_dt": 0.0233,
+      "v_entry": 224.4,
+      "v_exit": 213.2
+    },
+    {
+      "id": 38,
+      "start": 1900.0,
+      "end": 1950.0,
+      "winner": "VER",
+      "dt_winner": 0.8138,
+      "delta_dt": 0.009,
+      "v_entry": 213.2,
+      "v_exit": 230.4
+    },
+    {
+      "id": 39,
+      "start": 1950.0,
+      "end": 2000.0,
+      "winner": "PER",
+      "dt_winner": 0.7711,
+      "delta_dt": 0.0013,
+      "v_entry": 228.3,
+      "v_exit": 238.8
+    },
+    {
+      "id": 40,
+      "start": 2000.0,
+      "end": 2050.0,
+      "winner": "PER",
+      "dt_winner": 0.7386,
+      "delta_dt": 0.0089,
+      "v_entry": 238.8,
+      "v_exit": 248.9
+    },
+    {
+      "id": 41,
+      "start": 2050.0,
+      "end": 2100.0,
+      "winner": "PER",
+      "dt_winner": 0.7124,
+      "delta_dt": 0.0011,
+      "v_entry": 248.9,
+      "v_exit": 255.7
+    },
+    {
+      "id": 42,
+      "start": 2100.0,
+      "end": 2150.0,
+      "winner": "PER",
+      "dt_winner": 0.7592,
+      "delta_dt": 0.071,
+      "v_entry": 255.7,
+      "v_exit": 196.3
+    },
+    {
+      "id": 43,
+      "start": 2150.0,
+      "end": 2200.0,
+      "winner": "PER",
+      "dt_winner": 1.254,
+      "delta_dt": 0.1514,
+      "v_entry": 196.3,
+      "v_exit": 104.8
+    },
+    {
+      "id": 44,
+      "start": 2200.0,
+      "end": 2250.0,
+      "winner": "VER",
+      "dt_winner": 2.0608,
+      "delta_dt": 0.0121,
+      "v_entry": 100.5,
+      "v_exit": 93.3
+    },
+    {
+      "id": 45,
+      "start": 2250.0,
+      "end": 2300.0,
+      "winner": "VER",
+      "dt_winner": 1.5239,
+      "delta_dt": 0.0997,
+      "v_entry": 93.3,
+      "v_exit": 145.3
+    },
+    {
+      "id": 46,
+      "start": 2300.0,
+      "end": 2350.0,
+      "winner": "VER",
+      "dt_winner": 1.047,
+      "delta_dt": 0.0257,
+      "v_entry": 145.3,
+      "v_exit": 194.7
+    },
+    {
+      "id": 47,
+      "start": 2350.0,
+      "end": 2400.0,
+      "winner": "VER",
+      "dt_winner": 0.8674,
+      "delta_dt": 0.0093,
+      "v_entry": 194.7,
+      "v_exit": 219.5
+    },
+    {
+      "id": 48,
+      "start": 2400.0,
+      "end": 2450.0,
+      "winner": "VER",
+      "dt_winner": 0.7895,
+      "delta_dt": 0.001,
+      "v_entry": 219.5,
+      "v_exit": 236.2
+    },
+    {
+      "id": 49,
+      "start": 2450.0,
+      "end": 2500.0,
+      "winner": "PER",
+      "dt_winner": 0.7399,
+      "delta_dt": 0.0019,
+      "v_entry": 236.0,
+      "v_exit": 250.5
+    },
+    {
+      "id": 50,
+      "start": 2500.0,
+      "end": 2550.0,
+      "winner": "PER",
+      "dt_winner": 0.7048,
+      "delta_dt": 0.0006,
+      "v_entry": 250.5,
+      "v_exit": 259.6
+    },
+    {
+      "id": 51,
+      "start": 2550.0,
+      "end": 2600.0,
+      "winner": "PER",
+      "dt_winner": 0.7281,
+      "delta_dt": 0.0848,
+      "v_entry": 259.6,
+      "v_exit": 221.1
+    },
+    {
+      "id": 52,
+      "start": 2600.0,
+      "end": 2650.0,
+      "winner": "PER",
+      "dt_winner": 1.0705,
+      "delta_dt": 0.1312,
+      "v_entry": 221.1,
+      "v_exit": 127.3
+    },
+    {
+      "id": 53,
+      "start": 2650.0,
+      "end": 2700.0,
+      "winner": "PER",
+      "dt_winner": 1.883,
+      "delta_dt": 0.1887,
+      "v_entry": 127.3,
+      "v_exit": 76.2
+    },
+    {
+      "id": 54,
+      "start": 2700.0,
+      "end": 2750.0,
+      "winner": "VER",
+      "dt_winner": 1.5776,
+      "delta_dt": 0.2768,
+      "v_entry": 84.5,
+      "v_exit": 155.1
+    },
+    {
+      "id": 55,
+      "start": 2750.0,
+      "end": 2800.0,
+      "winner": "VER",
+      "dt_winner": 1.0151,
+      "delta_dt": 0.1128,
+      "v_entry": 155.1,
+      "v_exit": 196.3
+    },
+    {
+      "id": 56,
+      "start": 2800.0,
+      "end": 2850.0,
+      "winner": "VER",
+      "dt_winner": 0.8486,
+      "delta_dt": 0.0311,
+      "v_entry": 196.3,
+      "v_exit": 223.5
+    },
+    {
+      "id": 57,
+      "start": 2850.0,
+      "end": 2900.0,
+      "winner": "VER",
+      "dt_winner": 0.7673,
+      "delta_dt": 0.0104,
+      "v_entry": 223.5,
+      "v_exit": 244.8
+    },
+    {
+      "id": 58,
+      "start": 2900.0,
+      "end": 2950.0,
+      "winner": "VER",
+      "dt_winner": 0.7125,
+      "delta_dt": 0.0106,
+      "v_entry": 244.8,
+      "v_exit": 260.0
+    },
+    {
+      "id": 59,
+      "start": 2950.0,
+      "end": 3000.0,
+      "winner": "VER",
+      "dt_winner": 0.6818,
+      "delta_dt": 0.0009,
+      "v_entry": 260.0,
+      "v_exit": 269.5
+    },
+    {
+      "id": 60,
+      "start": 3000.0,
+      "end": 3050.0,
+      "winner": "VER",
+      "dt_winner": 0.6518,
+      "delta_dt": 0.0041,
+      "v_entry": 269.5,
+      "v_exit": 280.9
+    },
+    {
+      "id": 61,
+      "start": 3050.0,
+      "end": 3100.0,
+      "winner": "VER",
+      "dt_winner": 0.6299,
+      "delta_dt": 0.0045,
+      "v_entry": 280.9,
+      "v_exit": 289.4
+    },
+    {
+      "id": 62,
+      "start": 3100.0,
+      "end": 3150.0,
+      "winner": "VER",
+      "dt_winner": 0.6161,
+      "delta_dt": 0.0031,
+      "v_entry": 289.4,
+      "v_exit": 294.5
+    },
+    {
+      "id": 63,
+      "start": 3150.0,
+      "end": 3200.0,
+      "winner": "VER",
+      "dt_winner": 0.6075,
+      "delta_dt": 0.0,
+      "v_entry": 294.5,
+      "v_exit": 299.3
+    },
+    {
+      "id": 64,
+      "start": 3200.0,
+      "end": 3250.0,
+      "winner": "VER",
+      "dt_winner": 0.5962,
+      "delta_dt": 0.0012,
+      "v_entry": 299.3,
+      "v_exit": 303.7
+    },
+    {
+      "id": 65,
+      "start": 3250.0,
+      "end": 3300.0,
+      "winner": "VER",
+      "dt_winner": 0.5898,
+      "delta_dt": 0.0007,
+      "v_entry": 303.7,
+      "v_exit": 301.1
+    },
+    {
+      "id": 66,
+      "start": 3300.0,
+      "end": 3350.0,
+      "winner": "PER",
+      "dt_winner": 0.6455,
+      "delta_dt": 0.0298,
+      "v_entry": 302.7,
+      "v_exit": 242.4
+    },
+    {
+      "id": 67,
+      "start": 3350.0,
+      "end": 3400.0,
+      "winner": "PER",
+      "dt_winner": 0.8988,
+      "delta_dt": 0.0145,
+      "v_entry": 242.4,
+      "v_exit": 176.7
+    },
+    {
+      "id": 68,
+      "start": 3400.0,
+      "end": 3450.0,
+      "winner": "PER",
+      "dt_winner": 1.034,
+      "delta_dt": 0.01,
+      "v_entry": 176.7,
+      "v_exit": 179.7
+    },
+    {
+      "id": 69,
+      "start": 3450.0,
+      "end": 3500.0,
+      "winner": "PER",
+      "dt_winner": 0.9522,
+      "delta_dt": 0.0038,
+      "v_entry": 179.7,
+      "v_exit": 201.2
+    },
+    {
+      "id": 70,
+      "start": 3500.0,
+      "end": 3550.0,
+      "winner": "PER",
+      "dt_winner": 0.8487,
+      "delta_dt": 0.0021,
+      "v_entry": 201.2,
+      "v_exit": 222.3
+    },
+    {
+      "id": 71,
+      "start": 3550.0,
+      "end": 3600.0,
+      "winner": "PER",
+      "dt_winner": 0.7804,
+      "delta_dt": 0.0037,
+      "v_entry": 222.3,
+      "v_exit": 238.1
+    },
+    {
+      "id": 72,
+      "start": 3600.0,
+      "end": 3650.0,
+      "winner": "PER",
+      "dt_winner": 0.7395,
+      "delta_dt": 0.0011,
+      "v_entry": 238.1,
+      "v_exit": 249.4
+    },
+    {
+      "id": 73,
+      "start": 3650.0,
+      "end": 3700.0,
+      "winner": "PER",
+      "dt_winner": 0.7071,
+      "delta_dt": 0.0023,
+      "v_entry": 249.4,
+      "v_exit": 257.4
+    },
+    {
+      "id": 74,
+      "start": 3700.0,
+      "end": 3750.0,
+      "winner": "PER",
+      "dt_winner": 0.6936,
+      "delta_dt": 0.0014,
+      "v_entry": 257.4,
+      "v_exit": 261.1
+    },
+    {
+      "id": 75,
+      "start": 3750.0,
+      "end": 3800.0,
+      "winner": "PER",
+      "dt_winner": 0.6848,
+      "delta_dt": 0.0,
+      "v_entry": 261.1,
+      "v_exit": 264.0
+    },
+    {
+      "id": 76,
+      "start": 3800.0,
+      "end": 3850.0,
+      "winner": "VER",
+      "dt_winner": 0.6788,
+      "delta_dt": 0.0003,
+      "v_entry": 263.8,
+      "v_exit": 265.5
+    },
+    {
+      "id": 77,
+      "start": 3850.0,
+      "end": 3900.0,
+      "winner": "PER",
+      "dt_winner": 0.672,
+      "delta_dt": 0.0017,
+      "v_entry": 266.5,
+      "v_exit": 269.7
+    },
+    {
+      "id": 78,
+      "start": 3900.0,
+      "end": 3950.0,
+      "winner": "VER",
+      "dt_winner": 0.6638,
+      "delta_dt": 0.0001,
+      "v_entry": 269.2,
+      "v_exit": 274.0
+    },
+    {
+      "id": 79,
+      "start": 3950.0,
+      "end": 4000.0,
+      "winner": "VER",
+      "dt_winner": 0.7034,
+      "delta_dt": 0.0401,
+      "v_entry": 274.0,
+      "v_exit": 214.1
+    },
+    {
+      "id": 80,
+      "start": 4000.0,
+      "end": 4050.0,
+      "winner": "VER",
+      "dt_winner": 1.0087,
+      "delta_dt": 0.0181,
+      "v_entry": 214.1,
+      "v_exit": 157.4
+    },
+    {
+      "id": 81,
+      "start": 4050.0,
+      "end": 4100.0,
+      "winner": "VER",
+      "dt_winner": 1.1916,
+      "delta_dt": 0.0171,
+      "v_entry": 157.4,
+      "v_exit": 154.0
+    },
+    {
+      "id": 82,
+      "start": 4100.0,
+      "end": 4150.0,
+      "winner": "VER",
+      "dt_winner": 1.0545,
+      "delta_dt": 0.0205,
+      "v_entry": 154.0,
+      "v_exit": 188.9
+    },
+    {
+      "id": 83,
+      "start": 4150.0,
+      "end": 4200.0,
+      "winner": "VER",
+      "dt_winner": 0.8854,
+      "delta_dt": 0.0029,
+      "v_entry": 188.9,
+      "v_exit": 216.6
+    },
+    {
+      "id": 84,
+      "start": 4200.0,
+      "end": 4250.0,
+      "winner": "VER",
+      "dt_winner": 0.7885,
+      "delta_dt": 0.0122,
+      "v_entry": 216.6,
+      "v_exit": 235.9
+    },
+    {
+      "id": 85,
+      "start": 4250.0,
+      "end": 4300.0,
+      "winner": "VER",
+      "dt_winner": 0.7391,
+      "delta_dt": 0.0021,
+      "v_entry": 235.9,
+      "v_exit": 251.5
+    },
+    {
+      "id": 86,
+      "start": 4300.0,
+      "end": 4350.0,
+      "winner": "VER",
+      "dt_winner": 0.701,
+      "delta_dt": 0.0026,
+      "v_entry": 251.5,
+      "v_exit": 261.6
+    },
+    {
+      "id": 87,
+      "start": 4350.0,
+      "end": 4400.0,
+      "winner": "VER",
+      "dt_winner": 0.6765,
+      "delta_dt": 0.0021,
+      "v_entry": 261.6,
+      "v_exit": 270.9
+    },
+    {
+      "id": 88,
+      "start": 4400.0,
+      "end": 4450.0,
+      "winner": "VER",
+      "dt_winner": 0.657,
+      "delta_dt": 0.0013,
+      "v_entry": 270.9,
+      "v_exit": 277.1
+    },
+    {
+      "id": 89,
+      "start": 4450.0,
+      "end": 4500.0,
+      "winner": "PER",
+      "dt_winner": 0.6421,
+      "delta_dt": 0.0004,
+      "v_entry": 277.4,
+      "v_exit": 283.3
+    },
+    {
+      "id": 90,
+      "start": 4500.0,
+      "end": 4550.0,
+      "winner": "VER",
+      "dt_winner": 0.6314,
+      "delta_dt": 0.0006,
+      "v_entry": 282.7,
+      "v_exit": 286.8
+    },
+    {
+      "id": 91,
+      "start": 4550.0,
+      "end": 4600.0,
+      "winner": "PER",
+      "dt_winner": 0.6222,
+      "delta_dt": 0.0,
+      "v_entry": 287.6,
+      "v_exit": 291.5
+    },
+    {
+      "id": 92,
+      "start": 4600.0,
+      "end": 4650.0,
+      "winner": "PER",
+      "dt_winner": 0.6152,
+      "delta_dt": 0.0012,
+      "v_entry": 291.5,
+      "v_exit": 293.9
+    },
+    {
+      "id": 93,
+      "start": 4650.0,
+      "end": 4700.0,
+      "winner": "PER",
+      "dt_winner": 0.6107,
+      "delta_dt": 0.0025,
+      "v_entry": 293.9,
+      "v_exit": 295.0
+    },
+    {
+      "id": 94,
+      "start": 4700.0,
+      "end": 4750.0,
+      "winner": "PER",
+      "dt_winner": 0.6086,
+      "delta_dt": 0.0019,
+      "v_entry": 295.0,
+      "v_exit": 295.4
+    },
+    {
+      "id": 95,
+      "start": 4750.0,
+      "end": 4800.0,
+      "winner": "VER",
+      "dt_winner": 0.6938,
+      "delta_dt": 0.0063,
+      "v_entry": 295.8,
+      "v_exit": 216.5
+    },
+    {
+      "id": 96,
+      "start": 4800.0,
+      "end": 4850.0,
+      "winner": "VER",
+      "dt_winner": 1.0601,
+      "delta_dt": 0.0037,
+      "v_entry": 216.5,
+      "v_exit": 144.5
+    },
+    {
+      "id": 97,
+      "start": 4850.0,
+      "end": 4900.0,
+      "winner": "PER",
+      "dt_winner": 1.3653,
+      "delta_dt": 0.0083,
+      "v_entry": 142.5,
+      "v_exit": 134.0
+    },
+    {
+      "id": 98,
+      "start": 4900.0,
+      "end": 4950.0,
+      "winner": "VER",
+      "dt_winner": 1.1624,
+      "delta_dt": 0.0426,
+      "v_entry": 133.8,
+      "v_exit": 177.6
+    },
+    {
+      "id": 99,
+      "start": 4950.0,
+      "end": 5000.0,
+      "winner": "VER",
+      "dt_winner": 0.9312,
+      "delta_dt": 0.0249,
+      "v_entry": 177.6,
+      "v_exit": 209.0
+    },
+    {
+      "id": 100,
+      "start": 5000.0,
+      "end": 5050.0,
+      "winner": "VER",
+      "dt_winner": 0.817,
+      "delta_dt": 0.0082,
+      "v_entry": 209.0,
+      "v_exit": 229.1
+    },
+    {
+      "id": 101,
+      "start": 5050.0,
+      "end": 5100.0,
+      "winner": "VER",
+      "dt_winner": 0.7567,
+      "delta_dt": 0.0053,
+      "v_entry": 229.1,
+      "v_exit": 245.0
+    },
+    {
+      "id": 102,
+      "start": 5100.0,
+      "end": 5150.0,
+      "winner": "PER",
+      "dt_winner": 0.7184,
+      "delta_dt": 0.0016,
+      "v_entry": 243.3,
+      "v_exit": 254.6
+    },
+    {
+      "id": 103,
+      "start": 5150.0,
+      "end": 5200.0,
+      "winner": "VER",
+      "dt_winner": 0.688,
+      "delta_dt": 0.0034,
+      "v_entry": 257.0,
+      "v_exit": 266.0
+    },
+    {
+      "id": 104,
+      "start": 5200.0,
+      "end": 5250.0,
+      "winner": "VER",
+      "dt_winner": 0.6667,
+      "delta_dt": 0.0031,
+      "v_entry": 266.0,
+      "v_exit": 274.2
+    },
+    {
+      "id": 105,
+      "start": 5250.0,
+      "end": 5300.0,
+      "winner": "VER",
+      "dt_winner": 0.6459,
+      "delta_dt": 0.0008,
+      "v_entry": 274.2,
+      "v_exit": 282.8
+    },
+    {
+      "id": 106,
+      "start": 5300.0,
+      "end": 5350.0,
+      "winner": "VER",
+      "dt_winner": 0.6267,
+      "delta_dt": 0.0008,
+      "v_entry": 282.8,
+      "v_exit": 291.0
+    },
+    {
+      "id": 107,
+      "start": 5350.0,
+      "end": 5358.0,
+      "winner": "VER",
+      "dt_winner": 0.0988,
+      "delta_dt": 0.0,
+      "v_entry": 291.0,
+      "v_exit": 292.0
+    }
+  ],
+  "100m": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 100.0,
+      "winner": "PER",
+      "dt_winner": 1.2024,
+      "delta_dt": 0.0049,
+      "v_entry": 293.5,
+      "v_exit": 303.9
+    },
+    {
+      "id": 1,
+      "start": 100.0,
+      "end": 200.0,
+      "winner": "PER",
+      "dt_winner": 1.1672,
+      "delta_dt": 0.0045,
+      "v_entry": 303.9,
+      "v_exit": 311.9
+    },
+    {
+      "id": 2,
+      "start": 200.0,
+      "end": 300.0,
+      "winner": "PER",
+      "dt_winner": 1.1426,
+      "delta_dt": 0.0042,
+      "v_entry": 311.9,
+      "v_exit": 317.7
+    },
+    {
+      "id": 3,
+      "start": 300.0,
+      "end": 400.0,
+      "winner": "PER",
+      "dt_winner": 1.1266,
+      "delta_dt": 0.0033,
+      "v_entry": 317.7,
+      "v_exit": 320.7
+    },
+    {
+      "id": 4,
+      "start": 400.0,
+      "end": 500.0,
+      "winner": "PER",
+      "dt_winner": 1.1152,
+      "delta_dt": 0.0029,
+      "v_entry": 320.7,
+      "v_exit": 323.1
+    },
+    {
+      "id": 5,
+      "start": 500.0,
+      "end": 600.0,
+      "winner": "PER",
+      "dt_winner": 1.1113,
+      "delta_dt": 0.0092,
+      "v_entry": 323.1,
+      "v_exit": 312.8
+    },
+    {
+      "id": 6,
+      "start": 600.0,
+      "end": 700.0,
+      "winner": "PER",
+      "dt_winner": 2.2018,
+      "delta_dt": 0.0674,
+      "v_entry": 312.8,
+      "v_exit": 86.7
+    },
+    {
+      "id": 7,
+      "start": 700.0,
+      "end": 800.0,
+      "winner": "PER",
+      "dt_winner": 3.7113,
+      "delta_dt": 0.0406,
+      "v_entry": 86.7,
+      "v_exit": 157.2
+    },
+    {
+      "id": 8,
+      "start": 800.0,
+      "end": 900.0,
+      "winner": "PER",
+      "dt_winner": 1.9077,
+      "delta_dt": 0.0308,
+      "v_entry": 157.2,
+      "v_exit": 216.1
+    },
+    {
+      "id": 9,
+      "start": 900.0,
+      "end": 1000.0,
+      "winner": "PER",
+      "dt_winner": 1.5515,
+      "delta_dt": 0.0035,
+      "v_entry": 216.1,
+      "v_exit": 247.7
+    },
+    {
+      "id": 10,
+      "start": 1000.0,
+      "end": 1100.0,
+      "winner": "PER",
+      "dt_winner": 1.3841,
+      "delta_dt": 0.0038,
+      "v_entry": 247.7,
+      "v_exit": 271.6
+    },
+    {
+      "id": 11,
+      "start": 1100.0,
+      "end": 1200.0,
+      "winner": "PER",
+      "dt_winner": 1.2804,
+      "delta_dt": 0.0039,
+      "v_entry": 271.6,
+      "v_exit": 288.8
+    },
+    {
+      "id": 12,
+      "start": 1200.0,
+      "end": 1300.0,
+      "winner": "PER",
+      "dt_winner": 1.2218,
+      "delta_dt": 0.0046,
+      "v_entry": 288.8,
+      "v_exit": 299.5
+    },
+    {
+      "id": 13,
+      "start": 1300.0,
+      "end": 1400.0,
+      "winner": "PER",
+      "dt_winner": 1.1925,
+      "delta_dt": 0.0067,
+      "v_entry": 299.5,
+      "v_exit": 287.2
+    },
+    {
+      "id": 14,
+      "start": 1400.0,
+      "end": 1500.0,
+      "winner": "VER",
+      "dt_winner": 1.9183,
+      "delta_dt": 0.0676,
+      "v_entry": 287.5,
+      "v_exit": 135.7
+    },
+    {
+      "id": 15,
+      "start": 1500.0,
+      "end": 1600.0,
+      "winner": "VER",
+      "dt_winner": 2.5136,
+      "delta_dt": 0.0263,
+      "v_entry": 135.7,
+      "v_exit": 180.9
+    },
+    {
+      "id": 16,
+      "start": 1600.0,
+      "end": 1700.0,
+      "winner": "PER",
+      "dt_winner": 1.7242,
+      "delta_dt": 0.0089,
+      "v_entry": 183.5,
+      "v_exit": 230.3
+    },
+    {
+      "id": 17,
+      "start": 1700.0,
+      "end": 1800.0,
+      "winner": "PER",
+      "dt_winner": 1.4731,
+      "delta_dt": 0.0006,
+      "v_entry": 230.3,
+      "v_exit": 253.7
+    },
+    {
+      "id": 18,
+      "start": 1800.0,
+      "end": 1900.0,
+      "winner": "VER",
+      "dt_winner": 1.5944,
+      "delta_dt": 0.0337,
+      "v_entry": 252.4,
+      "v_exit": 213.2
+    },
+    {
+      "id": 19,
+      "start": 1900.0,
+      "end": 2000.0,
+      "winner": "VER",
+      "dt_winner": 1.5861,
+      "delta_dt": 0.0077,
+      "v_entry": 213.2,
+      "v_exit": 235.8
+    },
+    {
+      "id": 20,
+      "start": 2000.0,
+      "end": 2100.0,
+      "winner": "PER",
+      "dt_winner": 1.451,
+      "delta_dt": 0.0101,
+      "v_entry": 238.8,
+      "v_exit": 255.7
+    },
+    {
+      "id": 21,
+      "start": 2100.0,
+      "end": 2200.0,
+      "winner": "PER",
+      "dt_winner": 2.0132,
+      "delta_dt": 0.2224,
+      "v_entry": 255.7,
+      "v_exit": 104.8
+    },
+    {
+      "id": 22,
+      "start": 2200.0,
+      "end": 2300.0,
+      "winner": "VER",
+      "dt_winner": 3.5846,
+      "delta_dt": 0.1119,
+      "v_entry": 100.5,
+      "v_exit": 145.3
+    },
+    {
+      "id": 23,
+      "start": 2300.0,
+      "end": 2400.0,
+      "winner": "VER",
+      "dt_winner": 1.9144,
+      "delta_dt": 0.0349,
+      "v_entry": 145.3,
+      "v_exit": 219.5
+    },
+    {
+      "id": 24,
+      "start": 2400.0,
+      "end": 2500.0,
+      "winner": "PER",
+      "dt_winner": 1.5304,
+      "delta_dt": 0.0009,
+      "v_entry": 218.8,
+      "v_exit": 250.5
+    },
+    {
+      "id": 25,
+      "start": 2500.0,
+      "end": 2600.0,
+      "winner": "PER",
+      "dt_winner": 1.433,
+      "delta_dt": 0.0854,
+      "v_entry": 250.5,
+      "v_exit": 221.1
+    },
+    {
+      "id": 26,
+      "start": 2600.0,
+      "end": 2700.0,
+      "winner": "PER",
+      "dt_winner": 2.9535,
+      "delta_dt": 0.3199,
+      "v_entry": 221.1,
+      "v_exit": 76.2
+    },
+    {
+      "id": 27,
+      "start": 2700.0,
+      "end": 2800.0,
+      "winner": "VER",
+      "dt_winner": 2.5928,
+      "delta_dt": 0.3896,
+      "v_entry": 84.5,
+      "v_exit": 196.3
+    },
+    {
+      "id": 28,
+      "start": 2800.0,
+      "end": 2900.0,
+      "winner": "VER",
+      "dt_winner": 1.6159,
+      "delta_dt": 0.0415,
+      "v_entry": 196.3,
+      "v_exit": 244.8
+    },
+    {
+      "id": 29,
+      "start": 2900.0,
+      "end": 3000.0,
+      "winner": "VER",
+      "dt_winner": 1.3943,
+      "delta_dt": 0.0115,
+      "v_entry": 244.8,
+      "v_exit": 269.5
+    },
+    {
+      "id": 30,
+      "start": 3000.0,
+      "end": 3100.0,
+      "winner": "VER",
+      "dt_winner": 1.2817,
+      "delta_dt": 0.0086,
+      "v_entry": 269.5,
+      "v_exit": 289.4
+    },
+    {
+      "id": 31,
+      "start": 3100.0,
+      "end": 3200.0,
+      "winner": "VER",
+      "dt_winner": 1.2237,
+      "delta_dt": 0.0031,
+      "v_entry": 289.4,
+      "v_exit": 299.3
+    },
+    {
+      "id": 32,
+      "start": 3200.0,
+      "end": 3300.0,
+      "winner": "VER",
+      "dt_winner": 1.1859,
+      "delta_dt": 0.0019,
+      "v_entry": 299.3,
+      "v_exit": 301.1
+    },
+    {
+      "id": 33,
+      "start": 3300.0,
+      "end": 3400.0,
+      "winner": "PER",
+      "dt_winner": 1.5443,
+      "delta_dt": 0.0443,
+      "v_entry": 302.7,
+      "v_exit": 176.7
+    },
+    {
+      "id": 34,
+      "start": 3400.0,
+      "end": 3500.0,
+      "winner": "PER",
+      "dt_winner": 1.9862,
+      "delta_dt": 0.0138,
+      "v_entry": 176.7,
+      "v_exit": 201.2
+    },
+    {
+      "id": 35,
+      "start": 3500.0,
+      "end": 3600.0,
+      "winner": "PER",
+      "dt_winner": 1.629,
+      "delta_dt": 0.0057,
+      "v_entry": 201.2,
+      "v_exit": 238.1
+    },
+    {
+      "id": 36,
+      "start": 3600.0,
+      "end": 3700.0,
+      "winner": "PER",
+      "dt_winner": 1.4466,
+      "delta_dt": 0.0034,
+      "v_entry": 238.1,
+      "v_exit": 257.4
+    },
+    {
+      "id": 37,
+      "start": 3700.0,
+      "end": 3800.0,
+      "winner": "PER",
+      "dt_winner": 1.3784,
+      "delta_dt": 0.0015,
+      "v_entry": 257.4,
+      "v_exit": 264.0
+    },
+    {
+      "id": 38,
+      "start": 3800.0,
+      "end": 3900.0,
+      "winner": "PER",
+      "dt_winner": 1.351,
+      "delta_dt": 0.0014,
+      "v_entry": 264.0,
+      "v_exit": 269.7
+    },
+    {
+      "id": 39,
+      "start": 3900.0,
+      "end": 4000.0,
+      "winner": "VER",
+      "dt_winner": 1.3672,
+      "delta_dt": 0.0402,
+      "v_entry": 269.2,
+      "v_exit": 214.1
+    },
+    {
+      "id": 40,
+      "start": 4000.0,
+      "end": 4100.0,
+      "winner": "VER",
+      "dt_winner": 2.2002,
+      "delta_dt": 0.0352,
+      "v_entry": 214.1,
+      "v_exit": 154.0
+    },
+    {
+      "id": 41,
+      "start": 4100.0,
+      "end": 4200.0,
+      "winner": "VER",
+      "dt_winner": 1.9399,
+      "delta_dt": 0.0235,
+      "v_entry": 154.0,
+      "v_exit": 216.6
+    },
+    {
+      "id": 42,
+      "start": 4200.0,
+      "end": 4300.0,
+      "winner": "VER",
+      "dt_winner": 1.5277,
+      "delta_dt": 0.0142,
+      "v_entry": 216.6,
+      "v_exit": 251.5
+    },
+    {
+      "id": 43,
+      "start": 4300.0,
+      "end": 4400.0,
+      "winner": "VER",
+      "dt_winner": 1.3775,
+      "delta_dt": 0.0047,
+      "v_entry": 251.5,
+      "v_exit": 270.9
+    },
+    {
+      "id": 44,
+      "start": 4400.0,
+      "end": 4500.0,
+      "winner": "VER",
+      "dt_winner": 1.2995,
+      "delta_dt": 0.0009,
+      "v_entry": 270.9,
+      "v_exit": 282.7
+    },
+    {
+      "id": 45,
+      "start": 4500.0,
+      "end": 4600.0,
+      "winner": "VER",
+      "dt_winner": 1.2536,
+      "delta_dt": 0.0006,
+      "v_entry": 282.7,
+      "v_exit": 291.0
+    },
+    {
+      "id": 46,
+      "start": 4600.0,
+      "end": 4700.0,
+      "winner": "PER",
+      "dt_winner": 1.2259,
+      "delta_dt": 0.0037,
+      "v_entry": 291.5,
+      "v_exit": 295.0
+    },
+    {
+      "id": 47,
+      "start": 4700.0,
+      "end": 4800.0,
+      "winner": "VER",
+      "dt_winner": 1.3043,
+      "delta_dt": 0.0044,
+      "v_entry": 294.0,
+      "v_exit": 216.5
+    },
+    {
+      "id": 48,
+      "start": 4800.0,
+      "end": 4900.0,
+      "winner": "PER",
+      "dt_winner": 2.429,
+      "delta_dt": 0.0046,
+      "v_entry": 211.2,
+      "v_exit": 134.0
+    },
+    {
+      "id": 49,
+      "start": 4900.0,
+      "end": 5000.0,
+      "winner": "VER",
+      "dt_winner": 2.0936,
+      "delta_dt": 0.0674,
+      "v_entry": 133.8,
+      "v_exit": 209.0
+    },
+    {
+      "id": 50,
+      "start": 5000.0,
+      "end": 5100.0,
+      "winner": "VER",
+      "dt_winner": 1.5737,
+      "delta_dt": 0.0136,
+      "v_entry": 209.0,
+      "v_exit": 245.0
+    },
+    {
+      "id": 51,
+      "start": 5100.0,
+      "end": 5200.0,
+      "winner": "VER",
+      "dt_winner": 1.408,
+      "delta_dt": 0.0018,
+      "v_entry": 245.0,
+      "v_exit": 266.0
+    },
+    {
+      "id": 52,
+      "start": 5200.0,
+      "end": 5300.0,
+      "winner": "VER",
+      "dt_winner": 1.3126,
+      "delta_dt": 0.0039,
+      "v_entry": 266.0,
+      "v_exit": 282.8
+    },
+    {
+      "id": 53,
+      "start": 5300.0,
+      "end": 5358.0,
+      "winner": "VER",
+      "dt_winner": 0.7255,
+      "delta_dt": 0.0008,
+      "v_entry": 282.8,
+      "v_exit": 292.0
+    }
+  ],
+  "250m": [
+    {
+      "id": 0,
+      "start": 0.0,
+      "end": 250.0,
+      "winner": "PER",
+      "dt_winner": 2.9435,
+      "delta_dt": 0.0119,
+      "v_entry": 293.5,
+      "v_exit": 315.3
+    },
+    {
+      "id": 1,
+      "start": 250.0,
+      "end": 500.0,
+      "winner": "PER",
+      "dt_winner": 2.8104,
+      "delta_dt": 0.0079,
+      "v_entry": 315.3,
+      "v_exit": 323.1
+    },
+    {
+      "id": 2,
+      "start": 500.0,
+      "end": 750.0,
+      "winner": "PER",
+      "dt_winner": 5.6146,
+      "delta_dt": 0.1412,
+      "v_entry": 323.1,
+      "v_exit": 97.2
+    },
+    {
+      "id": 3,
+      "start": 750.0,
+      "end": 1000.0,
+      "winner": "PER",
+      "dt_winner": 4.869,
+      "delta_dt": 0.0104,
+      "v_entry": 97.2,
+      "v_exit": 247.7
+    },
+    {
+      "id": 4,
+      "start": 1000.0,
+      "end": 1250.0,
+      "winner": "PER",
+      "dt_winner": 3.281,
+      "delta_dt": 0.0102,
+      "v_entry": 247.7,
+      "v_exit": 294.9
+    },
+    {
+      "id": 5,
+      "start": 1250.0,
+      "end": 1500.0,
+      "winner": "VER",
+      "dt_winner": 3.7248,
+      "delta_dt": 0.0588,
+      "v_entry": 293.9,
+      "v_exit": 135.7
+    },
+    {
+      "id": 6,
+      "start": 1500.0,
+      "end": 1750.0,
+      "winner": "VER",
+      "dt_winner": 5.0023,
+      "delta_dt": 0.0168,
+      "v_entry": 135.7,
+      "v_exit": 245.6
+    },
+    {
+      "id": 7,
+      "start": 1750.0,
+      "end": 2000.0,
+      "winner": "VER",
+      "dt_winner": 3.8986,
+      "delta_dt": 0.0414,
+      "v_entry": 245.6,
+      "v_exit": 235.8
+    },
+    {
+      "id": 8,
+      "start": 2000.0,
+      "end": 2250.0,
+      "winner": "PER",
+      "dt_winner": 5.5371,
+      "delta_dt": 0.2203,
+      "v_entry": 238.8,
+      "v_exit": 88.7
+    },
+    {
+      "id": 9,
+      "start": 2250.0,
+      "end": 2500.0,
+      "winner": "VER",
+      "dt_winner": 4.9696,
+      "delta_dt": 0.1338,
+      "v_entry": 93.3,
+      "v_exit": 249.8
+    },
+    {
+      "id": 10,
+      "start": 2500.0,
+      "end": 2750.0,
+      "winner": "PER",
+      "dt_winner": 6.241,
+      "delta_dt": 0.1285,
+      "v_entry": 250.5,
+      "v_exit": 133.9
+    },
+    {
+      "id": 11,
+      "start": 2750.0,
+      "end": 3000.0,
+      "winner": "VER",
+      "dt_winner": 4.0253,
+      "delta_dt": 0.1658,
+      "v_entry": 155.1,
+      "v_exit": 269.5
+    },
+    {
+      "id": 12,
+      "start": 3000.0,
+      "end": 3250.0,
+      "winner": "VER",
+      "dt_winner": 3.1016,
+      "delta_dt": 0.013,
+      "v_entry": 269.5,
+      "v_exit": 303.7
+    },
+    {
+      "id": 13,
+      "start": 3250.0,
+      "end": 3500.0,
+      "winner": "PER",
+      "dt_winner": 4.1209,
+      "delta_dt": 0.0574,
+      "v_entry": 304.2,
+      "v_exit": 201.2
+    },
+    {
+      "id": 14,
+      "start": 3500.0,
+      "end": 3750.0,
+      "winner": "PER",
+      "dt_winner": 3.7692,
+      "delta_dt": 0.0105,
+      "v_entry": 201.2,
+      "v_exit": 261.1
+    },
+    {
+      "id": 15,
+      "start": 3750.0,
+      "end": 4000.0,
+      "winner": "VER",
+      "dt_winner": 3.4045,
+      "delta_dt": 0.0387,
+      "v_entry": 261.5,
+      "v_exit": 214.1
+    },
+    {
+      "id": 16,
+      "start": 4000.0,
+      "end": 4250.0,
+      "winner": "VER",
+      "dt_winner": 4.9287,
+      "delta_dt": 0.0709,
+      "v_entry": 214.1,
+      "v_exit": 235.9
+    },
+    {
+      "id": 17,
+      "start": 4250.0,
+      "end": 4500.0,
+      "winner": "VER",
+      "dt_winner": 3.4161,
+      "delta_dt": 0.0077,
+      "v_entry": 235.9,
+      "v_exit": 282.7
+    },
+    {
+      "id": 18,
+      "start": 4500.0,
+      "end": 4750.0,
+      "winner": "PER",
+      "dt_winner": 3.0887,
+      "delta_dt": 0.0049,
+      "v_entry": 283.3,
+      "v_exit": 295.4
+    },
+    {
+      "id": 19,
+      "start": 4750.0,
+      "end": 5000.0,
+      "winner": "VER",
+      "dt_winner": 5.221,
+      "delta_dt": 0.0691,
+      "v_entry": 295.8,
+      "v_exit": 209.0
+    },
+    {
+      "id": 20,
+      "start": 5000.0,
+      "end": 5250.0,
+      "winner": "VER",
+      "dt_winner": 3.6484,
+      "delta_dt": 0.0185,
+      "v_entry": 209.0,
+      "v_exit": 274.2
+    },
+    {
+      "id": 21,
+      "start": 5250.0,
+      "end": 5358.0,
+      "winner": "VER",
+      "dt_winner": 1.3714,
+      "delta_dt": 0.0016,
+      "v_entry": 274.2,
+      "v_exit": 292.0
+    }
+  ]
+},
+  boundaryJumps100m: [
+  {
+    "s": 1400.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": 0.073,
+    "abs_delta_v_kmh": 0.26,
+    "abs_delta_energy_kj": 4.75
+  },
+  {
+    "s": 1600.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": 0.728,
+    "abs_delta_v_kmh": 2.62,
+    "abs_delta_energy_kj": 29.86
+  },
+  {
+    "s": 1800.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": -0.369,
+    "abs_delta_v_kmh": 1.33,
+    "abs_delta_energy_kj": 20.99
+  },
+  {
+    "s": 2000.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": 0.834,
+    "abs_delta_v_kmh": 3.0,
+    "abs_delta_energy_kj": 44.53
+  },
+  {
+    "s": 2200.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": -1.202,
+    "abs_delta_v_kmh": 4.33,
+    "abs_delta_energy_kj": 27.77
+  },
+  {
+    "s": 2400.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": -0.199,
+    "abs_delta_v_kmh": 0.72,
+    "abs_delta_energy_kj": 9.8
+  },
+  {
+    "s": 2700.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": 2.299,
+    "abs_delta_v_kmh": 8.28,
+    "abs_delta_energy_kj": 41.56
+  },
+  {
+    "s": 3300.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": 0.44,
+    "abs_delta_v_kmh": 1.58,
+    "abs_delta_energy_kj": 29.89
+  },
+  {
+    "s": 3900.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": -0.121,
+    "abs_delta_v_kmh": 0.43,
+    "abs_delta_energy_kj": 7.31
+  },
+  {
+    "s": 4600.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": 0.127,
+    "abs_delta_v_kmh": 0.46,
+    "abs_delta_energy_kj": 8.34
+  },
+  {
+    "s": 4700.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": -0.28,
+    "abs_delta_v_kmh": 1.01,
+    "abs_delta_energy_kj": 18.54
+  },
+  {
+    "s": 4800.0,
+    "from_driver": "VER",
+    "to_driver": "PER",
+    "delta_v_mps": -1.487,
+    "abs_delta_v_kmh": 5.35,
+    "abs_delta_energy_kj": 71.53
+  },
+  {
+    "s": 4900.0,
+    "from_driver": "PER",
+    "to_driver": "VER",
+    "delta_v_mps": -0.057,
+    "abs_delta_v_kmh": 0.21,
+    "abs_delta_energy_kj": 1.72
+  }
+],
 };

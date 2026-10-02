@@ -3,40 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Physics-Constrained F1 Lap Analysis | Cross-Driver Telemetry Research</title>
-  <meta name="description" content="Physics-constrained lap time analysis of cross-driver performance in Formula 1 using telemetry from the 2023 Bahrain Grand Prix Qualifying.">
+  <title>Physics-Constrained F1 Lap Analysis | Technical Research Publication</title>
+  <meta name="description" content="From Theoretical to Achievable Lap Time: Physics-Constrained Analysis of Cross-Driver Performance in Formula 1. Empirical validation using 2023 Bahrain GP Q3 telemetry for Scuderia Ferrari and Oracle Red Bull Racing.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  
-  <!-- Typography (Google Fonts: Inter & Space Grotesk & JetBrains Mono) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
-  <!-- Top Navigation -->
-  <header class="top-nav">
+  <!-- Sticky Top Navigation -->
+  <header class="top-nav" id="topNav">
     <div class="nav-container">
       <a href="#home" class="brand-link">
         <div class="brand-mark">F1</div>
         <div class="brand-title">
-          Physics-Constrained Lap Analysis
-          <span class="brand-subtitle">Formula 1 Telemetry Research</span>
+          <span>Physics-Constrained F1 Lap Analysis</span>
+          <span class="brand-subtitle">2023 Bahrain GP Q3 &bull; Technical Research Publication</span>
         </div>
       </a>
 
-      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation">☰</button>
+      <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
+        &#9776;
+      </button>
 
       <nav>
         <ul class="nav-links" id="navMenu">
           <li><a href="#home" class="nav-link active">Home</a></li>
           <li><a href="#overview" class="nav-link">Overview</a></li>
           <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
+          <li><a href="#method" class="nav-link">Methodology</a></li>
           <li><a href="#experiments" class="nav-link">Experiments</a></li>
-          <li><a href="#method" class="nav-link">Method</a></li>
           <li><a href="#results" class="nav-link">Results</a></li>
+          <li><a href="#sensitivity" class="nav-link">Sensitivity</a></li>
+          <li><a href="#cross-team" class="nav-link">Cross-Team</a></li>
+          <li><a href="#limitations" class="nav-link">Limitations</a></li>
           <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
           <li><a href="#about" class="nav-link">About</a></li>
         </ul>
@@ -44,22 +46,25 @@
     </div>
   </header>
 
-  <!-- Team Switcher Bar -->
+  <!-- Sticky Study Selector Bar -->
   <div class="team-switcher-bar" id="teamSwitcherBar">
     <div class="team-switcher-inner">
-      <span class="team-switcher-label">Study:</span>
+      <span class="team-switcher-label">Active Study:</span>
       <button class="team-btn ferrari-btn active" id="teamBtnFerrari" aria-pressed="true">
         <span class="team-color-dot"></span>
-        Scuderia Ferrari SF-23 &mdash; Leclerc &amp; Sainz
+        Scuderia Ferrari SF-23 &mdash; Leclerc vs Sainz
       </button>
       <button class="team-btn rbr-btn" id="teamBtnRbr" aria-pressed="false">
         <span class="team-color-dot"></span>
-        Oracle Red Bull RB19 &mdash; Verstappen &amp; Perez
+        Oracle Red Bull Racing RB19 &mdash; Verstappen vs P&eacute;rez
       </button>
+      <span style="margin-left:auto; font-size:0.75rem; color:#85847F; font-family:var(--font-mono); display:none;" class="study-status-note">
+        Independent Calibrations &bull; Empirical Spatial Domain
+      </span>
     </div>
   </div>
 
-  <!-- 1. Home Section -->
+  <!-- A. HOME SECTION -->
   <section id="home" class="hero-section">
     <div class="container">
       <div class="hero-grid">
@@ -68,47 +73,47 @@
             <span class="hero-badge-dot"></span>
             SCUDERIA FERRARI SF-23 &bull; 2023 BAHRAIN GP Q3
           </div>
-          <h1 class="hero-title">Physics-Constrained F1 Lap Analysis</h1>
-          <div class="hero-subtitle">From theoretical lap times to physically achievable performance</div>
+          <h1 class="hero-title">From Theoretical to Achievable Lap Time</h1>
+          <div class="hero-subtitle">Physics-Constrained Analysis of Cross-Driver Performance in Formula 1</div>
           <p class="hero-text">
-            An investigation into how combining the fastest segments from different Formula 1 drivers creates a theoretical lap advantage, and how much of that advantage remains when vehicle-dynamics and boundary-continuity constraints are enforced.
+            In Formula 1 telemetry debriefs, "ideal" or "theoretical best" laps are routinely constructed by summing the fastest observed mini-sector times across teammates. This investigation evaluates the physical validity of that construct by applying a Level-2 coupled point-mass vehicle dynamics solver with tire friction ellipse coupling and periodic boundary conditions to official 2023 Bahrain GP Q3 telemetry.
           </p>
           <div class="hero-actions">
-            <a href="#overview" class="btn btn-primary">Explore the Research &rarr;</a>
-            <a href="#method" class="btn btn-outline">View Methodology</a>
+            <a href="#overview" class="btn btn-primary" id="heroExploreBtn">Explore Research Overview &rarr;</a>
+            <a href="#method" class="btn btn-outline">Vehicle Dynamics Formulation</a>
+            <a href="#cross-team" class="btn btn-outline" style="border-color:var(--color-border-dark);">Cross-Team Synthesis</a>
           </div>
         </div>
 
         <div class="hero-schematic-card">
           <div class="schematic-header">
             <span class="schematic-title">Canonical Spatial Domain</span>
-            <span class="schematic-tag">S = 5369.0 m &bull; ds = 1.0 m</span>
+            <span class="schematic-tag" id="schematicTag">S = 5369.0 m &bull; ds = 1.0 m</span>
           </div>
           <div class="schematic-figure">
-            <img src="assets/track_schematic.svg" alt="Bahrain Circuit Schematic" style="width:100%; height:100%; object-fit:contain;">
+            <img src="assets/track_schematic.svg" alt="Bahrain International Circuit Track Schematic" style="width:100%; height:100%; object-fit:contain;">
           </div>
           <div class="schematic-caption">
-            Illustrative schematic of Bahrain International Circuit (Sakhir). 54 canonical 100m mini-sectors.
+            Bahrain International Circuit (Sakhir). 54 canonical 100m mini-sectors mapped to continuous track distance coordinate <em>s</em>.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Key Findings Stat Bar -->
+  <!-- Key Findings KPI Bar -->
   <div class="key-findings-bar" id="statBar">
     <div class="container">
       <div class="findings-grid" id="statBarGrid">
-        <!-- Populated by JS based on active team -->
         <div class="finding-card">
           <div class="finding-value" id="stat-theoretical">88.869 s</div>
-          <div class="finding-label">Theoretical Composite</div>
+          <div class="finding-label">Theoretical Composite (100m)</div>
           <div class="finding-desc" id="stat-theoretical-desc">Naive piece-wise minimum segment assembly (nominal gain: +1.053 s vs LEC).</div>
         </div>
         <div class="finding-card highlight">
           <div class="finding-value" id="stat-feasible">91.583 s</div>
-          <div class="finding-label">Feasible Lap Time</div>
-          <div class="finding-desc">Level-2 coupled periodic solve with continuous speed profile and donor caps.</div>
+          <div class="finding-label">Physics-Feasible Lap Time</div>
+          <div class="finding-desc">Forward-backward solve enforcing tire friction limits and donor speed caps.</div>
         </div>
         <div class="finding-card blue">
           <div class="finding-value" id="stat-gap">+2.714 s</div>
@@ -117,1210 +122,1473 @@
         </div>
         <div class="finding-card">
           <div class="finding-value" id="stat-switches">15</div>
-          <div class="finding-label">Driver Switches</div>
-          <div class="finding-desc" id="stat-switches-desc">Velocity step jumps up to 11.70 km/h and 832.24 kJ unphysical KE mismatch.</div>
+          <div class="finding-label">Driver Boundary Switches</div>
+          <div class="finding-desc" id="stat-switches-desc">Step jumps up to 11.70 km/h and 832.24 kJ unphysical energy mismatch.</div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- 2. Research Overview Section -->
+  <!-- Conceptual Explanation Callout -->
+  <div class="container" style="margin-top:2.5rem; margin-bottom:2rem;">
+    <div class="callout" style="border-left-color: var(--color-accent-red);">
+      <div class="callout-title" style="font-size:1.05rem;">The Theoretical-to-Feasible Gap Concept</div>
+      <div class="callout-text" style="font-size:0.92rem; line-height:1.65;">
+        <strong>1. Naive Theoretical Composite:</strong> Splicing Driver A's exit speed with Driver B's entry speed assumes instantaneous velocity step changes (&Delta;v), requiring infinite acceleration and unphysical energy injection.<br>
+        <strong>2. Physics-Constrained Feasible Lap:</strong> A continuous speed profile \(v_{\text{feasible}}(s)\) is solved using a coupled vehicle dynamics model that obeys tire friction ellipses, braking envelopes, traction limits, and observed donor ceilings (\(v \le v_{\text{donor}}\)).<br>
+        <strong>3. The Feasibility Penalty:</strong> To respect physical deceleration envelopes before corners, the car must brake earlier than the downstream donor entered, accumulating a persistent speed debt that renders the feasible composite slower than the individual drivers.
+      </div>
+    </div>
+  </div>
+
+  <!-- B. RESEARCH OVERVIEW SECTION -->
   <section id="overview" class="section">
     <div class="container">
       <div class="section-header">
         <span class="section-label">01 &bull; Scientific Motivation</span>
-        <h2 class="section-title">Research Problem & Objectives</h2>
+        <h2 class="section-title">Research Overview & Problem Formulation</h2>
         <p class="section-lead">
-          In Formula 1 broadcast graphics and engineering analysis, theoretical "ideal" laps are routinely computed by summing the fastest observed mini-sector times across teammates. This investigation evaluates the physical validity of that construct.
+          Why "ideal" lap times constructed by splicing fastest sectors represent a dynamic impossibility under continuous vehicle physics.
         </p>
       </div>
 
-      <div class="callout">
-        <div class="callout-title">Core Research Question</div>
-        <div class="callout-text">
-          <strong>"When the fastest segments of different Formula 1 drivers are combined into a theoretical lap, how much of the resulting time advantage remains physically achievable when vehicle-state continuity and forward vehicle-dynamics constraints are enforced?"</strong>
+      <div class="card-grid" style="margin-bottom:2rem;">
+        <div class="card">
+          <h3 class="card-title">1. Context & Motivation</h3>
+          <p class="card-body">
+            Modern Formula 1 broadcast timing graphics and team debriefings routinely compute an "ideal lap" by aggregating the minimum elapsed times across arbitrary track micro-sectors. This construct is presented as the theoretical ceiling of car-driver potential for that session.
+          </p>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            However, this calculation treats mini-sectors as decoupled, independent time trials. It ignores the fundamental physical reality that the exit velocity vector of sector <em>k</em> constitutes the mandatory initial boundary condition for sector <em>k+1</em>.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">2. Mathematical Contradiction</h3>
+          <p class="card-body">
+            Let driver \(A\) be faster in sector \(k\) and driver \(B\) faster in sector \(k+1\). In empirical telemetry, \(v_{A,\text{exit}} \neq v_{B,\text{entry}}\).
+          </p>
+          <div class="math-block">
+            \(\Delta p = m \cdot (v_{B,\text{entry}} - v_{A,\text{exit}}) = m \cdot \Delta v\)
+            <br>
+            \(F = \lim_{\Delta t \to 0} \frac{\Delta p}{\Delta t} \to \infty\)
+          </div>
+          <p class="card-body" style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:0.5rem;">
+            Reconciling a non-zero velocity step change across an infinitesimal spatial boundary \(\Delta s \to 0\) requires infinite tire traction force and infinite power, violating Newton's second law and Coulomb friction limits.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">3. Research Question & Objectives</h3>
+          <p class="card-body">
+            <strong>Core Question:</strong> <em>When the fastest segments of teammate Formula 1 drivers are combined, how much of the theoretical time advantage survives when continuous vehicle dynamics and boundary state compatibility are strictly enforced?</em>
+          </p>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            <strong>Objectives:</strong><br>
+            &bull; Ingest and spatially align official telemetry.<br>
+            &bull; Formulate and calibrate a macroscopic Level-2 coupled point-mass vehicle model.<br>
+            &bull; Solve the periodic boundary value problem for feasible lap time.<br>
+            &bull; Decompose the feasibility gap into constituent physical penalties.
+          </p>
         </div>
       </div>
 
-      <div class="card-grid" style="margin-top: 2rem;">
-        <div class="card">
-          <h3 class="card-title">The Boundary Discontinuity Problem</h3>
-          <p class="card-body">
-            A naive theoretical composite selects the minimum elapsed time in each segment:
-            <br><code>T_theoretical = &sum; min(dt_{k, A}, dt_{k, B})</code>.
-            However, Driver A may exit segment <em>k</em> at 285 km/h, while Driver B's entry speed for segment <em>k+1</em> was 302 km/h.
-            Splicing these segments implies instantaneous velocity step changes (&Delta;v) requiring infinite acceleration and unphysical energy injection (&Delta;KE).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Experimental Setup & Controls</h3>
-          <p class="card-body">
-            Using official FIA timing feeds via <strong>FastF1</strong> from the <strong>2023 Bahrain GP Qualifying (Q3)</strong>, we analyze the Scuderia Ferrari SF-23 driven by <strong>Charles Leclerc (LEC, 89.921 s)</strong> and <strong>Carlos Sainz (SAI, 90.110 s)</strong> on a canonical spatial domain (S = 5369.0 m, 1.0 m PCHIP resampling).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Key Scientific Contributions</h3>
-          <p class="card-body">
-            1. Systematic audit of boundary state discontinuities (&Delta;v, &Delta;KE) in empirical composites.<br>
-            2. Implementation of a macroscopic Level-2 coupled vehicle model with friction ellipse limits.<br>
-            3. Periodic bisection solver enforcing C<sup>0</sup> speed continuity and cyclic boundary conditions.<br>
-            4. Diagnostic attribution of the feasibility penalty.
-          </p>
-        </div>
-      </div>
-
-      <!-- Analysis Flowchart -->
-      <div style="margin-top: 3.5rem;">
-        <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:1rem;">Investigation Pipeline</h3>
+      <!-- Investigation Pipeline Architecture -->
+      <div class="card" style="padding:2rem;">
+        <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:1.25rem;">Investigation Architecture & Pipeline Flow</h3>
         <div class="path-container">
           <div class="path-step">
-            <div class="step-number">STEP 01</div>
-            <div class="step-title">FastF1 Ingestion</div>
-            <div class="step-text">Extract clean Q3 soft-tire flying laps for Leclerc and Sainz at Bahrain.</div>
+            <div class="step-number">PHASE 01</div>
+            <div class="step-title">Telemetry Ingestion</div>
+            <div class="step-text">Extract clean Q3 soft-tire flying laps from FastF1 FIA feed. Validate session metadata.</div>
           </div>
           <div class="path-step">
-            <div class="step-number">STEP 02</div>
+            <div class="step-number">PHASE 02</div>
             <div class="step-title">Spatial Resampling</div>
-            <div class="step-text">PCHIP spline resampling to uniform 1.0m canonical domain (5370 spatial points).</div>
+            <div class="step-text">PCHIP interpolation to uniform 1.0 m grid \(s \in [0, S]\). Derive curvature \(\kappa(s)\).</div>
           </div>
           <div class="path-step">
-            <div class="step-number">STEP 03</div>
-            <div class="step-title">Track Curvature</div>
-            <div class="step-text">Derive planar heading &psi;(s) and curvature &kappa;(s) with lateral clamping (|a_y| &le; 5.5g).</div>
+            <div class="step-number">PHASE 03</div>
+            <div class="step-title">Theoretical Splicing</div>
+            <div class="step-text">Discretize track (50m, 100m, 250m). Compute donor maps and boundary step jumps \(\Delta v\).</div>
           </div>
           <div class="path-step">
-            <div class="step-number">STEP 04</div>
-            <div class="step-title">Theoretical Stitching</div>
-            <div class="step-text">Audit 100m mini-sector winners, velocity jumps (&Delta;v), and kinetic energy step jumps.</div>
+            <div class="step-number">PHASE 04</div>
+            <div class="step-title">Model Calibration</div>
+            <div class="step-text">Calibrate Level-2 coupled parameters under Policy A (\(\mu_x = 1.700\) fixed).</div>
           </div>
           <div class="path-step">
-            <div class="step-number">STEP 05</div>
-            <div class="step-title">Physics Solve</div>
-            <div class="step-text">Forward-backward integration enforcing friction ellipse, donor caps, and periodic continuity.</div>
+            <div class="step-number">PHASE 05</div>
+            <div class="step-title">Feasibility Solve</div>
+            <div class="step-text">Forward-backward integration with donor caps and periodic root-finding (\(|v(S)-v(0)| \le 0.01\)).</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3. Track and Telemetry Analysis Section -->
+  <!-- C. TELEMETRY SECTION -->
   <section id="telemetry" class="section dark-section">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">02 &bull; Empirical Telemetry & Spatial Profiles</span>
-        <h2 class="section-title">Track & Telemetry Analysis</h2>
+        <span class="section-label">02 &bull; Empirical Telemetry</span>
+        <h2 class="section-title">Telemetry Ingestion & Spatial Preprocessing</h2>
         <p class="section-lead">
-          Interactive examination of observed driver speeds, the naive theoretical envelope, and the physics-constrained feasible speed profile across the 5369.0 m canonical Bahrain lap.
+          Extraction, monotonic spatial distance transformation, PCHIP resampling, and track curvature derivation from official 2023 Bahrain GP Q3 telemetry.
         </p>
       </div>
 
-      <!-- Telemetry Interactive Dashboard -->
-      <div class="telemetry-controls">
-        <div class="control-group">
-          <span class="control-label">Layers:</span>
-          <button class="btn-pill active" id="toggleFeasible">Feasible Speed (v_feas)</button>
-          <button class="btn-pill active" id="toggleDonor">Theoretical Ceiling (v_donor)</button>
-          <button class="btn-pill active" id="toggleDrs">DRS Zones</button>
-        </div>
-        <div class="control-group">
-          <span class="control-label">Domain:</span>
-          <span style="font-family:var(--font-mono); font-size:0.8rem; color:#A3A199;">0.0 m &rarr; 5369.0 m (ds = 1.0 m)</span>
-        </div>
-      </div>
-
-      <div class="chart-wrapper">
-        <div class="chart-header">
-          <div class="chart-title">Speed vs. Distance Profile (v(s) in km/h)</div>
-          <div class="chart-legend">
-            <div class="legend-item">
-              <span class="legend-color" style="background-color:#657887; height:3px;"></span>
-              <span>Feasible Speed (v_feas)</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-color" style="background-color:#FFAEAA; border-top:1px dashed #FFAEAA;"></span>
-              <span>Theoretical Donor Ceiling (v_donor)</span>
-            </div>
-            <div class="legend-item">
-              <span class="legend-color" style="background-color:rgba(101, 120, 135, 0.4); height:8px;"></span>
-              <span>DRS Activation</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="chart-canvas-container">
-          <canvas id="telemetryCanvas"></canvas>
-          <div class="chart-tooltip" id="chartTooltip"></div>
-        </div>
-      </div>
-
-      <!-- Driver Allocation Stats -->
-      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 2.5rem;">
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-            <h3 class="card-title" style="margin-bottom:0; color:#FFAEAA;">Charles Leclerc (LEC)</h3>
-            <span class="badge badge-driver-lec">Baseline: 89.921 s</span>
-          </div>
-          <p class="card-body">
-            <strong>35 Segments Selected (64.61% of track distance, 3469.0 m)</strong><br>
-            Dominates high-speed apexes and early throttle-application exits in Sectors 1 and 3. Produces a peak speed of 326.8 km/h on the main straight.
-          </p>
-        </div>
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-            <h3 class="card-title" style="margin-bottom:0; color:#FBBF24;">Carlos Sainz (SAI)</h3>
-            <span class="badge badge-driver-sai">Baseline: 90.110 s</span>
-          </div>
-          <p class="card-body">
-            <strong>19 Segments Selected (35.39% of track distance, 1900.0 m)</strong><br>
-            Outperforms in heavy straight-line braking zones into Turns 1, 4, and 8, creating conflicting entry speed states with Leclerc's downstream exits.
-          </p>
-        </div>
-      </div>
-
-      <!-- Embedded Telemetry Plots -->
-      <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:1rem; color:var(--color-text-light);">
-        Verified Telemetry Visualizations
-      </h3>
-      <div class="plot-gallery-grid">
-        <div class="plot-card">
-          <div class="plot-img-container">
-            <img src="assets/plots/speed_comparison.png" alt="Observed Speed Comparison" class="plot-img" loading="lazy">
-          </div>
-          <div class="plot-info">
-            <div class="plot-title">Observed Driver Speed Comparison</div>
-            <div class="plot-desc">Overlay of Charles Leclerc vs. Carlos Sainz observed speed profiles across all 15 corners.</div>
-            <div class="plot-footer">
-              <span>FastF1 Telemetry</span>
-              <span>Click to enlarge &rarr;</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="plot-card">
-          <div class="plot-img-container">
-            <img src="assets/plots/driver_selection_100m.png" alt="Driver Selection (100m)" class="plot-img" loading="lazy">
-          </div>
-          <div class="plot-info">
-            <div class="plot-title">Canonical 100m Driver Allocation</div>
-            <div class="plot-desc">Spatial distribution of segment winners and 15 driver switch boundaries along the circuit.</div>
-            <div class="plot-footer">
-              <span>Experiment 02</span>
-              <span>Click to enlarge &rarr;</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="plot-card">
-          <div class="plot-img-container">
-            <img src="assets/plots/boundary_discontinuities.png" alt="Boundary Discontinuities" class="plot-img" loading="lazy">
-          </div>
-          <div class="plot-info">
-            <div class="plot-title">Boundary Discontinuities Audit</div>
-            <div class="plot-desc">Magnitude of velocity step jumps (&Delta;v) and kinetic energy mismatch (&Delta;KE) at driver switch points.</div>
-            <div class="plot-footer">
-              <span>Kinematic Audit</span>
-              <span>Click to enlarge &rarr;</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. Experiments Section -->
-  <section id="experiments" class="section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">03 &bull; Experimental Program</span>
-        <h2 class="section-title">Experiments 00 through 04</h2>
-        <p class="section-lead">
-          Systematic experimental progression from session selection and vehicle model validation through naive composite assembly, physics-constrained solve, and spatial discretization sweep.
-        </p>
-      </div>
-
-      <!-- Experiment Tabs -->
-      <div class="tabs-nav">
-        <button class="tab-btn active" data-tab="tab-exp00">Exp 00: Session Selection</button>
-        <button class="tab-btn" data-tab="tab-exp01">Exp 01: Model Validation</button>
-        <button class="tab-btn" data-tab="tab-exp02">Exp 02: Theoretical Composite</button>
-        <button class="tab-btn" data-tab="tab-exp03">Exp 03: Physics Feasibility</button>
-        <button class="tab-btn" data-tab="tab-exp04">Exp 04: Sensitivity Sweep</button>
-      </div>
-
-      <!-- Tab Panes -->
-      <!-- Exp 00 -->
-      <div class="tab-pane active" id="tab-exp00">
-        <div class="card" style="margin-bottom:1.5rem;">
-          <h3 class="card-title">Experiment 00 — Session Selection Evaluation</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Screen candidate 2023 Formula 1 qualifying sessions to identify a teammate pair with identical machinery, dry weather, comparable tire compounds, and high qualifying performance.
-          </p>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Grand Prix</th>
-                  <th>Session</th>
-                  <th>Drivers</th>
-                  <th>Delta (s)</th>
-                  <th>Track Condition</th>
-                  <th>Selection Verdict</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="font-weight:600; background-color:rgba(200, 62, 54, 0.05);">
-                  <td>2023 Bahrain GP</td>
-                  <td>Q3</td>
-                  <td>Leclerc vs. Sainz (Ferrari SF-23)</td>
-                  <td>0.189 s</td>
-                  <td>Dry, Soft (C3), Night</td>
-                  <td><span class="badge" style="background:#C83E36; color:#FFF;">SELECTED (CANONICAL)</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="card-body" style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:0.75rem;">
-            Bahrain Q3 was selected because Charles Leclerc (89.921 s) and Carlos Sainz (90.110 s) set clean flying laps on identical soft tires with zero yellow flags, minimal wind variations, and clean telemetry coverage.
-          </p>
-        </div>
-      </div>
-
-      <!-- Exp 01 -->
-      <div class="tab-pane" id="tab-exp01">
-        <div class="card">
-          <h3 class="card-title">Experiment 01 — Vehicle Model Hierarchy Validation</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Validate three tiers of macroscopic point-mass vehicle models against observed single-driver telemetry to establish simulation fidelity and limitations.
-          </p>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Model Tier</th>
-                  <th>Formulation</th>
-                  <th>Sim Lap (LEC)</th>
-                  <th>Lap Error</th>
-                  <th>Speed RMSE</th>
-                  <th>Top Speed Error</th>
-                  <th>Verdict</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Level 0: Pure Longitudinal</strong></td>
-                  <td>Point-mass, no aero drag, no downforce</td>
-                  <td class="mono">101.597 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+11.675 s</td>
-                  <td class="mono">10.975 m/s</td>
-                  <td class="mono">15.151 m/s</td>
-                  <td><span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Level 1: Longitudinal + Aero</strong></td>
-                  <td>Quadratic drag & downforce, scalar corner cap</td>
-                  <td class="mono">88.260 s</td>
-                  <td class="mono" style="color:var(--color-steel-blue);">-1.662 s</td>
-                  <td class="mono">3.616 m/s</td>
-                  <td class="mono">4.103 m/s</td>
-                  <td><span class="badge badge-verdict-inadequate">INADEQUATE</span></td>
-                </tr>
-                <tr style="background-color:rgba(101, 120, 135, 0.08); font-weight:600;">
-                  <td><strong>Level 2: Coupled (Policy A)</strong></td>
-                  <td>Friction ellipse, coupled grip, periodic bisection</td>
-                  <td class="mono">88.393 s</td>
-                  <td class="mono" style="color:var(--color-steel-blue);">-1.529 s</td>
-                  <td class="mono">4.289 m/s</td>
-                  <td class="mono">2.415 m/s</td>
-                  <td><span class="badge" style="background:#657887; color:#FFF;">FEASIBILITY MODEL</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="card-body" style="font-size:0.85rem; color:var(--color-text-secondary);">
-            <em>Validation classification:</em> Level 2 achieves macroscopic feasibility with a cross-validation lap error of 2.371 s on Sainz and a periodicity residual of 0.0024 m/s. It is recognized as a macroscopic feasibility model, not a micro-fidelity simulator.
-          </p>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1.5rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-light);">
-              <img src="assets/plots/validation_Charles Leclerc.png" alt="Leclerc Validation" class="plot-img" loading="lazy">
-            </div>
-            <div class="plot-img-container" style="border:1px solid var(--color-border-light);">
-              <img src="assets/plots/level2_diagnostic_error_profile.png" alt="Level 2 Error Profile" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Exp 02 -->
-      <div class="tab-pane" id="tab-exp02">
-        <div class="card">
-          <h3 class="card-title">Experiment 02 — Theoretical Empirical Composite (Canonical 100m)</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Construct the naive theoretical lap across 54 fixed 100m mini-sectors and audit the resulting boundary velocity and kinetic energy discontinuities.
-          </p>
-          <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">THEORETICAL LAP</div>
-              <div style="font-size:1.75rem; font-weight:700;">88.869 s</div>
-              <div style="font-size:0.78rem; color:var(--color-steel-blue);">+1.053 s vs LEC | +1.241 s vs SAI</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">DRIVER SWITCHES</div>
-              <div style="font-size:1.75rem; font-weight:700;">15 Switches</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">LEC: 35 segs | SAI: 19 segs</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">MAX &Delta;v STEP JUMP</div>
-              <div style="font-size:1.75rem; font-weight:700; color:var(--color-accent-red);">11.70 km/h</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">3.251 m/s at s = 1400.0 m</div>
-            </div>
-          </div>
-          <p class="card-body">
-            <strong>Boundary State Discontinuity Audit:</strong> Splicing minimum segment times yields 15 driver transitions with a cumulative absolute kinetic energy mismatch of <strong>832.24 kJ</strong> (maximum single jump: 205.95 kJ). This confirms that empirical theoretical laps rely upon unphysical boundary energy injection.
-          </p>
-        </div>
-      </div>
-
-      <!-- Exp 03 -->
-      <div class="tab-pane" id="tab-exp03">
-        <div class="card">
-          <h3 class="card-title">Experiment 03 — Physics-Constrained Feasibility Solve</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Enforce C<sup>0</sup> speed continuity and cyclic periodicity under observed donor ceilings with the forward-backward Level-2 solver.
-          </p>
-          <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">FEASIBLE LAP TIME</div>
-              <div style="font-size:1.75rem; font-weight:700; color:var(--color-accent-red);">91.583 s</div>
-              <div style="font-size:0.78rem; color:var(--color-accent-red);">-1.661 s vs LEC (Slower)</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">THEORETICAL-FEASIBLE GAP</div>
-              <div style="font-size:1.75rem; font-weight:700; color:#B45309;">+2.714 s</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">Feasibility Penalty</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">PERIODICITY RESIDUAL</div>
-              <div style="font-size:1.75rem; font-weight:700;">0.00738 m/s</div>
-              <div style="font-size:0.78rem; color:var(--color-steel-blue);">&le; 0.01 m/s (Converged)</div>
-            </div>
-          </div>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1.5rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-light);">
-              <img src="assets/plots/exp03_speed_profiles.png" alt="Exp 03 Speed Profiles" class="plot-img" loading="lazy">
-            </div>
-            <div class="plot-img-container" style="border:1px solid var(--color-border-light);">
-              <img src="assets/plots/exp03_diagnostic_waterfall.png" alt="Exp 03 Diagnostic Waterfall" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Exp 04 -->
-      <div class="tab-pane" id="tab-exp04">
-        <div class="card">
-          <h3 class="card-title">Experiment 04 — Segmentation Sensitivity Robustness</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Investigate whether the theoretical-to-feasible gap is an artifact of the canonical 100m discretization by sweeping across fine (50m), canonical (100m), and coarse (250m) segment lengths.
-          </p>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Resolution</th>
-                  <th>Segments</th>
-                  <th>Theoretical</th>
-                  <th>Feasible</th>
-                  <th>Gap (&Delta;T)</th>
-                  <th>Feasible Gain (LEC)</th>
-                  <th>Switches</th>
-                  <th>Max &Delta;v</th>
-                  <th>Total &Delta;KE</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>50 m (Fine)</strong></td>
-                  <td>108</td>
-                  <td class="mono">88.815 s</td>
-                  <td class="mono">91.269 s</td>
-                  <td class="mono" style="font-weight:600;">+2.454 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">-1.348 s</td>
-                  <td>20</td>
-                  <td class="mono">3.083 m/s</td>
-                  <td class="mono">673.03 kJ</td>
-                </tr>
-                <tr style="background-color:rgba(200, 62, 54, 0.05); font-weight:600;">
-                  <td><strong>100 m (Canonical)</strong></td>
-                  <td>54</td>
-                  <td class="mono">88.869 s</td>
-                  <td class="mono">91.583 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+2.714 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">-1.661 s</td>
-                  <td>15</td>
-                  <td class="mono">3.251 m/s</td>
-                  <td class="mono">832.24 kJ</td>
-                </tr>
-                <tr>
-                  <td><strong>250 m (Coarse)</strong></td>
-                  <td>22</td>
-                  <td class="mono">89.327 s</td>
-                  <td class="mono">92.233 s</td>
-                  <td class="mono" style="font-weight:600;">+2.906 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">-2.312 s</td>
-                  <td>11</td>
-                  <td class="mono">2.927 m/s</td>
-                  <td class="mono">623.44 kJ</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="callout" style="margin-top:1.25rem;">
-            <div class="callout-title">Key Robustness Finding</div>
-            <div class="callout-text">
-              The qualitative conclusion <strong>persists universally across all spatial resolutions</strong>: the physical feasibility penalty (+2.454 s to +2.906 s) reliably exceeds the naive theoretical advantage (+0.594 s to +1.106 s), rendering the continuous donor-capped composite slower than the observed single-driver baseline in every case.
-            </div>
-          </div>
-          <div class="plot-img-container" style="border:1px solid var(--color-border-light); margin-top:1.25rem;">
-            <img src="assets/plots/segmentation_sensitivity.png" alt="Segmentation Sensitivity Plot" class="plot-img" loading="lazy">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. Methodology & Vehicle Dynamics Section -->
-  <section id="method" class="section alt-bg">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">04 &bull; Mathematical Formulation</span>
-        <h2 class="section-title">Methodology & Vehicle Dynamics</h2>
-        <p class="section-lead">
-          Detailed formulation of the Level-2 macroscopic point-mass vehicle dynamics model, friction ellipse coupling, and the forward-backward periodic solver.
-        </p>
-      </div>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3 class="card-title">1. Point-Mass Equations of Motion</h3>
-          <p class="card-body">
-            The vehicle of mass <code>m = 810 kg</code> is modeled as a point mass governed by forward acceleration along distance <em>s</em>:
-          </p>
-          <div class="math-block">
-            <div class="math-title">Longitudinal Dynamics</div>
-            m &bull; v &bull; (dv/ds) = F_x - F_drag - F_rr<br>
-            F_drag = k_drag &bull; v&sup2;<br>
-            k_drag = k_drag,off &bull; (1 - 0.30 &bull; DRS)
-          </div>
-          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary);">
-            Power constraint: <code>F_traction &le; P_max / v</code>, with <code>P_max = 740.0 kW</code> (hybrid powertrain limit).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">2. Aerodynamic Normal Load</h3>
-          <p class="card-body">
-            Total normal load <em>F_z</em> combines vehicle static weight and quadratic aerodynamic downforce:
-          </p>
-          <div class="math-block">
-            <div class="math-title">Aerodynamic Normal Load</div>
-            F_z = m &bull; g + F_down<br>
-            F_down = k_down &bull; v&sup2;<br>
-            (g = 9.80665 m/s&sup2;)
-          </div>
-          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary);">
-            Calibrated values (Policy A): <code>k_down = 2.6185 N/(m/s)&sup2;</code>, <code>k_drag,off = 1.2500 N/(m/s)&sup2;</code>.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">3. Coupled Friction Ellipse</h3>
-          <p class="card-body">
-            Longitudinal force <em>F_x</em> and lateral cornering force <em>F_y = m &bull; v&sup2; &bull; |&kappa;|</em> are constrained by the tire friction ellipse:
-          </p>
-          <div class="math-block">
-            <div class="math-title">Tire Grip Limit</div>
-            (F_x / (&mu;_x &bull; F_z))&sup2; + (m &bull; v&sup2; &bull; &kappa; / (&mu;_y &bull; F_z))&sup2; &le; 1
-          </div>
-          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary);">
-            Maximum cornering speed envelope:<br>
-            <code>v_corner,max(s) = &radic;[ &mu;_y &bull; g / ( |&kappa;(s)| &bull; (1 - &mu;_y &bull; k_down / m) ) ]</code>
-          </p>
-        </div>
-      </div>
-
-      <!-- Calibration Policy A Callout -->
-      <div class="card" style="margin-top:2rem;">
-        <h3 class="card-title">Calibration Policy A: Literature Baseline (&mu;_x = 1.7000 fixed)</h3>
-        <p class="card-body">
-          Public FastF1 telemetry does not provide brake line hydraulic pressures, individual wheel angular speeds, powertrain inertia, or suspension damper velocities. When an unconstrained optimizer runs across telemetry, it reduces longitudinal friction to an unphysical <code>&mu;_x = 0.9356</code> to absorb unmodelled braking transients.
-          <br><br>
-          Under <strong>Policy A</strong>, longitudinal tire friction is strictly fixed at its literature reference value (<code>&mu;_x = 1.7000</code>), while aerodynamic and lateral parameters <code>[k_drag, k_down, &mu;_y]</code> are calibrated via bounded L-BFGS-B on Charles Leclerc's lap.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. Results and Discussion Section -->
-  <section id="results" class="section dark-section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">05 &bull; Synthesis & Audit</span>
-        <h2 class="section-title">Results & Discussion</h2>
-        <p class="section-lead">
-          Quantitative reconciliation of the theoretical composite advantage against the physics-constrained feasibility gap, including diagnostic gap attribution and boundary audits.
-        </p>
-      </div>
-
-      <!-- Core 4-Way Comparison Table -->
-      <div class="card" style="margin-bottom:2.5rem;">
-        <h3 class="card-title" style="color:var(--color-text-light);">Core Lap-Time Benchmark</h3>
+      <!-- Telemetry Provenance Table -->
+      <div class="card dark-card" style="margin-bottom:2rem;">
+        <h3 class="card-title">Telemetry Data Provenance & Session Metadata</h3>
         <div class="table-responsive">
           <table class="data-table">
             <thead>
               <tr>
-                <th>Lap Construction</th>
-                <th>Lap Time</th>
-                <th>Delta vs. LEC</th>
-                <th>Delta vs. SAI</th>
-                <th>Boundary Continuity</th>
-                <th>Physical Feasibility</th>
+                <th>Constructor</th>
+                <th>Driver Pair</th>
+                <th>Grand Prix &amp; Session</th>
+                <th>Fastest Lap Recorded</th>
+                <th>Official LapTime</th>
+                <th>Spatially Integrated Time</th>
+                <th>Domain Length (S)</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Charles Leclerc (Observed Baseline)</strong></td>
-                <td class="mono">89.921 s</td>
-                <td class="mono">&plusmn;0.000 s</td>
-                <td class="mono">-0.189 s</td>
-                <td>Continuous</td>
-                <td>Observed Real Lap</td>
+              <tr style="background:rgba(200,62,54,0.08);">
+                <td><strong>Scuderia Ferrari</strong></td>
+                <td>Charles Leclerc (LEC) &bull; Carlos Sainz (SAI)</td>
+                <td>2023 Bahrain GP &bull; Q3</td>
+                <td>LEC Lap 12 &bull; SAI Lap 12</td>
+                <td class="mono">89.921 s &bull; 90.110 s</td>
+                <td class="mono">89.921 s &bull; 90.110 s</td>
+                <td class="mono">5369.0 m</td>
               </tr>
-              <tr>
-                <td><strong>Carlos Sainz (Observed Baseline)</strong></td>
-                <td class="mono">90.110 s</td>
-                <td class="mono">+0.189 s</td>
-                <td class="mono">&plusmn;0.000 s</td>
-                <td>Continuous</td>
-                <td>Observed Real Lap</td>
-              </tr>
-              <tr style="background-color:rgba(200, 62, 54, 0.1);">
-                <td><strong>Theoretical Composite (Exp 02, 100m)</strong></td>
-                <td class="mono" style="color:#FFAEAA; font-weight:700;">88.869 s</td>
-                <td class="mono" style="color:#FFAEAA;">-1.053 s</td>
-                <td class="mono" style="color:#FFAEAA;">-1.241 s</td>
-                <td style="color:var(--color-accent-red);">15 Step Jumps (&le; 11.70 km/h)</td>
-                <td style="color:var(--color-accent-red);">Unphysical (&Delta;KE = 832.24 kJ)</td>
-              </tr>
-              <tr style="background-color:rgba(101, 120, 135, 0.15);">
-                <td><strong>Physics-Constrained Feasible (Exp 03, Policy A)</strong></td>
-                <td class="mono" style="color:#A5B4C2; font-weight:700;">91.583 s</td>
-                <td class="mono" style="color:#A5B4C2;">+1.661 s</td>
-                <td class="mono" style="color:#A5B4C2;">+1.473 s</td>
-                <td style="color:#A5B4C2;">C&sup0; Continuous (Periodic)</td>
-                <td style="color:#A5B4C2;">Physically Feasible</td>
+              <tr style="background:rgba(59,125,216,0.08);">
+                <td><strong>Red Bull Racing</strong></td>
+                <td>Max Verstappen (VER) &bull; Sergio P&eacute;rez (PER)</td>
+                <td>2023 Bahrain GP &bull; Q3</td>
+                <td>VER Lap 13 &bull; PER Lap 12</td>
+                <td class="mono">89.708 s &bull; 89.846 s</td>
+                <td class="mono">89.590 s &bull; 89.623 s</td>
+                <td class="mono">5358.0 m</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Diagnostic Waterfall Visualization -->
-      <div class="card" style="margin-bottom:2.5rem;">
-        <h3 class="card-title" style="color:var(--color-text-light);">Diagnostic Gap Attribution Waterfall</h3>
-        <p class="card-body">
-          Breakdown of the <strong>+2.714 s</strong> feasibility gap (<code>T_feasible - T_theoretical</code>) into physical mechanism components:
-        </p>
-        <div id="waterfallChart" class="waterfall-container"></div>
-      </div>
-
-      <!-- Resolution Sensitivity Interactive Viewer -->
-      <div class="card">
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.25rem;">
-          <h3 class="card-title" style="margin-bottom:0; color:var(--color-text-light);">Segmentation Sensitivity Explorer</h3>
-          <div class="control-group">
-            <span class="control-label">Resolution:</span>
-            <button class="btn-pill res-btn" data-res="50m">50 m</button>
-            <button class="btn-pill res-btn active" data-res="100m">100 m (Canonical)</button>
-            <button class="btn-pill res-btn" data-res="250m">250 m</button>
-          </div>
-        </div>
-        <div id="resolutionDetails"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RB: Red Bull Racing Study Section (hidden by default) -->
-  <section id="redbull-study" class="section dark-section" style="display:none;">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label" style="color:var(--color-rbr-accent);">RB &bull; Oracle Red Bull Racing RB19</span>
-        <h2 class="section-title">Red Bull Racing: Verstappen vs. Perez</h2>
-        <p class="section-lead">
-          Independent replication of the physics-constrained composite methodology for the Oracle Red Bull Racing RB19 at the 2023 Bahrain GP Q3 session. Each experiment mirrors the Ferrari pipeline exactly; no Ferrari data or calibration is reused.
-        </p>
-      </div>
-
-      <!-- RBR Baseline Summary -->
-      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:2.5rem;">
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-            <h3 class="card-title" style="margin-bottom:0; color:var(--color-rbr-ver);">Max Verstappen (VER)</h3>
-            <span class="badge badge-driver-ver">Baseline: 89.590 s</span>
-          </div>
-          <p class="card-body">
-            <strong>25 Segments Selected (45.88% of track distance)</strong><br>
-            VER dominates high-speed corners and early DRS zones. Minimum speed: 64.0 km/h, maximum: 323.0 km/h.
-          </p>
-        </div>
-        <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-            <h3 class="card-title" style="margin-bottom:0; color:var(--color-rbr-per);">Sergio Perez (PER)</h3>
-            <span class="badge badge-driver-per">Baseline: 89.623 s</span>
-          </div>
-          <p class="card-body">
-            <strong>29 Segments Selected (54.12% of track distance)</strong><br>
-            PER edges VER in a majority of segments, particularly in early braking and sector-entry zones. Minimum speed: 70.0 km/h, maximum: 325.0 km/h.
-          </p>
+      <!-- Domain Length Explanation Box -->
+      <div class="callout" style="background:rgba(255,255,255,0.04); border-left-color:var(--color-steel-blue); margin-bottom:2.5rem;">
+        <div class="callout-title" style="color:var(--color-steel-blue);">The 11-Meter Circuit Domain Length Difference Explained</div>
+        <div class="callout-text" style="color:#D8D5CE; font-size:0.9rem; line-height:1.6;">
+          Ferrari's canonical spatial track domain is <strong>5369.0 m</strong> (5370 points), whereas Red Bull's aligned domain is <strong>5358.0 m</strong> (5359 points)&mdash;a difference of 11.0 m (0.20%).
+          This is an authentic empirical property of real-world F1 telemetry. Track distance is derived by integrating wheel speed sensor pulses and GPS velocity vectors along each driver's specific trajectory. Driver racing lines (apex clipping, kerb usage, track limit margins) naturally vary across constructors. To preserve empirical data integrity, each team is analyzed strictly on its own verified spatial domain without unphysical coordinate stretching.
         </div>
       </div>
 
-      <!-- RBR Experiment Tabs -->
-      <div class="tabs-nav" style="margin-bottom:1.5rem;">
-        <button class="tab-btn active" data-tab="tab-rb00">RB-00: Data Validation</button>
-        <button class="tab-btn" data-tab="tab-rb01">RB-01: Model Calibration</button>
-        <button class="tab-btn" data-tab="tab-rb02">RB-02: Theoretical Composite</button>
-        <button class="tab-btn" data-tab="tab-rb03">RB-03: Physics Feasibility</button>
-        <button class="tab-btn" data-tab="tab-rb04">RB-04: Sensitivity Sweep</button>
-      </div>
-
-      <!-- RB-00 -->
-      <div class="tab-pane active" id="tab-rb00">
-        <div class="card">
-          <h3 class="card-title">Experiment RB-00 &mdash; RBR Data Validation &amp; Baseline
-          </h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Ingest and validate 2023 Bahrain Q3 telemetry for VER and PER from the FIA FastF1 feed. PCHIP-resample to a 1.0 m canonical spatial domain and compute driver baselines.
-          </p>
-          <div class="table-responsive" style="margin-top:1.25rem;">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Driver</th>
-                  <th>FIA Transponder Time</th>
-                  <th>Spatial Integrated Time</th>
-                  <th>v_min (km/h)</th>
-                  <th>v_max (km/h)</th>
-                  <th>v_mean (km/h)</th>
-                  <th>DRS Distance</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr style="font-weight:600;">
-                  <td>Max Verstappen (VER)</td>
-                  <td class="mono">89.708 s</td>
-                  <td class="mono">89.590 s</td>
-                  <td class="mono">64.0</td>
-                  <td class="mono">323.0</td>
-                  <td class="mono">237.1</td>
-                  <td class="mono">1662.0 m</td>
-                </tr>
-                <tr>
-                  <td>Sergio Perez (PER)</td>
-                  <td class="mono">89.846 s</td>
-                  <td class="mono">89.623 s</td>
-                  <td class="mono">70.0</td>
-                  <td class="mono">325.0</td>
-                  <td class="mono">237.4</td>
-                  <td class="mono">1736.0 m</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_speed_comparison.png" alt="RBR Speed Comparison" class="plot-img" loading="lazy">
+      <!-- Interactive Canvas Telemetry Chart -->
+      <div class="chart-container" style="margin-bottom:2.5rem;">
+        <div class="chart-header">
+          <div>
+            <div class="chart-title" id="telemetryChartTitle">Speed Profile &amp; Boundary Deficit across Lap Distance (100m Canonical)</div>
+            <div style="font-size:0.8rem; color:#85847F; font-family:var(--font-mono); margin-top:2px;">
+              Hover along distance coordinate to inspect feasible speed vs donor ceiling and donor attribution
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- RB-01 -->
-      <div class="tab-pane" id="tab-rb01">
-        <div class="card">
-          <h3 class="card-title">Experiment RB-01 &mdash; RB19 Vehicle Model Calibration (Policy A)</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Independently calibrate the Level-2 coupled vehicle model for the RB19 chassis. Policy A fits <code>[k_drag_drs_off, k_down, &mu;_y]</code> holding <code>&mu;_x = 1.700</code> fixed via L-BFGS-B optimisation on Verstappen's observed telemetry.
-          </p>
-          <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">k_drag (DRS off)</div>
-              <div style="font-size:1.75rem; font-weight:700;">1.250</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">Calibrated drag scaling</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">k_down</div>
-              <div style="font-size:1.75rem; font-weight:700;">2.532</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">Downforce scaling coefficient</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">&#956;_y</div>
-              <div style="font-size:1.75rem; font-weight:700;">1.950</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">Lateral grip coefficient</div>
-            </div>
-          </div>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Model Tier</th>
-                  <th>Driver</th>
-                  <th>Sim Lap</th>
-                  <th>Ref Lap</th>
-                  <th>Error</th>
-                  <th>Speed RMSE</th>
-                  <th>Verdict</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>Level 0: Pure Longitudinal</strong></td>
-                  <td>VER (Training)</td>
-                  <td class="mono">101.350 s</td>
-                  <td class="mono">89.590 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+11.760 s</td>
-                  <td class="mono">11.369 m/s</td>
-                  <td><span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Level 0: Pure Longitudinal</strong></td>
-                  <td>PER (Cross-Val)</td>
-                  <td class="mono">101.336 s</td>
-                  <td class="mono">89.623 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+11.713 s</td>
-                  <td class="mono">11.707 m/s</td>
-                  <td><span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span></td>
-                </tr>
-                <tr>
-                  <td><strong>Level 1: Longitudinal + Aero</strong></td>
-                  <td>VER (Training)</td>
-                  <td class="mono">88.737 s</td>
-                  <td class="mono">89.590 s</td>
-                  <td class="mono" style="color:var(--color-steel-blue);">-0.853 s</td>
-                  <td class="mono">3.846 m/s</td>
-                  <td><span class="badge badge-verdict-inadequate">INADEQUATE</span></td>
-                </tr>
-                <tr style="background-color:rgba(59, 125, 216, 0.08); font-weight:600;">
-                  <td><strong>Level 2: Coupled (Policy A)</strong></td>
-                  <td>VER (Training)</td>
-                  <td class="mono">88.152 s</td>
-                  <td class="mono">89.590 s</td>
-                  <td class="mono" style="color:var(--color-steel-blue);">-1.438 s</td>
-                  <td class="mono">4.908 m/s</td>
-                  <td><span class="badge" style="background:var(--color-rbr-accent); color:#FFF;">FEASIBILITY MODEL</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_validation_Max Verstappen.png" alt="VER Validation" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RB-02 -->
-      <div class="tab-pane" id="tab-rb02">
-        <div class="card">
-          <h3 class="card-title">Experiment RB-02 &mdash; Theoretical Composite (Canonical 100m)</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Construct the segment-wise minimum-time composite across 54 fixed 100m mini-sectors for the RB19 pair and audit boundary velocity and kinetic energy discontinuities.
-          </p>
-          <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">THEORETICAL LAP</div>
-              <div style="font-size:1.75rem; font-weight:700;">88.674 s</div>
-              <div style="font-size:0.78rem; color:var(--color-rbr-accent);">+0.916 s vs VER | +0.949 s vs PER</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">DRIVER SWITCHES</div>
-              <div style="font-size:1.75rem; font-weight:700;">13</div>
-              <div style="font-size:0.78rem; color:var(--color-text-secondary);">out of 54 segments (100m)</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">MAX &Delta;v</div>
-              <div style="font-size:1.75rem; font-weight:700;">8.28 km/h</div>
-              <div style="font-size:0.78rem; color:var(--color-accent-red);">2.299 m/s (316.59 kJ total KE)</div>
-            </div>
-          </div>
-          <div style="margin-top:1.25rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_driver_selection_100m.png" alt="RBR Driver Selection 100m" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RB-03 -->
-      <div class="tab-pane" id="tab-rb03">
-        <div class="card" style="margin-bottom:1.5rem;">
-          <h3 class="card-title">Experiment RB-03 &mdash; Physics-Constrained Composite (RB19)</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Apply the forward-backward periodic bisection solver to the RB19 theoretical composite with donor caps and C<sup>0</sup> speed continuity.
-          </p>
-          <div class="card-grid" style="grid-template-columns: repeat(4, 1fr); margin:1.25rem 0;">
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">T_THEORETICAL</div>
-              <div style="font-size:1.5rem; font-weight:700;">88.674 s</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">T_FEASIBLE</div>
-              <div style="font-size:1.5rem; font-weight:700; color:var(--color-accent-red);">92.810 s</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">FEASIBILITY GAP</div>
-              <div style="font-size:1.5rem; font-weight:700; color:var(--color-accent-red);">+4.136 s</div>
-            </div>
-            <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
-              <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">vs VER BASELINE</div>
-              <div style="font-size:1.5rem; font-weight:700; color:var(--color-accent-red);">+3.220 s</div>
-            </div>
-          </div>
-          <p class="card-body" style="font-size:0.85rem; margin-top:0.5rem;">
-            <strong>Diagnostic attribution:</strong> &Delta;T_KE = +0.265 s (6.4%) &bull; &Delta;T_brake = +0.063 s (1.5%) &bull; &Delta;T_traction = 0.000 s (0.0%) &bull; &Delta;T_residual = +3.808 s (92.1%)
-          </p>
-          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem; margin-top:1.5rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_exp03_speed_profiles.png" alt="RBR Exp03 Speed Profiles" class="plot-img" loading="lazy">
-            </div>
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_exp03_diagnostic_waterfall.png" alt="RBR Exp03 Diagnostic Waterfall" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- RB-04 -->
-      <div class="tab-pane" id="tab-rb04">
-        <div class="card">
-          <h3 class="card-title">Experiment RB-04 &mdash; Segmentation Robustness Sweep (50m / 100m / 250m)</h3>
-          <p class="card-body">
-            <strong>Objective:</strong> Evaluate the robustness of the RB19 feasibility penalty across spatial discretizations.
-          </p>
-          <div class="table-responsive" style="margin-top:1.25rem;">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Resolution</th>
-                  <th>Segments</th>
-                  <th>Theoretical Lap</th>
-                  <th>Feasible Lap</th>
-                  <th>Feasibility Gap</th>
-                  <th>Driver Switches</th>
-                  <th>Max &Delta;v</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="mono">50 m</td>
-                  <td class="mono">108</td>
-                  <td class="mono">88.638 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">92.799 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+4.162 s</td>
-                  <td class="mono">21</td>
-                  <td class="mono">8.28 km/h</td>
-                </tr>
-                <tr style="background-color:rgba(59, 125, 216, 0.08); font-weight:600;">
-                  <td class="mono">100 m (canonical)</td>
-                  <td class="mono">54</td>
-                  <td class="mono">88.674 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">92.810 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+4.136 s</td>
-                  <td class="mono">13</td>
-                  <td class="mono">8.28 km/h</td>
-                </tr>
-                <tr>
-                  <td class="mono">250 m</td>
-                  <td class="mono">22</td>
-                  <td class="mono">88.988 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">93.164 s</td>
-                  <td class="mono" style="color:var(--color-accent-red);">+4.177 s</td>
-                  <td class="mono">9</td>
-                  <td class="mono">21.24 km/h</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="card-body" style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:0.75rem;">
-            The feasibility gap is stable within a &#177;0.041 s band across all three discretizations, confirming that the qualitative conclusion (gap > theoretical gain) is resolution-independent.
-          </p>
-          <div style="margin-top:1.25rem;">
-            <div class="plot-img-container" style="border:1px solid var(--color-border-dark);">
-              <img src="assets/plots/redbull/redbull_segmentation_sensitivity.png" alt="RBR Segmentation Sensitivity" class="plot-img" loading="lazy">
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Cross-Team Comparison Section -->
-  <section id="cross-team" class="section alt-bg" style="display:none;">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">CT &bull; Cross-Team Synthesis</span>
-        <h2 class="section-title">Ferrari vs. Red Bull: Comparative Analysis</h2>
-        <p class="section-lead">
-          Side-by-side summary of physics-constrained feasibility results across both teams. Both studies use the same Level-2 Policy A model with independent calibrations at the 2023 Bahrain GP Q3.
-        </p>
-      </div>
-
-      <div class="cross-team-grid">
-        <div class="team-result-panel ferrari-panel">
-          <div class="team-label">Scuderia Ferrari SF-23</div>
-          <div class="metric-row">
-            <span class="metric-label">Drivers</span>
-            <span class="metric-value">Leclerc vs. Sainz</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Faster Driver (observed)</span>
-            <span class="metric-value">LEC &mdash; 89.921 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Theoretical Lap (100m)</span>
-            <span class="metric-value">88.869 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Theoretical Gain vs. Leader</span>
-            <span class="metric-value">+1.053 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Physics-Feasible Lap</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">91.583 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Feasibility Gap</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">+2.714 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Retained Fraction R</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">Negative (infeasible)</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Driver Switches</span>
-            <span class="metric-value">15</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Max &Delta;v at Boundary</span>
-            <span class="metric-value">11.70 km/h</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Total Boundary KE Mismatch</span>
-            <span class="metric-value">832.24 kJ</span>
+          <div class="chart-legend">
+            <span class="legend-item"><span class="legend-dot" style="background:#657887;"></span> Feasible Speed</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#FFAEAA;"></span> Theoretical Donor Speed</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#22C55E;"></span> DRS Active Zone</span>
           </div>
         </div>
 
-        <div class="team-result-panel rbr-panel">
-          <div class="team-label">Oracle Red Bull Racing RB19</div>
-          <div class="metric-row">
-            <span class="metric-label">Drivers</span>
-            <span class="metric-value">Verstappen vs. Perez</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Faster Driver (observed)</span>
-            <span class="metric-value">VER &mdash; 89.590 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Theoretical Lap (100m)</span>
-            <span class="metric-value">88.674 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Theoretical Gain vs. Leader</span>
-            <span class="metric-value">+0.916 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Physics-Feasible Lap</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">92.810 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Feasibility Gap</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">+4.136 s</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Retained Fraction R</span>
-            <span class="metric-value" style="color:var(--color-accent-red);">Negative (infeasible)</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Driver Switches</span>
-            <span class="metric-value">13</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Max &Delta;v at Boundary</span>
-            <span class="metric-value">8.28 km/h</span>
-          </div>
-          <div class="metric-row">
-            <span class="metric-label">Total Boundary KE Mismatch</span>
-            <span class="metric-value">316.59 kJ</span>
-          </div>
+        <div style="display:flex; gap:0.5rem; margin-bottom:1rem;">
+          <button class="btn btn-outline active" id="toggleFeasible" style="padding:0.35rem 0.75rem; font-size:0.78rem;">Toggle Feasible</button>
+          <button class="btn btn-outline active" id="toggleDonor" style="padding:0.35rem 0.75rem; font-size:0.78rem;">Toggle Donor</button>
+          <button class="btn btn-outline active" id="toggleDrs" style="padding:0.35rem 0.75rem; font-size:0.78rem;">Toggle DRS</button>
+        </div>
+
+        <div style="position:relative; width:100%; height:380px;">
+          <canvas id="telemetryCanvas"></canvas>
+          <div class="canvas-tooltip" id="chartTooltip"></div>
         </div>
       </div>
 
-      <div class="callout" style="margin-top:2.5rem;">
-        <div class="callout-title">Cross-Team Finding</div>
-        <div class="callout-text">
-          Both teams demonstrate the same qualitative result: the segment-wise composite is physically infeasible, and the feasibility gap exceeds the theoretical advantage. Ferrari exhibits a larger boundary KE mismatch (832 vs. 317 kJ), while Red Bull exhibits a larger total feasibility gap (+4.136 s vs. +2.714 s) driven predominantly by the residual state-propagation term (+3.808 s, 92% of gap) — consistent with the tighter intra-team pace differential (VER &minus; PER = 0.033 s vs. LEC &minus; SAI = 0.189 s).
+      <!-- Static Scientific Plots Grid -->
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));">
+        <div class="plot-card">
+          <div class="plot-title" id="speedCompPlotTitle">Teammate Speed Profile Comparison (Empirical Observed)</div>
+          <div class="plot-img-container">
+            <img src="assets/plots/speed_comparison.png" alt="Speed Profile Comparison" class="plot-img" id="plotSpeedComparison" loading="lazy">
+          </div>
+          <div class="plot-caption">
+            Overlaid telemetry traces showing braking points, apex minimums, and DRS deployment zones across the full Bahrain lap.
+          </div>
+        </div>
+
+        <div class="plot-card">
+          <div class="plot-title" id="segmentWinnersPlotTitle">Track Segment Winner Allocation (100m Canonical)</div>
+          <div class="plot-img-container">
+            <img src="assets/plots/track_segment_winners.png" alt="Track Segment Winners" class="plot-img" id="plotSegmentWinners" loading="lazy">
+          </div>
+          <div class="plot-caption">
+            Spatial distribution of fastest mini-sectors. Shows frequent handovers between teammates across braking, cornering, and acceleration phases.
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 7. Conclusion & Future Work Section -->
-  <section id="conclusion" class="section">
+  <!-- D. METHODOLOGY SECTION -->
+  <section id="method" class="section alt-bg">
     <div class="container">
       <div class="section-header">
-        <span class="section-label">06 &bull; Engineering Takeaways</span>
-        <h2 class="section-title">Conclusion & Future Work</h2>
+        <span class="section-label">03 &bull; Mathematical Formulation</span>
+        <h2 class="section-title">Methodology & Vehicle Dynamics</h2>
         <p class="section-lead">
-          Synthesis of findings, engineering significance for motorsport analytics, identified limitations, and roadmap for future vehicle-dynamics extensions.
-        </p>
-      </div>
-
-      <div class="card-grid">
-        <div class="card">
-          <h3 class="card-title">Scientific Conclusions</h3>
-          <p class="card-body">
-            1. <strong>Theoretical best laps are physically unattainable:</strong> The naive mini-sector composite generates an illusion of performance (+1.053 s) by relying on unphysical velocity step jumps (up to 11.70 km/h) and injecting 832.24 kJ of boundary kinetic energy.<br><br>
-            2. <strong>Feasibility penalty exceeds theoretical advantage:</strong> Enforcing speed continuity under empirical donor ceilings adds +2.714 s, producing a feasible lap of 91.583 s (1.661 s slower than Charles Leclerc's observed baseline).<br><br>
-            3. <strong>Robustness across discretization:</strong> Sensitivity sweeps (50m, 100m, 250m) preserve the qualitative finding in every case (Retained fraction R &lt; 0).
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Methodological Limitations</h3>
-          <p class="card-body">
-            1. <strong>Macroscopic Point-Mass Model:</strong> Omits suspension roll/pitch kinematics, chassis compliance, and dynamic tire load transfer.<br><br>
-            2. <strong>Public Telemetry Boundaries:</strong> FastF1 data lacks steering wheel angle, brake line pressure, tire core/surface temperatures, and battery state-of-charge.<br><br>
-            3. <strong>Donor-Cap Ceiling Interpretation:</strong> The donor cap acts as an empirical feasibility envelope based on demonstrated human driving, not an optimal control trajectory.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">Future Research Horizons</h3>
-          <p class="card-body">
-            1. <strong>Multi-Body Vehicle Dynamics:</strong> Integrate a four-wheel chassis model with suspension kinematics and aero-map pitch sensitivity.<br><br>
-            2. <strong>Thermal & Degradation Models:</strong> Incorporate transient tire bulk and surface temperature effects into the friction ellipse.<br><br>
-            3. <strong>Optimal Control Synthesis:</strong> Solve minimum-time optimal control directly via collocation methods rather than empirical piecewise donor capping.<br><br>
-            4. <strong>Multi-Circuit Generalization:</strong> Expand validation to high-downforce (Silverstone, Spa) and low-downforce (Monza) circuits.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8. About & Source Code Section -->
-  <section id="about" class="section alt-bg">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-label">07 &bull; Technical Specifications</span>
-        <h2 class="section-title">About & Reproducibility</h2>
-        <p class="section-lead">
-          Technical stack, verification status, and step-by-step reproduction instructions for the scientific research pipeline.
+          Rigorous mathematical formulation of the macroscopic point-mass vehicle dynamics model, tire friction ellipse limits, and the periodic forward-backward solver.
         </p>
       </div>
 
       <div class="card-grid" style="margin-bottom:2.5rem;">
+        <!-- Equations of Motion -->
         <div class="card">
-          <h3 class="card-title">Technical Architecture</h3>
+          <h3 class="card-title">1. Point-Mass Equation of Motion</h3>
           <p class="card-body">
-            <strong>Language:</strong> Python 3.12 (Computational Engine)<br>
-            <strong>Data Ingestion:</strong> FastF1 Telemetry API & Local Cache<br>
-            <strong>Numerical Computing:</strong> NumPy, SciPy (L-BFGS-B optimization & PCHIP splines)<br>
-            <strong>Data Processing:</strong> Pandas (5370 spatial points at 1.0m resolution)<br>
-            <strong>Plotting:</strong> Matplotlib (12 publication-quality plots)<br>
-            <strong>Frontend:</strong> Zero-dependency semantic HTML5, Vanilla CSS3 design system, and Vanilla JavaScript
+            The vehicle of mass \(m = 810\text{ kg}\) is governed by longitudinal dynamics formulated directly in the spatial coordinate \(s\):
+          </p>
+          <div class="math-block">
+            \(m \cdot v \frac{dv}{ds} = F_x - F_{\text{drag}} - F_{\text{rr}}\)
+            <br>
+            \(F_{\text{drag}} = k_{\text{drag}}(v, \text{DRS}) \cdot v^2\)
+            <br>
+            \(k_{\text{drag}} = k_{\text{drag,off}} \cdot (1 - 0.30 \cdot \text{DRS})\)
+          </div>
+          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary); margin-top:0.5rem;">
+            <strong>Variables:</strong> \(m\) = mass (810 kg), \(v\) = speed (m/s), \(s\) = track distance (m), \(F_x\) = net longitudinal tire force (N), \(F_{\text{rr}}\) = rolling resistance (\(m g C_{rr}\), \(C_{rr} = 0.015\)).
           </p>
         </div>
 
+        <!-- Aero Downforce & Normal Load -->
         <div class="card">
-          <h3 class="card-title">Test Suite Status</h3>
+          <h3 class="card-title">2. Aerodynamic Normal Load</h3>
           <p class="card-body">
-            <strong>Framework:</strong> Pytest 9.1<br>
-            <strong>Passing Tests:</strong> <span class="badge" style="background:#2E7D32; color:#FFF; font-size:0.8rem;">88 / 88 PASSED</span><br>
-            <strong>Coverage:</strong> Unit tests, physical consistency bounds, friction ellipse verification, periodic solver convergence (&le; 0.01 m/s), and regression guards across all 5 experiments.
+            Vertical aerodynamic downforce scales with the square of forward velocity, augmenting static gravitational normal load:
+          </p>
+          <div class="math-block">
+            \(F_z(v) = m \cdot g + k_{\text{down}} \cdot v^2\)
+          </div>
+          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary); margin-top:0.5rem;">
+            <strong>Variables:</strong> \(g\) = gravity (\(9.81\text{ m/s}^2\)), \(k_{\text{down}}\) = aerodynamic downforce coefficient (\(\text{N}/(\text{m/s})^2\)).
+            At 300 km/h (\(83.3\text{ m/s}\)), aerodynamic downforce exceeds static vehicle weight by more than 2.5&times;.
+          </p>
+        </div>
+
+        <!-- Power & Grip Limits -->
+        <div class="card">
+          <h3 class="card-title">3. Traction &amp; Braking Limits</h3>
+          <p class="card-body">
+            Longitudinal traction is constrained by powertrain power ceilings and tire adhesion limits:
+          </p>
+          <div class="math-block">
+            \(F_{x,\text{accel}} \le \min\left(\mu_x F_z(v), \frac{P_{\max}}{v}\right)\)
+            <br>
+            \(F_{x,\text{brake}} \ge -\mu_x F_z(v)\)
+          </div>
+          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary); margin-top:0.5rem;">
+            <strong>Variables:</strong> \(P_{\max} = 740.0\text{ kW}\) (hybrid powertrain thermal + electrical limit), \(\mu_x = 1.700\) (fixed longitudinal friction under Policy A).
+          </p>
+        </div>
+
+        <!-- Friction Ellipse Coupling -->
+        <div class="card">
+          <h3 class="card-title">4. Tire Friction Ellipse Coupling</h3>
+          <p class="card-body">
+            In cornering, lateral acceleration \(a_y = v^2 |\kappa(s)|\) consumes tire grip, reducing available longitudinal force:
+          </p>
+          <div class="math-block">
+            \(\left(\frac{F_x}{F_{x,\max}}\right)^2 + \left(\frac{F_y}{F_{y,\max}}\right)^2 \le 1\)
+            <br>
+            \(F_{x,\text{avail}} = F_{x,\max} \sqrt{\max\left(0, 1 - \left(\frac{m v^2 |\kappa|}{\mu_y F_z}\right)^2\right)}\)
+          </div>
+          <p class="card-body" style="font-size:0.84rem; color:var(--color-text-secondary); margin-top:0.5rem;">
+            <strong>Variables:</strong> \(\kappa(s)\) = curvature (\(\text{m}^{-1}\)), \(\mu_y\) = lateral grip coefficient. Lateral limit determines corner apex speed: \(v_{\text{corner}} = \sqrt{\frac{\mu_y F_z}{m |\kappa|}}\).
           </p>
         </div>
       </div>
 
-      <!-- Reproducibility Guide -->
-      <div class="card">
-        <h3 class="card-title">Pipeline Reproduction Instructions</h3>
-        <div class="math-block" style="background:#17191D; color:#F4F1EA; border-color:#2F333B;">
-# 1. Install Python dependencies<br>
-pip install -r requirements.txt<br><br>
-# 2. Execute Pytest regression suite<br>
-python -m pytest tests/ -v<br><br>
-# 3. Reproduce complete experimental program<br>
-python experiments/00_session_selection.py<br>
-python experiments/01_model_validation.py<br>
-python experiments/02_theoretical_composite.py<br>
-python experiments/03_physics_constrained_composite.py<br>
-python experiments/04_segmentation_robustness.py
+      <!-- Forward-Backward Solver Algorithm Details -->
+      <div class="card" style="padding:2rem; margin-bottom:2.5rem;">
+        <h3 style="font-size:1.2rem; font-weight:600; margin-bottom:1rem;">Forward-Backward Solver &amp; Periodic Boundary Convergence</h3>
+        <p class="card-body" style="margin-bottom:1.25rem;">
+          The physics-constrained feasible lap speed profile \(v_{\text{feasible}}(s)\) is solved using a deterministic three-pass algorithm:
+        </p>
+        <div class="card-grid" style="grid-template-columns: repeat(3, 1fr);">
+          <div style="background:#EDE8DE; padding:1.25rem; border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-secondary); font-weight:600;">PASS 1: BACKWARD</div>
+            <div style="font-weight:700; margin:0.35rem 0;">Braking Integration</div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary);">
+              Integrates backwards from every corner entry speed ceiling using maximum braking deceleration \(a_{\text{decel}}(v, \kappa)\).
+            </div>
+          </div>
+          <div style="background:#EDE8DE; padding:1.25rem; border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-secondary); font-weight:600;">PASS 2: FORWARD</div>
+            <div style="font-weight:700; margin:0.35rem 0;">Traction Acceleration</div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary);">
+              Integrates forwards from corner exits using available power- and friction-limited acceleration \(a_{\text{accel}}(v, \kappa)\).
+            </div>
+          </div>
+          <div style="background:#EDE8DE; padding:1.25rem; border-radius:var(--radius-sm);">
+            <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--color-text-secondary); font-weight:600;">PASS 3: DONOR ENVELOPE</div>
+            <div style="font-weight:700; margin:0.35rem 0;">Periodic Closure</div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary);">
+              Applies pointwise donor cap \(v \le v_{\text{donor}}\) and bisects initial speed \(v_0\) until \(|v(S) - v(0)| \le 0.01\text{ m/s}\).
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Policy A Calibration & Validation Hierarchy -->
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <h3 class="card-title">Policy A Calibration Protocol</h3>
+          <p class="card-body">
+            To prevent unphysical parameter compensation (e.g. inflating drag to mask grip deficiencies), the calibration strictly enforces <strong>Policy A</strong>:
+          </p>
+          <ul style="padding-left:1.25rem; font-size:0.88rem; color:var(--color-text-secondary); line-height:1.6;">
+            <li><strong>Fixed Parameter:</strong> Longitudinal friction \(\mu_x = 1.700\) (established literature reference for 2023 Pirelli F1 soft compound).</li>
+            <li><strong>Calibrated Parameters:</strong> \([k_{\text{drag,off}}, k_{\text{down}}, \mu_y]\) optimized via bounded L-BFGS-B.</li>
+            <li><strong>Training Objective:</strong> Minimize velocity RMSE against Driver 1 observed telemetry.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Three-Tier Model Validation Hierarchy</h3>
+          <div style="font-size:0.88rem; line-height:1.6; color:var(--color-text-secondary);">
+            <div style="margin-bottom:0.75rem;">
+              <strong style="color:var(--color-text-main);">Level 0 (Pure Longitudinal):</strong> No aero drag, no downforce. Lap time error &gt;11s, speed RMSE &gt;10 m/s &rarr; <span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span>
+            </div>
+            <div style="margin-bottom:0.75rem;">
+              <strong style="color:var(--color-text-main);">Level 1 (Longitudinal + Aero):</strong> Aero drag and downforce without friction coupling. Over-predicts straight-line braking &rarr; <span class="badge badge-verdict-inadequate">INADEQUATE</span>
+            </div>
+            <div>
+              <strong style="color:var(--color-text-main);">Level 2 (Coupled + Friction Ellipse):</strong> Full lateral-longitudinal coupling. Speed RMSE &le;4.9 m/s &rarr; <span class="badge badge-verdict-pass">FEASIBILITY MODEL</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Plot Lightbox Modal -->
-  <div class="modal-overlay" id="plotModal">
+  <!-- E. EXPERIMENTS SECTION -->
+  <section id="experiments" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">04 &bull; Experimental Program</span>
+        <h2 class="section-title" id="experimentsHeaderTitle">Research Experiments (00 through 04)</h2>
+        <p class="section-lead" id="experimentsHeaderLead">
+          Systematic experimental progression from session selection and vehicle model validation through naive composite assembly, physics solve, and spatial discretization sweep.
+        </p>
+      </div>
+
+      <!-- Team-Adaptive Experiment Navigation -->
+      <div class="tabs-nav" id="experimentTabsNav">
+        <button class="tab-btn active" data-tab="tab-exp00" id="tabBtn0">Exp 00: Ingestion &amp; Baseline</button>
+        <button class="tab-btn" data-tab="tab-exp01" id="tabBtn1">Exp 01: Model Hierarchy Gate</button>
+        <button class="tab-btn" data-tab="tab-exp02" id="tabBtn2">Exp 02: Theoretical Composite</button>
+        <button class="tab-btn" data-tab="tab-exp03" id="tabBtn3">Exp 03: Physics Feasibility</button>
+        <button class="tab-btn" data-tab="tab-exp04" id="tabBtn4">Exp 04: Sensitivity Sweep</button>
+      </div>
+
+      <!-- Ferrari Experiment Panes Container -->
+      <div id="ferrariExperimentPanes">
+        <!-- Exp 00 -->
+        <div class="tab-pane active" id="tab-exp00">
+          <div class="card">
+            <h3 class="card-title">Experiment 00 &mdash; Telemetry Ingestion &amp; Session Baseline (Ferrari)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Screen candidate 2023 Formula 1 qualifying sessions to identify a teammate pair with identical machinery, dry weather, comparable tire compounds, and high qualifying performance.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Driver</th>
+                    <th>Official Transponder</th>
+                    <th>Spatial Integrated</th>
+                    <th>v_min</th>
+                    <th>v_max</th>
+                    <th>v_mean</th>
+                    <th>DRS Distance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="font-weight:600;">
+                    <td>Charles Leclerc (LEC)</td>
+                    <td class="mono">89.921 s</td>
+                    <td class="mono">89.921 s</td>
+                    <td class="mono">63.0 km/h</td>
+                    <td class="mono">324.0 km/h</td>
+                    <td class="mono">237.1 km/h</td>
+                    <td class="mono">1752.0 m</td>
+                  </tr>
+                  <tr>
+                    <td>Carlos Sainz (SAI)</td>
+                    <td class="mono">90.110 s</td>
+                    <td class="mono">90.110 s</td>
+                    <td class="mono">63.0 km/h</td>
+                    <td class="mono">321.0 km/h</td>
+                    <td class="mono">236.4 km/h</td>
+                    <td class="mono">1752.0 m</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:1rem;">
+              <strong>Interpretation:</strong> Both drivers completed flying laps with zero yellow flags, identical track conditions, and exact spatial time integration closure (\(\Delta = 0.000\text{ s}\) vs transponder).
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 01 -->
+        <div class="tab-pane" id="tab-exp01">
+          <div class="card">
+            <h3 class="card-title">Experiment 01 &mdash; Model Hierarchy Validation Gate (Ferrari)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Validate three tiers of point-mass vehicle models against observed single-driver telemetry to establish simulation fidelity and qualify Level 2 for feasibility research.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Model Tier</th>
+                    <th>Driver Test</th>
+                    <th>Sim Lap</th>
+                    <th>Ref Lap</th>
+                    <th>Lap Error</th>
+                    <th>Speed RMSE</th>
+                    <th>Verdict</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Level 0: Pure Longitudinal</td>
+                    <td>LEC (Training)</td>
+                    <td class="mono">101.597 s</td>
+                    <td class="mono">89.921 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+11.675 s</td>
+                    <td class="mono">10.975 m/s</td>
+                    <td><span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span></td>
+                  </tr>
+                  <tr>
+                    <td>Level 1: Longitudinal + Aero</td>
+                    <td>LEC (Training)</td>
+                    <td class="mono">89.068 s</td>
+                    <td class="mono">89.921 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-0.853 s</td>
+                    <td class="mono">3.616 m/s</td>
+                    <td><span class="badge badge-verdict-inadequate">INADEQUATE</span></td>
+                  </tr>
+                  <tr style="background:rgba(200,62,54,0.06); font-weight:600;">
+                    <td>Level 2: Coupled (Policy A)</td>
+                    <td>LEC (Training)</td>
+                    <td class="mono">88.393 s</td>
+                    <td class="mono">89.921 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-1.528 s</td>
+                    <td class="mono">4.289 m/s</td>
+                    <td><span class="badge badge-verdict-pass">FEASIBILITY MODEL</span></td>
+                  </tr>
+                  <tr>
+                    <td>Level 2: Coupled (Policy A)</td>
+                    <td>SAI (Cross-Val)</td>
+                    <td class="mono">87.738 s</td>
+                    <td class="mono">90.110 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-2.372 s</td>
+                    <td class="mono">4.699 m/s</td>
+                    <td><span class="badge badge-verdict-pass">FEASIBILITY MODEL</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:1.25rem;">
+              <div class="plot-img-container">
+                <img src="assets/plots/validation_Charles_Leclerc.png" alt="Ferrari Level 2 Validation Plot" class="plot-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 02 -->
+        <div class="tab-pane" id="tab-exp02">
+          <div class="card">
+            <h3 class="card-title">Experiment 02 &mdash; Theoretical Composite &amp; Boundary Discontinuities</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Construct the segment-wise minimum-time composite across 54 fixed 100m sectors for Ferrari and audit velocity and energy boundary jumps.
+            </p>
+            <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">THEORETICAL LAP</div>
+                <div style="font-size:1.75rem; font-weight:700;">88.869 s</div>
+                <div style="font-size:0.78rem; color:var(--color-accent-red);">+1.053 s vs LEC | +1.241 s vs SAI</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">DRIVER SWITCHES</div>
+                <div style="font-size:1.75rem; font-weight:700;">15</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">across 54 segments</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">MAX VELOCITY JUMP</div>
+                <div style="font-size:1.75rem; font-weight:700;">11.70 km/h</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">3.251 m/s &bull; 205.95 kJ step</div>
+              </div>
+            </div>
+            <div class="plot-img-container" style="margin-top:1.25rem;">
+              <img src="assets/plots/boundary_discontinuities.png" alt="Ferrari Boundary Discontinuities" class="plot-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 03 -->
+        <div class="tab-pane" id="tab-exp03">
+          <div class="card">
+            <h3 class="card-title">Experiment 03 &mdash; Physics-Constrained Solve &amp; Gap Attribution</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Execute the Level-2 coupled forward-backward solver with donor speed envelope caps and periodic boundary bisection on the 100m composite.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Physical Engineering Interpretation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Theoretical Lap Time (\(T_{\text{theo}}\))</td>
+                    <td class="mono">88.869 s</td>
+                    <td>Unconstrained piecewise mini-sector minimum time</td>
+                  </tr>
+                  <tr style="background:rgba(200,62,54,0.06); font-weight:600;">
+                    <td>Feasible Lap Time (\(T_{\text{feas}}\))</td>
+                    <td class="mono">91.583 s</td>
+                    <td>Continuous \(C^0\) periodic solve respecting donor speed caps</td>
+                  </tr>
+                  <tr style="font-weight:600;">
+                    <td>Theoretical-to-Feasible Gap (\(\Delta T_{\text{gap}}\))</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+2.714 s</td>
+                    <td>Net time debt to eliminate boundary step discontinuities</td>
+                  </tr>
+                  <tr>
+                    <td>Net Gain vs Faster Baseline (LEC)</td>
+                    <td class="mono" style="color:var(--color-accent-red);">-1.661 s</td>
+                    <td>Feasible composite is 1.661 s SLOWER than observed Leclerc lap</td>
+                  </tr>
+                  <tr>
+                    <td>Periodicity Closure Residual</td>
+                    <td class="mono">0.00738 m/s</td>
+                    <td>Strictly meets convergence tolerance (\(\le 0.01\text{ m/s}\))</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Exp 04 -->
+        <div class="tab-pane" id="tab-exp04">
+          <div class="card">
+            <h3 class="card-title">Experiment 04 &mdash; Spatial Discretization Sensitivity Sweep</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Sweep spatial segment lengths across 50m, 100m, and 250m to test whether the feasibility penalty is robust or an artifact of discretization.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Resolution</th>
+                    <th>Segments</th>
+                    <th>Theoretical</th>
+                    <th>Feasible</th>
+                    <th>Feasibility Gap</th>
+                    <th>Switches</th>
+                    <th>Max \(\Delta v\)</th>
+                    <th>Total \(\Delta KE\)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>50 m (Fine)</td>
+                    <td>108</td>
+                    <td class="mono">88.815 s</td>
+                    <td class="mono">91.269 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+2.454 s</td>
+                    <td>20</td>
+                    <td class="mono">11.10 km/h</td>
+                    <td class="mono">673.03 kJ</td>
+                  </tr>
+                  <tr style="background:rgba(200,62,54,0.06); font-weight:600;">
+                    <td>100 m (Canonical)</td>
+                    <td>54</td>
+                    <td class="mono">88.869 s</td>
+                    <td class="mono">91.583 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+2.714 s</td>
+                    <td>15</td>
+                    <td class="mono">11.70 km/h</td>
+                    <td class="mono">832.24 kJ</td>
+                  </tr>
+                  <tr>
+                    <td>250 m (Coarse)</td>
+                    <td>22</td>
+                    <td class="mono">89.327 s</td>
+                    <td class="mono">92.233 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+2.906 s</td>
+                    <td>11</td>
+                    <td class="mono">10.54 km/h</td>
+                    <td class="mono">623.44 kJ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:1rem;">
+              <strong>Key Finding:</strong> The physical feasibility penalty (+2.454 s to +2.906 s) exceeds the naive theoretical advantage (+1.053 s) across all resolutions.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Red Bull Experiment Panes Container (Hidden in Ferrari mode) -->
+      <div id="rbrExperimentPanes" style="display:none;">
+        <!-- RB-00 -->
+        <div class="tab-pane active" id="tab-rb00">
+          <div class="card">
+            <h3 class="card-title">Experiment RB-00 &mdash; RBR Telemetry Ingestion &amp; Baseline Validation</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Ingest official FastF1 Q3 telemetry for Max Verstappen and Sergio P&eacute;rez, resample to canonical 1.0 m grid, and verify baseline spatial integration times.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Driver</th>
+                    <th>Official Transponder</th>
+                    <th>Spatial Integrated</th>
+                    <th>v_min</th>
+                    <th>v_max</th>
+                    <th>v_mean</th>
+                    <th>DRS Distance</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr style="font-weight:600;">
+                    <td>Max Verstappen (VER)</td>
+                    <td class="mono">89.708 s</td>
+                    <td class="mono">89.590 s</td>
+                    <td class="mono">64.0 km/h</td>
+                    <td class="mono">323.0 km/h</td>
+                    <td class="mono">237.1 km/h</td>
+                    <td class="mono">1662.0 m</td>
+                  </tr>
+                  <tr>
+                    <td>Sergio P&eacute;rez (PER)</td>
+                    <td class="mono">89.846 s</td>
+                    <td class="mono">89.623 s</td>
+                    <td class="mono">70.0 km/h</td>
+                    <td class="mono">325.0 km/h</td>
+                    <td class="mono">237.4 km/h</td>
+                    <td class="mono">1736.0 m</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:1rem;">
+              <strong>Domain Note:</strong> Red Bull telemetry aligns over \(S = 5358.0\text{ m}\) (5359 points), reflecting RB19 empirical sensor integration and driver trajectory geometry.
+            </div>
+          </div>
+        </div>
+
+        <!-- RB-01 -->
+        <div class="tab-pane" id="tab-rb01">
+          <div class="card">
+            <h3 class="card-title">Experiment RB-01 &mdash; RB19 Vehicle Model Calibration (Policy A)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Calibrate Level-2 coupled point-mass parameters for the RB19 chassis under Policy A (\(\mu_x = 1.700\) fixed) using Verstappen's telemetry.
+            </p>
+            <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">k_drag (DRS off)</div>
+                <div style="font-size:1.75rem; font-weight:700;">1.2500</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">Aerodynamic drag scale</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">k_down</div>
+                <div style="font-size:1.75rem; font-weight:700;">2.5320</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">Downforce coefficient</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">&mu;_y</div>
+                <div style="font-size:1.75rem; font-weight:700;">1.9500</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">Lateral grip coefficient</div>
+              </div>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Model Tier</th>
+                    <th>Driver Test</th>
+                    <th>Sim Lap</th>
+                    <th>Ref Lap</th>
+                    <th>Lap Error</th>
+                    <th>Speed RMSE</th>
+                    <th>Verdict</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Level 0: Pure Longitudinal</td>
+                    <td>VER (Training)</td>
+                    <td class="mono">101.350 s</td>
+                    <td class="mono">89.590 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+11.760 s</td>
+                    <td class="mono">11.369 m/s</td>
+                    <td><span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span></td>
+                  </tr>
+                  <tr>
+                    <td>Level 1: Longitudinal + Aero</td>
+                    <td>VER (Training)</td>
+                    <td class="mono">88.737 s</td>
+                    <td class="mono">89.590 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-0.853 s</td>
+                    <td class="mono">3.846 m/s</td>
+                    <td><span class="badge badge-verdict-inadequate">INADEQUATE</span></td>
+                  </tr>
+                  <tr style="background:rgba(59,125,216,0.08); font-weight:600;">
+                    <td>Level 2: Coupled (Policy A)</td>
+                    <td>VER (Training)</td>
+                    <td class="mono">88.152 s</td>
+                    <td class="mono">89.590 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-1.438 s</td>
+                    <td class="mono">4.908 m/s</td>
+                    <td><span class="badge badge-verdict-pass">FEASIBILITY MODEL</span></td>
+                  </tr>
+                  <tr>
+                    <td>Level 2: Coupled (Policy A)</td>
+                    <td>PER (Cross-Val)</td>
+                    <td class="mono">88.140 s</td>
+                    <td class="mono">89.623 s</td>
+                    <td class="mono" style="color:var(--color-steel-blue);">-1.483 s</td>
+                    <td class="mono">5.453 m/s</td>
+                    <td><span class="badge badge-verdict-pass">FEASIBILITY MODEL</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="margin-top:1.25rem;">
+              <div class="plot-img-container">
+                <img src="assets/plots/redbull/redbull_validation_Max_Verstappen.png" alt="Red Bull Validation Plot" class="plot-img" loading="lazy">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RB-02 -->
+        <div class="tab-pane" id="tab-rb02">
+          <div class="card">
+            <h3 class="card-title">Experiment RB-02 &mdash; Theoretical Composite (Canonical 100m)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Construct the segment-wise minimum-time composite across 54 fixed 100m sectors for the RB19 pairing and audit boundary step discontinuities.
+            </p>
+            <div class="card-grid" style="grid-template-columns: repeat(3, 1fr); margin:1.25rem 0;">
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">THEORETICAL LAP</div>
+                <div style="font-size:1.75rem; font-weight:700;">88.674 s</div>
+                <div style="font-size:0.78rem; color:var(--color-steel-blue);">+0.916 s vs VER | +0.949 s vs PER</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">DRIVER SWITCHES</div>
+                <div style="font-size:1.75rem; font-weight:700;">13</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">out of 54 segments</div>
+              </div>
+              <div style="padding:1rem; background:#EDE8DE; border-radius:var(--radius-sm);">
+                <div style="font-size:0.75rem; font-family:var(--font-mono); color:var(--color-text-secondary);">MAX VELOCITY JUMP</div>
+                <div style="font-size:1.75rem; font-weight:700;">8.28 km/h</div>
+                <div style="font-size:0.78rem; color:var(--color-text-secondary);">2.299 m/s &bull; 71.53 kJ step</div>
+              </div>
+            </div>
+            <div class="plot-img-container" style="margin-top:1.25rem;">
+              <img src="assets/plots/redbull/redbull_driver_selection_100m.png" alt="Red Bull Driver Selection" class="plot-img" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- RB-03 -->
+        <div class="tab-pane" id="tab-rb03">
+          <div class="card">
+            <h3 class="card-title">Experiment RB-03 &mdash; Physics Feasibility &amp; Gap Attribution (RBR)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Execute periodic forward-backward solve on the RB19 composite with donor caps and attribute the resulting +4.136s gap.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Metric</th>
+                    <th>Value</th>
+                    <th>Physical Engineering Interpretation</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Theoretical Lap Time (\(T_{\text{theo}}\))</td>
+                    <td class="mono">88.674 s</td>
+                    <td>Unconstrained piecewise 100m minimum time</td>
+                  </tr>
+                  <tr style="background:rgba(59,125,216,0.08); font-weight:600;">
+                    <td>Feasible Lap Time (\(T_{\text{feas}}\))</td>
+                    <td class="mono">92.810 s</td>
+                    <td>Continuous \(C^0\) periodic solve respecting donor caps</td>
+                  </tr>
+                  <tr style="font-weight:600;">
+                    <td>Theoretical-to-Feasible Gap (\(\Delta T_{\text{gap}}\))</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+4.136 s</td>
+                    <td>Net physical boundary penalty (T_feas &minus; T_theo)</td>
+                  </tr>
+                  <tr>
+                    <td>Net Gain vs Faster Baseline (VER)</td>
+                    <td class="mono" style="color:var(--color-accent-red);">-3.220 s</td>
+                    <td>Feasible composite is 3.220 s SLOWER than observed Verstappen</td>
+                  </tr>
+                  <tr>
+                    <td>Periodicity Closure Residual</td>
+                    <td class="mono">0.00180 m/s</td>
+                    <td>Excellent convergence (\(\le 0.01\text{ m/s}\) tolerance)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- RB-04 -->
+        <div class="tab-pane" id="tab-rb04">
+          <div class="card">
+            <h3 class="card-title">Experiment RB-04 &mdash; Discretization Sensitivity Sweep (RBR)</h3>
+            <p class="card-body">
+              <strong>Objective:</strong> Sweep spatial segment lengths across 50m, 100m, and 250m for Red Bull Racing to evaluate discretization robustness.
+            </p>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Resolution</th>
+                    <th>Segments</th>
+                    <th>Theoretical</th>
+                    <th>Feasible</th>
+                    <th>Feasibility Gap</th>
+                    <th>Switches</th>
+                    <th>Max \(\Delta v\)</th>
+                    <th>Total \(\Delta KE\)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>50 m (Fine)</td>
+                    <td>108</td>
+                    <td class="mono">88.638 s</td>
+                    <td class="mono">92.799 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+4.162 s</td>
+                    <td>21</td>
+                    <td class="mono">8.28 km/h</td>
+                    <td class="mono">319.85 kJ</td>
+                  </tr>
+                  <tr style="background:rgba(59,125,216,0.08); font-weight:600;">
+                    <td>100 m (Canonical)</td>
+                    <td>54</td>
+                    <td class="mono">88.674 s</td>
+                    <td class="mono">92.810 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+4.136 s</td>
+                    <td>13</td>
+                    <td class="mono">8.28 km/h</td>
+                    <td class="mono">316.59 kJ</td>
+                  </tr>
+                  <tr>
+                    <td>250 m (Coarse)</td>
+                    <td>22</td>
+                    <td class="mono">88.988 s</td>
+                    <td class="mono">93.164 s</td>
+                    <td class="mono" style="color:var(--color-accent-red);">+4.177 s</td>
+                    <td>9</td>
+                    <td class="mono">21.24 km/h</td>
+                    <td class="mono">325.46 kJ</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:1rem;">
+              <strong>Key Finding:</strong> In Red Bull Racing, the feasibility penalty (+4.136 s to +4.177 s) also universally exceeds the theoretical gain (+0.916 s) across all resolutions.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- F. RESULTS & DIAGNOSTIC ATTRIBUTION SECTION -->
+  <section id="results" class="section dark-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">05 &bull; Quantitative Findings</span>
+        <h2 class="section-title">Results &amp; Diagnostic Attribution</h2>
+        <p class="section-lead">
+          Decomposition of the theoretical-to-feasible lap time penalty into kinetic energy dissipation, braking displacement, corner exit traction, and residual state propagation debt.
+        </p>
+      </div>
+
+      <!-- Results Summary Table -->
+      <div class="card dark-card" style="margin-bottom:2.5rem;">
+        <h3 class="card-title" id="resultsTableTitle">Primary Research Metrics (100m Canonical Domain)</h3>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Constructor</th>
+                <th>Driver 1 Observed</th>
+                <th>Driver 2 Observed</th>
+                <th>Theoretical Composite</th>
+                <th>Physics-Feasible Lap</th>
+                <th>Feasibility Gap (&Delta;T)</th>
+                <th>Switches</th>
+                <th>Dominant Diagnostic Term</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:rgba(200,62,54,0.12);" id="resultsRowFerrari">
+                <td><strong>Scuderia Ferrari SF-23</strong></td>
+                <td class="mono">89.921 s (LEC)</td>
+                <td class="mono">90.110 s (SAI)</td>
+                <td class="mono">88.869 s (-1.053s)</td>
+                <td class="mono" style="color:var(--color-accent-red); font-weight:700;">91.583 s</td>
+                <td class="mono" style="color:var(--color-accent-red); font-weight:700;">+2.714 s</td>
+                <td class="mono">15</td>
+                <td class="mono">&Delta;T_residual (+1.861 s, 68.6%)</td>
+              </tr>
+              <tr style="background:rgba(59,125,216,0.12);" id="resultsRowRbr">
+                <td><strong>Red Bull Racing RB19</strong></td>
+                <td class="mono">89.590 s (VER)</td>
+                <td class="mono">89.623 s (PER)</td>
+                <td class="mono">88.674 s (-0.916s)</td>
+                <td class="mono" style="color:#7AB3F0; font-weight:700;">92.810 s</td>
+                <td class="mono" style="color:#7AB3F0; font-weight:700;">+4.136 s</td>
+                <td class="mono">13</td>
+                <td class="mono">&Delta;T_residual (+3.808 s, 92.1%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Diagnostic Formulation & Waterfall Grid -->
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:2.5rem;">
+        <div class="card dark-card">
+          <h3 class="card-title">Diagnostic Decomposition Formulation</h3>
+          <p class="card-body">
+            The total feasibility gap \(\Delta T_{\text{gap}}\) is decomposed into four physical penalty terms:
+          </p>
+          <div class="math-block" style="background:#111316;">
+            \(\Delta T_{\text{gap}} = \Delta T_{KE} + \Delta T_{\text{brake}} + \Delta T_{\text{traction}} + \Delta T_{\text{residual}}\)
+          </div>
+          <div style="font-size:0.86rem; color:#A3A199; line-height:1.6; margin-top:0.75rem;">
+            &bull; <strong>\(\Delta T_{KE}\):</strong> Energy dissipation required to reconcile step velocity mismatches at donor boundaries.<br>
+            &bull; <strong>\(\Delta T_{\text{brake}}\):</strong> Additional braking displacement penalty needed to meet downstream entry ceilings.<br>
+            &bull; <strong>\(\Delta T_{\text{traction}}\):</strong> Corner-exit traction grip deficit resulting from lateral-longitudinal friction coupling.<br>
+            &bull; <strong>\(\Delta T_{\text{residual}}\):</strong> Downstream speed debt propagating along forward integration horizons.
+          </div>
+        </div>
+
+        <div class="card dark-card">
+          <h3 class="card-title" id="waterfallHeaderTitle">Interactive Gap Attribution Waterfall</h3>
+          <div class="waterfall-chart-wrap" id="waterfallChart">
+            <!-- Dynamically populated by JS based on active team -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Scientific Plots Grid -->
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="plot-card">
+          <div class="plot-title" id="waterfallPlotTitle">Diagnostic Gap Attribution Waterfall (Exp 03)</div>
+          <div class="plot-img-container">
+            <img src="assets/plots/exp03_diagnostic_waterfall.png" alt="Diagnostic Waterfall Plot" class="plot-img" id="plotWaterfall" loading="lazy">
+          </div>
+          <div class="plot-caption">
+            Bar decomposition showing how boundary dissipation and state propagation debt expand the lap time from theoretical to feasible.
+          </div>
+        </div>
+
+        <div class="plot-card">
+          <div class="plot-title" id="speedProfilesPlotTitle">Speed Profile Comparison: Theoretical vs Feasible vs Baseline</div>
+          <div class="plot-img-container">
+            <img src="assets/plots/exp03_speed_profiles.png" alt="Speed Profiles" class="plot-img" id="plotSpeedProfiles" loading="lazy">
+          </div>
+          <div class="plot-caption">
+            Pointwise velocity traces illustrating how earlier braking points and donor caps depress the feasible trajectory below naive theoretical speeds.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- G. SEGMENTATION SENSITIVITY SECTION -->
+  <section id="sensitivity" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">06 &bull; Robustness Verification</span>
+        <h2 class="section-title">Segmentation Sensitivity Analysis</h2>
+        <p class="section-lead">
+          Testing whether the theoretical-to-feasible gap is an artifact of the chosen 100m segmentation or an invariant property across spatial scales (50m, 100m, 250m).
+        </p>
+      </div>
+
+      <!-- Interactive Discretization Explorer -->
+      <div class="card" style="padding:2rem; margin-bottom:2.5rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem;">
+          <div>
+            <h3 style="font-size:1.15rem; font-weight:600;">Interactive Discretization Explorer</h3>
+            <p style="font-size:0.86rem; color:var(--color-text-secondary); margin-bottom:0;">
+              Select a spatial segment length to inspect resulting boundary discontinuities, lap times, and driver distance allocations:
+            </p>
+          </div>
+          <div class="resolution-selector">
+            <button class="res-btn" data-res="50m">50 m (Fine &bull; 108 Segments)</button>
+            <button class="res-btn active" data-res="100m">100 m (Canonical &bull; 54 Segments)</button>
+            <button class="res-btn" data-res="250m">250 m (Coarse &bull; 22 Segments)</button>
+          </div>
+        </div>
+
+        <div id="resolutionDetails">
+          <!-- Dynamically populated by JS -->
+        </div>
+      </div>
+
+      <!-- Full Sensitivity Table & Plot -->
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <h3 class="card-title">Multi-Resolution Verification Summary</h3>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Constructor &bull; Scale</th>
+                  <th>Theoretical</th>
+                  <th>Feasible</th>
+                  <th>Feasibility Gap</th>
+                  <th>Switches</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Ferrari &bull; 50m</td>
+                  <td class="mono">88.815 s</td>
+                  <td class="mono">91.269 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+2.454 s</td>
+                  <td>20</td>
+                </tr>
+                <tr style="background:rgba(200,62,54,0.06); font-weight:600;">
+                  <td>Ferrari &bull; 100m</td>
+                  <td class="mono">88.869 s</td>
+                  <td class="mono">91.583 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+2.714 s</td>
+                  <td>15</td>
+                </tr>
+                <tr>
+                  <td>Ferrari &bull; 250m</td>
+                  <td class="mono">89.327 s</td>
+                  <td class="mono">92.233 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+2.906 s</td>
+                  <td>11</td>
+                </tr>
+                <tr style="border-top:2px solid var(--color-border-light);">
+                  <td>Red Bull &bull; 50m</td>
+                  <td class="mono">88.638 s</td>
+                  <td class="mono">92.799 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+4.162 s</td>
+                  <td>21</td>
+                </tr>
+                <tr style="background:rgba(59,125,216,0.08); font-weight:600;">
+                  <td>Red Bull &bull; 100m</td>
+                  <td class="mono">88.674 s</td>
+                  <td class="mono">92.810 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+4.136 s</td>
+                  <td>13</td>
+                </tr>
+                <tr>
+                  <td>Red Bull &bull; 250m</td>
+                  <td class="mono">88.988 s</td>
+                  <td class="mono">93.164 s</td>
+                  <td class="mono" style="color:var(--color-accent-red);">+4.177 s</td>
+                  <td>9</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout" style="margin-top:1.25rem;">
+            <div class="callout-title">Core Robustness Conclusion</div>
+            <div class="callout-text" style="font-size:0.86rem;">
+              Across both constructors and all spatial scales, the feasibility penalty (+2.454 s to +4.177 s) reliably exceeds the naive theoretical advantage (+0.594 s to +1.053 s).
+            </div>
+          </div>
+        </div>
+
+        <div class="plot-card">
+          <div class="plot-title" id="sensitivityPlotTitle">Segmentation Sensitivity &amp; Discontinuity Scaling</div>
+          <div class="plot-img-container">
+            <img src="assets/plots/segmentation_sensitivity.png" alt="Segmentation Sensitivity Plot" class="plot-img" id="plotSensitivity" loading="lazy">
+          </div>
+          <div class="plot-caption">
+            Theoretical vs feasible lap times, driver switch counts, and kinetic energy step mismatch across 50m, 100m, and 250m discretizations.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- H. CROSS-TEAM COMPARISON SECTION -->
+  <section id="cross-team" class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">07 &bull; Cross-Chassis Analysis</span>
+        <h2 class="section-title">Cross-Team Synthesis: Ferrari SF-23 vs Red Bull RB19</h2>
+        <p class="section-lead">
+          Comparative technical evaluation of two frontline 2023 Formula 1 chassis under independent calibrations and empirical spatial domain traces.
+        </p>
+      </div>
+
+      <!-- Comparative Table -->
+      <div class="card" style="margin-bottom:2.5rem;">
+        <h3 class="card-title">Independent Study Metrics Comparison Table</h3>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Scientific Metric</th>
+                <th>Scuderia Ferrari SF-23</th>
+                <th>Oracle Red Bull Racing RB19</th>
+                <th>Engineering Significance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Driver Pairing</strong></td>
+                <td>Charles Leclerc &bull; Carlos Sainz</td>
+                <td>Max Verstappen &bull; Sergio P&eacute;rez</td>
+                <td>Two frontline 2023 constructor pairings</td>
+              </tr>
+              <tr>
+                <td><strong>Modeled Track Domain (S)</strong></td>
+                <td class="mono">5369.0 m (5370 samples)</td>
+                <td class="mono">5358.0 m (5359 samples)</td>
+                <td>11.0 m empirical racing-line variance (0.2%)</td>
+              </tr>
+              <tr>
+                <td><strong>Observed Teammate Delta</strong></td>
+                <td class="mono">+0.189 s (LEC ahead)</td>
+                <td class="mono">+0.033 s (VER ahead)</td>
+                <td>Red Bull teammates closely matched in Q3</td>
+              </tr>
+              <tr>
+                <td><strong>Theoretical Composite (100m)</strong></td>
+                <td class="mono">88.869 s</td>
+                <td class="mono">88.674 s</td>
+                <td>RB19 theoretical floor is faster</td>
+              </tr>
+              <tr>
+                <td><strong>Theoretical Advantage vs Leader</strong></td>
+                <td class="mono">+1.053 s vs LEC</td>
+                <td class="mono">+0.916 s vs VER</td>
+                <td>Both pairings show ~1s naive potential</td>
+              </tr>
+              <tr style="background:rgba(200,62,54,0.06); font-weight:600;">
+                <td><strong>Physics-Feasible Lap (100m)</strong></td>
+                <td class="mono">91.583 s</td>
+                <td class="mono">92.810 s</td>
+                <td>Continuous Level-2 periodic solve</td>
+              </tr>
+              <tr style="font-weight:700;">
+                <td><strong>Feasibility Gap (&Delta;T_gap)</strong></td>
+                <td class="mono" style="color:var(--color-accent-red);">+2.714 s</td>
+                <td class="mono" style="color:var(--color-accent-red);">+4.136 s</td>
+                <td>Red Bull feasibility penalty is +52% larger</td>
+              </tr>
+              <tr>
+                <td><strong>Net Retained Advantage</strong></td>
+                <td class="mono" style="color:var(--color-accent-red);">-1.661 s</td>
+                <td class="mono" style="color:var(--color-accent-red);">-3.220 s</td>
+                <td>Neither composite beats faster baseline</td>
+              </tr>
+              <tr>
+                <td><strong>Driver Switches (100m)</strong></td>
+                <td class="mono">15 switches</td>
+                <td class="mono">13 switches</td>
+                <td>High boundary discontinuity frequency</td>
+              </tr>
+              <tr>
+                <td><strong>Max Velocity Step Jump (&Delta;v)</strong></td>
+                <td class="mono">11.70 km/h (3.251 m/s)</td>
+                <td class="mono">8.28 km/h (2.299 m/s)</td>
+                <td>Smaller instantaneous step jumps in RB19</td>
+              </tr>
+              <tr>
+                <td><strong>Total Energy Mismatch (&sum;|&Delta;KE|)</strong></td>
+                <td class="mono">832.24 kJ</td>
+                <td class="mono">316.59 kJ</td>
+                <td>Lower boundary kinetic energy jump in RBR</td>
+              </tr>
+              <tr>
+                <td><strong>Dominant Diagnostic Term</strong></td>
+                <td class="mono">&Delta;T_residual = +1.861 s (68.6%)</td>
+                <td class="mono">&Delta;T_residual = +3.808 s (92.1%)</td>
+                <td>Speed debt accumulates heavily in both cars</td>
+              </tr>
+              <tr>
+                <td><strong>Periodicity Closure Error</strong></td>
+                <td class="mono">0.00738 m/s</td>
+                <td class="mono">0.00180 m/s</td>
+                <td>Both strictly meet &le; 0.01 m/s tolerance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Non-Comparative Scientific Discussion -->
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="card">
+          <h3 class="card-title">Aerodynamic Envelope &amp; Speed Debt Dynamics</h3>
+          <p class="card-body">
+            Why does Red Bull exhibit a larger feasibility gap (+4.136 s vs +2.714 s) despite smaller instantaneous boundary jumps (&Delta;v = 8.28 km/h vs 11.70 km/h)?
+          </p>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            The RB19's higher calibrated aerodynamic downforce (\(k_{\text{down}} = 2.5320\) vs \(1.8410\)) allows exceptional cornering speeds in the observed donor traces. However, when the solver is forced to decelerate earlier to meet downstream entry ceilings, the resulting speed debt persists over longer forward integration horizons before the powertrain can accelerate back to the donor ceiling.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Scientific Caveat on Car &amp; Driver Comparisons</h3>
+          <p class="card-body">
+            <strong>Critical Methodological Notice:</strong> These results do NOT prove that one constructor, car, or driver is superior to another.
+          </p>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            Each study was conducted under an independent calibration on empirical qualifying trajectories. Telemetry from Ferrari and Red Bull is never combined into a single hybrid composite. The two studies serve solely to demonstrate that the failure of naive theoretical composite laps is an invariant phenomenon observed across different chassis and driving pairs.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- I. LIMITATIONS SECTION -->
+  <section id="limitations" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">08 &bull; Critical Evaluation</span>
+        <h2 class="section-title">Research &amp; Model Limitations</h2>
+        <p class="section-lead">
+          Transparent scientific evaluation of telemetry fidelity, vehicle dynamics simplifications, and solver boundaries.
+        </p>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));">
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">1. Single-Session Scope</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            Analysis is restricted to a single dry qualifying session (2023 Bahrain GP Q3). While this isolates maximum performance on identical soft tires, findings cannot be generalized to wet conditions, race stints with tire degradation, or circuits with differing aero demands (e.g. Monza or Monaco).
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">2. Point-Mass Vehicle Dynamics</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            The vehicle is modeled as a macroscopic point mass. Transient yaw moment dynamics, body roll, pitch under braking, vertical suspension travel, and dynamic load transfer across axles are omitted.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">3. Simplified Tire Friction</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            A classical Coulomb friction ellipse is used. Real-world tire mechanics involve nonlinear slip angle saturation (Pacejka formulation), camber thrust, and surface/bulk tire temperature dependencies that are unavailable in public telemetry.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">4. Empirical Donor Speed Cap</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            The constraint \(v(s) \le v_{\text{donor}}(s)\) enforces that the feasible lap cannot exceed what the donor driver demonstrated. While physically conservative, it prevents the solver from discovering alternative optimal racing lines or novel trajectory combinations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">5. Public Telemetry Resolution</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            FastF1 provides broadcast-grade telemetry resampled from ~10 Hz GPS and engine streams. Crucial engineering channels&mdash;including brake line pressure, steering wheel angle, and differential lock percentages&mdash;are absent from public feeds.
+          </p>
+        </div>
+
+        <div class="card">
+          <h4 style="font-size:1.05rem; font-weight:600; margin-bottom:0.5rem;">6. Model-Dependent Diagnostics</h4>
+          <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
+            The 4-term gap attribution (\(\Delta T_{KE}, \Delta T_{\text{brake}}, \Delta T_{\text{traction}}, \Delta T_{\text{residual}}\)) is an analytical decomposition of the forward-backward solver's numerical state. It should not be interpreted as four independent, decoupled real-world physical forces.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- J. CONCLUSION & FUTURE WORK SECTION -->
+  <section id="conclusion" class="section alt-bg">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">09 &bull; Synthesis</span>
+        <h2 class="section-title">Conclusion &amp; Proposed Future Work</h2>
+        <p class="section-lead">
+          Summary of demonstrated engineering findings and proposed avenues for multi-body and optimal control research extensions.
+        </p>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:2.5rem;">
+        <div class="card">
+          <h3 class="card-title">Demonstrated Findings</h3>
+          <ul style="padding-left:1.25rem; font-size:0.88rem; color:var(--color-text-secondary); line-height:1.65;">
+            <li><strong>Theoretical Best is a Dynamic Fallacy:</strong> Combining fastest mini-sectors produces unphysical boundary discontinuities (\(\Delta v\) up to 11.70 km/h and \(\Delta KE\) up to 832 kJ) that require infinite acceleration to traverse.</li>
+            <li><strong>Feasibility Penalty Exceeds Theoretical Gain:</strong> Enforcing Level-2 coupled vehicle physics and continuity imposes a penalty of +2.714 s (Ferrari) and +4.136 s (Red Bull), completely extinguishing the theoretical advantage.</li>
+            <li><strong>Net Performance Deficit:</strong> In both constructors, the physically feasible continuous composite is significantly slower than the fastest individual driver (-1.661 s for Ferrari, -3.220 s for Red Bull).</li>
+            <li><strong>Downstream Speed Debt Dominates:</strong> Residual state propagation (\(\Delta T_{\text{residual}}\)) accounts for 68% to 92% of the total gap, proving that boundary reconciliation compromises downstream straightaway velocity.</li>
+            <li><strong>Scale Invariance:</strong> Findings persist across 50m, 100m, and 250m discretizations.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Proposed Future Work (Unexecuted)</h3>
+          <ul style="padding-left:1.25rem; font-size:0.88rem; color:var(--color-text-secondary); line-height:1.65;">
+            <li><strong>Multi-Circuit Archetype Validation:</strong> Extend the pipeline to low-downforce high-speed tracks (Monza, Spa) and technical street circuits (Monaco, Singapore) to evaluate sensitivity to aerodynamic trim.</li>
+            <li><strong>Two-Track Multi-Body Vehicle Modeling:</strong> Incorporate dynamic longitudinal and lateral load transfer across front/rear axles to model transient braking-to-turn-in pitch dynamics.</li>
+            <li><strong>Tire Thermal State Integration:</strong> Model surface and carcass tire temperature dynamics to capture degradation across aggressive corner entries.</li>
+            <li><strong>Direct Collocation Optimal Control:</strong> Replace the empirical donor speed cap with a boundary-constrained nonlinear optimal control solver (e.g. IPOPT) to determine the mathematical upper bound of multi-driver trajectory synthesis.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- K. ABOUT & REPRODUCIBILITY SECTION -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">10 &bull; Open Science &amp; Source Code</span>
+        <h2 class="section-title">About the Project &amp; Reproducibility</h2>
+        <p class="section-lead">
+          Technical specifications, project architecture, verified software environment, and step-by-step reproduction instructions.
+        </p>
+      </div>
+
+      <div class="card-grid" style="grid-template-columns: 1fr 1fr; margin-bottom:2.5rem;">
+        <div class="card">
+          <h3 class="card-title">Project Overview &amp; Technology Stack</h3>
+          <p class="card-body">
+            This project was developed as a rigorous, open-source vehicle dynamics research pipeline and technical engineering portfolio. All algorithms are implemented from first principles in Python with zero black-box optimization libraries.
+          </p>
+          <div style="font-size:0.88rem; color:var(--color-text-secondary); line-height:1.6;">
+            <strong>Core Technologies Verified:</strong><br>
+            &bull; <strong>Python 3.12:</strong> Core simulation runtime and numerical algorithms.<br>
+            &bull; <strong>NumPy &amp; SciPy:</strong> Matrix operations, PCHIP interpolation, and L-BFGS-B bounded parameter estimation.<br>
+            &bull; <strong>Pandas:</strong> Structured spatial telemetry manipulation and CSV export.<br>
+            &bull; <strong>FastF1:</strong> Direct extraction of official FIA timing and car telemetry feeds.<br>
+            &bull; <strong>Matplotlib:</strong> Publication-quality scientific visualization generation.<br>
+            &bull; <strong>Pytest:</strong> Comprehensive 97-test regression and physics validation suite.<br>
+            &bull; <strong>HTML5, Vanilla CSS3 &amp; ES6 JavaScript:</strong> Lightweight, framework-free responsive research website with interactive HTML5 Canvas visualizers.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">Repository Structure &amp; Organization</h3>
+          <div style="font-family:var(--font-mono); font-size:0.8rem; background:#EDE8DE; padding:1.25rem; border-radius:var(--radius-sm); line-height:1.55;">
+            F1-Physics-Constrained-Lap-Analysis/<br>
+            &boxvr;&boxh;&boxh; src/<br>
+            &boxvert;   &boxvr;&boxh;&boxh; ingestion/       # FastF1 fetcher &amp; lap curator<br>
+            &boxvert;   &boxvr;&boxh;&boxh; preprocessing/   # PCHIP resampler &amp; segmentation<br>
+            &boxvert;   &boxvr;&boxh;&boxh; vehicle_model/   # Level 0, 1, 2 dynamics &amp; solver<br>
+            &boxvert;   &boxvr;&boxh;&boxh; composite/       # Theoretical &amp; physics builders<br>
+            &boxvert;   &boxvr;&boxh;&boxh; synthesis/       # Gap attribution analyzer<br>
+            &boxvert;   &boxur;&boxh;&boxh; configs/         # Ferrari &amp; Red Bull configurations<br>
+            &boxvr;&boxh;&boxh; experiments/<br>
+            &boxvert;   &boxvr;&boxh;&boxh; 00-04_*.py       # Ferrari research pipeline<br>
+            &boxvert;   &boxur;&boxh;&boxh; redbull/         # Red Bull research pipeline (RB-00 to 04)<br>
+            &boxvr;&boxh;&boxh; data/processed/     # Canonical CSV experimental artifacts<br>
+            &boxvr;&boxh;&boxh; outputs/plots/      # Verified scientific plot figures<br>
+            &boxvr;&boxh;&boxh; tests/              # 97 passing automated tests<br>
+            &boxur;&boxh;&boxh; website/            # Standalone technical research publication
+          </div>
+        </div>
+      </div>
+
+      <!-- Exact CLI Reproducibility Commands -->
+      <div class="card" style="padding:2rem;">
+        <h3 style="font-size:1.15rem; font-weight:600; margin-bottom:1rem;">Step-by-Step Reproduction Instructions</h3>
+        <p class="card-body" style="margin-bottom:1rem;">
+          To independently verify and reproduce all mathematical calculations, experiment outputs, and website figures from scratch:
+        </p>
+
+        <div style="font-family:var(--font-mono); font-size:0.82rem; background:#17191C; color:#F4F1EA; padding:1.25rem; border-radius:var(--radius-sm); overflow-x:auto; line-height:1.6;">
+          <span style="color:#85847F;"># 1. Clone repository and install verified dependencies</span><br>
+          git clone https://github.com/pamar/F1-Physics-Constrained-Lap-Analysis.git<br>
+          cd F1-Physics-Constrained-Lap-Analysis<br>
+          pip install numpy scipy pandas matplotlib fastf1 pytest<br><br>
+          <span style="color:#85847F;"># 2. Execute full automated test suite (97 tests must pass)</span><br>
+          python -m pytest tests/ -v<br><br>
+          <span style="color:#85847F;"># 3. Re-run Ferrari research pipeline (Experiments 00 through 04)</span><br>
+          python experiments/00_session_selection.py<br>
+          python experiments/01_model_validation.py<br>
+          python experiments/02_theoretical_composite.py<br>
+          python experiments/03_physics_constrained_composite.py<br>
+          python experiments/04_segmentation_robustness.py<br><br>
+          <span style="color:#85847F;"># 4. Re-run Red Bull Racing extension pipeline (RB-00 through RB-04)</span><br>
+          python experiments/redbull/rb_00_data_validation.py<br>
+          python experiments/redbull/rb_01_model_validation.py<br>
+          python experiments/redbull/rb_02_theoretical_composite.py<br>
+          python experiments/redbull/rb_03_physics_constrained_composite.py<br>
+          python experiments/redbull/rb_04_segmentation_robustness.py<br><br>
+          <span style="color:#85847F;"># 5. Launch local static research web server</span><br>
+          python -m http.server 8000 --directory website<br>
+          <span style="color:#22C55E;"># Open http://localhost:8000 in any modern web browser</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal Lightbox for Scientific Plots -->
+  <div class="modal-overlay" id="plotModal" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <button class="modal-close" id="modalClose">&times;</button>
+      <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
       <img src="" alt="Enlarged Plot" class="modal-img" id="modalImg">
       <div class="modal-caption" id="modalCaption"></div>
     </div>
   </div>
 
-  <!-- Site Footer -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand-title">Physics-Constrained F1 Lap Analysis</div>
-          <p class="footer-desc">
-            A scientific research study investigating the physical feasibility of theoretical cross-driver composite laps in Formula 1 using vehicle-state continuity and macroscopic forward vehicle dynamics.
-          </p>
-        </div>
-        <div>
-          <div class="footer-col-title">Navigation</div>
-          <ul class="footer-links">
-            <li><a href="#home" class="footer-link">Home</a></li>
-            <li><a href="#overview" class="footer-link">Research Overview</a></li>
-            <li><a href="#telemetry" class="footer-link">Telemetry Analysis</a></li>
-            <li><a href="#experiments" class="footer-link">Experiments 00–04</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Methodology</div>
-          <ul class="footer-links">
-            <li><a href="#method" class="footer-link">Vehicle Dynamics</a></li>
-            <li><a href="#results" class="footer-link">Results & Attribution</a></li>
-            <li><a href="#conclusion" class="footer-link">Conclusions</a></li>
-            <li><a href="#about" class="footer-link">About & Tests</a></li>
-          </ul>
-        </div>
-        <div>
-          <div class="footer-col-title">Data Attribution</div>
-          <p class="footer-desc" style="font-size:0.75rem;">
-            Telemetry sourced via FastF1 from official FIA Formula One World Championship timing feeds. Formula 1 and related marks are trademarks of Formula One Licensing B.V.
-          </p>
-        </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-text">
+        &copy; 2026 Physics-Constrained F1 Lap Analysis &bull; Technical Research Publication &amp; Engineering Portfolio.
+        <br>
+        Telemetry data sourced via FastF1 under official FIA Formula 1 timing terms. All models and solver implementations provided for academic research and evaluation.
       </div>
-
-      <div class="footer-bottom">
-        <div>&copy; 2026 Physics-Constrained F1 Lap Analysis. MIT License.</div>
-        <div>Ferrari SF-23 &bull; Sakhir 5369.0 m &bull; Policy A Baseline</div>
+      <div class="footer-links">
+        <a href="#home">Back to Top &uarr;</a>
+        <a href="#method">Methodology</a>
+        <a href="#results">Results</a>
+        <a href="#cross-team">Cross-Team</a>
+        <a href="#about">Reproducibility</a>
       </div>
     </div>
   </footer>
