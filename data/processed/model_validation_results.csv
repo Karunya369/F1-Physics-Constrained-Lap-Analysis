@@ -1,0 +1,7 @@
+verdict,lap_time_sim_s,lap_time_ref_s,lap_time_error_s,velocity_rmse_mps,velocity_mae_mps,velocity_max_error_mps,top_speed_error_mps,accel_rmse_mps2,model,test_driver,transponder_ref_s,v0_mps,v_final_mps,periodicity_error_mps
+FAILED_UNTRUSTABLE,101.597,89.921,11.675,10.975,8.443,27.348,15.151,12.138,Level 0: Pure Longitudinal,LEC (Training),90.0,81.672,81.83,0.1577
+FAILED_UNTRUSTABLE,101.185,90.11,11.075,10.872,8.282,27.393,15.008,11.798,Level 0: Pure Longitudinal,SAI (Cross-Validation),90.154,81.837,83.644,1.8064
+INADEQUATE,88.26,89.921,1.662,3.616,2.773,11.918,4.103,7.918,Level 1: Longitudinal + Aero,LEC (Training),90.0,81.672,78.7,2.9721
+INADEQUATE,87.593,90.11,2.517,3.45,2.568,13.915,4.382,8.012,Level 1: Longitudinal + Aero,SAI (Cross-Validation),90.154,81.837,78.559,3.2785
+INADEQUATE,88.393,89.921,1.529,4.289,3.337,13.729,2.415,8.411,Level 2: Coupled + Friction Ellipse,LEC (Training),90.0,83.184,83.181,0.0024
+INADEQUATE,87.738,90.11,2.371,4.699,3.797,15.296,2.111,9.145,Level 2: Coupled + Friction Ellipse,SAI (Cross-Validation),90.154,83.32,83.327,0.0063

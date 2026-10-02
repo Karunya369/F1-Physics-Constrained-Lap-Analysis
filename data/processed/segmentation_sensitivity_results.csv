@@ -1,0 +1,5 @@
+scheme,segment_count,driver_switch_count,max_delta_v_kmh,mean_delta_v_kmh,t_theoretical_s,theoretical_gain_s,t_achievable_s,achievable_gain_s,gap_s,retained_fraction_eta
+Hybrid Corner Complexes,51,17,27.765601117433228,5.448180577636759,82.845,7.077,91.072,-1.15,8.227,-0.163
+Fixed 250m Mini-Sectors,22,11,10.537904616671723,4.986296586132148,89.327,0.595,91.723,-1.8,2.396,-3.025
+Fixed 100m Mini-Sectors,54,15,11.70414140369619,4.981180748164224,88.869,1.054,91.033,-1.111,2.165,-1.055
+Fixed 50m Mini-Sectors,108,20,11.097396512357525,3.067773727777408,88.815,1.107,90.725,-0.802,1.909,-0.725

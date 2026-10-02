@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" fill="none">
+  <defs>
+    <linearGradient id="trackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C83E36"/>
+      <stop offset="50%" stop-color="#657887"/>
+      <stop offset="100%" stop-color="#C83E36"/>
+    </linearGradient>
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Track Base Glow / Border -->
+  <path d="M 120 370 
+           L 460 370 
+           C 510 370, 540 350, 560 310 
+           L 580 270 
+           C 595 240, 580 210, 550 205 
+           L 440 205 
+           C 420 205, 400 185, 410 160 
+           L 430 110 
+           C 445 75, 480 65, 520 70 
+           L 660 90 
+           C 700 95, 725 125, 715 160 
+           L 690 240 
+           C 680 270, 695 300, 725 315 
+           L 750 330 
+           C 780 345, 785 385, 755 410 
+           L 690 450 
+           C 660 470, 620 460, 590 435 
+           L 490 350 
+           C 460 325, 410 325, 380 350 
+           L 260 440 
+           C 220 470, 160 460, 130 420 
+           Z" 
+        stroke="#2E333B" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.6"/>
+
+  <!-- Active Track Outline -->
+  <path id="trackPath" d="M 120 370 
+           L 460 370 
+           C 510 370, 540 350, 560 310 
+           L 580 270 
+           C 595 240, 580 210, 550 205 
+           L 440 205 
+           C 420 205, 400 185, 410 160 
+           L 430 110 
+           C 445 75, 480 65, 520 70 
+           L 660 90 
+           C 700 95, 725 125, 715 160 
+           L 690 240 
+           C 680 270, 695 300, 725 315 
+           L 750 330 
+           C 780 345, 785 385, 755 410 
+           L 690 450 
+           C 660 470, 620 460, 590 435 
+           L 490 350 
+           C 460 325, 410 325, 380 350 
+           L 260 440 
+           C 220 470, 160 460, 130 420 
+           Z" 
+        stroke="url(#trackGrad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+  <!-- Start / Finish Line -->
+  <line x1="280" y1="360" x2="280" y2="380" stroke="#F4F1EA" stroke-width="3" stroke-dasharray="2,2"/>
+  <text x="280" y="400" fill="#85847F" font-family="'JetBrains Mono', monospace, sans-serif" font-size="10" text-anchor="middle">S/F (s = 0.0 m)</text>
+
+  <!-- Turn Markers (Bahrain Key Corners) -->
+  <g font-family="'JetBrains Mono', monospace, sans-serif" font-size="9" fill="#F4F1EA">
+    <!-- T1 -->
+    <circle cx="560" cy="310" r="3.5" fill="#C83E36"/>
+    <text x="575" y="315">T1 (Heavy Brake)</text>
+
+    <!-- T4 -->
+    <circle cx="430" cy="110" r="3.5" fill="#657887"/>
+    <text x="365" y="115">T4</text>
+
+    <!-- T8 Hairpin -->
+    <circle cx="715" cy="160" r="3.5" fill="#C83E36"/>
+    <text x="730" y="165">T8 (Hairpin)</text>
+
+    <!-- T10 Technical Downhill -->
+    <circle cx="750" cy="330" r="3.5" fill="#C83E36"/>
+    <text x="765" y="325">T10</text>
+
+    <!-- T14-15 Final Straight Entry -->
+    <circle cx="130" cy="420" r="3.5" fill="#657887"/>
+    <text x="60" y="445">T14-15 (Exit)</text>
+  </g>
+
+  <!-- Sectors & Annotations -->
+  <g font-family="'Inter', sans-serif" font-size="11" fill="#85847F">
+    <text x="400" y="40" fill="#D8D5CE" font-weight="600" text-anchor="middle" letter-spacing="1.5">BAHRAIN INTERNATIONAL CIRCUIT (SCHEMATIC)</text>
+    <text x="400" y="58" font-size="9" text-anchor="middle">CANONICAL SPATIAL DOMAIN: S = 5369.0 m | 54 SEGMENTS (100 m CANONICAL)</text>
+
+    <text x="500" y="240" font-size="9" fill="#657887">Sector 1: 0 - 1650 m</text>
+    <text x="620" y="280" font-size="9" fill="#737D70">Sector 2: 1650 - 3780 m</text>
+    <text x="240" y="335" font-size="9" fill="#C83E36">Sector 3: 3780 - 5369 m</text>
+  </g>
+</svg>

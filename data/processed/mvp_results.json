@@ -1,0 +1,36 @@
+{
+  "theoretical_summary": {
+    "driver1": "LEC",
+    "driver2": "SAI",
+    "t_driver1": 89.92216948638563,
+    "t_driver2": 90.1106273934312,
+    "t_best_single": 89.92216948638563,
+    "t_theoretical": 82.84535029917635,
+    "theoretical_gain_s": 7.076819187209281,
+    "total_segments": 51,
+    "driver_switch_count": 17,
+    "max_abs_delta_v_kmh": 27.765601117433228,
+    "mean_abs_delta_v_kmh": 5.448180577636759,
+    "total_abs_energy_jump_kj": 1236.4376403353026
+  },
+  "achievable_summary": {
+    "t_baseline_s": 89.92216948638563,
+    "t_theoretical_s": 82.84535029917635,
+    "t_achievable_s": 92.4423868976242,
+    "theoretical_gain_s": 7.076819187209281,
+    "achievable_gain_s": -2.5202174112385762,
+    "gap_s": 9.597036598447858,
+    "retained_fraction_eta": -0.3561229055835769,
+    "retained_percentage": -35.6,
+    "model_used": "Level 2: Coupled Longitudinal-Lateral + Friction Ellipse"
+  },
+  "gap_attribution": {
+    "gap_total_s": 9.597,
+    "kinetic_energy_deficit_s": 2.017,
+    "braking_displacement_s": 0.124,
+    "coupled_traction_penalty_s": 0.443,
+    "interaction_nonlinear_term_s": 7.013,
+    "total_positive_energy_mismatch_kj": 1210.1,
+    "total_negative_energy_mismatch_kj": 310.5
+  }
+}

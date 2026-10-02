@@ -1,0 +1,4 @@
+Resolution,Segment_Length_m,Segments,Composite_Time_s,Gain_vs_LEC_s,Gain_vs_SAI_s,Gain_vs_Best_s,Pct_Gain_vs_LEC,Pct_Gain_vs_SAI,LEC_Selection_Pct,SAI_Selection_Pct,LEC_Segments,SAI_Segments,Switches,Max_Abs_Delta_V_mps,Max_Abs_Delta_V_kmh,Mean_Abs_Delta_V_mps,Mean_Abs_Delta_V_kmh,Max_Abs_Delta_KE_kJ,Total_Abs_Delta_KE_kJ
+50m,50.0,108,88.815,1.107,1.296,1.107,1.23,1.44,64.6,35.4,70,38,20,3.083,11.1,0.852,3.07,106.8,673.03
+100m,100.0,54,88.869,1.054,1.242,1.054,1.17,1.38,64.6,35.4,35,19,15,3.251,11.7,1.384,4.98,205.95,832.24
+250m,250.0,22,89.327,0.595,0.784,0.595,0.66,0.87,58.1,41.9,13,9,11,2.927,10.54,1.385,4.99,122.38,623.44

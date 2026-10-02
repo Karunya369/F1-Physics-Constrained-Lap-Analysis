@@ -1,0 +1,7 @@
+verdict,lap_time_sim_s,lap_time_ref_s,lap_time_error_s,velocity_rmse_mps,velocity_mae_mps,velocity_max_error_mps,top_speed_error_mps,accel_rmse_mps2,model,test_driver,periodicity_error_mps
+FAILED_UNTRUSTABLE,101.35,89.59,11.76,11.369,8.873,26.952,15.278,12.496,Level 0: Pure Longitudinal,VER (Training),4.026605601846768
+FAILED_UNTRUSTABLE,101.336,89.623,11.713,11.707,9.217,27.71,14.901,12.407,Level 0: Pure Longitudinal,PER (Cross-Validation),3.698884624926734
+INADEQUATE,88.737,89.59,0.853,3.846,3.021,15.328,4.96,9.712,Level 1: Longitudinal + Aero,VER (Training),3.133426847524177
+INADEQUATE,88.727,89.623,0.896,4.119,3.219,13.996,5.493,9.221,Level 1: Longitudinal + Aero,PER (Cross-Validation),3.461147824444211
+INADEQUATE,88.152,89.59,1.438,4.908,3.978,13.584,2.679,9.772,Level 2: Coupled (Policy A),VER (Training),2.5835572633841934
+FAILED_UNTRUSTABLE,88.142,89.623,1.481,5.453,4.237,18.344,2.161,9.385,Level 2: Coupled (Policy A),PER (Cross-Validation),2.2558362864641595

@@ -1,0 +1,4 @@
+segment_length_m,resolution,segments_count,theoretical_lap_time_s,gain_vs_ver_s,gain_vs_per_s,driver_switches,ver_segments,per_segments,ver_pct,per_pct,max_dv_mps,max_dv_kmh,total_ke_kj,max_ke_kj
+50.0,50m,108,88.638,0.953,0.986,21,48,60,44.01,55.99,2.299,8.28,319.85,41.56
+100.0,100m,54,88.674,0.917,0.95,13,25,29,45.88,54.12,2.299,8.28,316.59,71.53
+250.0,250m,22,88.988,0.603,0.636,9,12,10,53.34,46.66,5.9,21.24,325.46,191.78

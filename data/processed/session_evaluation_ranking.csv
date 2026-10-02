@@ -1,0 +1,6 @@
+year,race,driver1,driver2,status,score,lap_time_d1,lap_time_d2,time_delta_s,compound_d1,compound_d2,dry,max_telemetry_gap_s
+2023,Bahrain,LEC,SAI,VALID,0.811,90.0,90.154,0.154,SOFT,SOFT,True,0.977
+2023,Austria,LEC,SAI,VALID,0.764,64.439,64.581,0.142,SOFT,SOFT,True,1.08
+2023,Great Britain,NOR,PIA,VALID,0.65,86.961,87.092,0.131,SOFT,SOFT,False,0.583
+2023,Spain,HAM,RUS,VALID,0.524,72.818,73.326,0.508,SOFT,SOFT,False,0.363
+2023,Spain,VER,PER,VALID,0.33,72.272,73.334,1.062,SOFT,SOFT,False,0.396
