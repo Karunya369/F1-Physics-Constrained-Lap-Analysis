@@ -14,29 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // 1. Navigation & ScrollSpy
-function initNavigation() {
-  const navLinks = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
-  const mobileToggle = document.getElementById('mobileToggle');
+let navLinks = [];
+let navSections = [];
+
+function bindNavEvents() {
+  navLinks = document.querySelectorAll('.nav-link');
   const navMenu = document.getElementById('navMenu');
 
-  // Mobile menu toggle
-  if (mobileToggle && navMenu) {
-    mobileToggle.addEventListener('click', () => {
-      navMenu.classList.toggle('mobile-open');
-    });
-
-    // Close on link click
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('mobile-open');
-      });
-    });
-  }
-
-  // Smooth scroll
+  // Close mobile menu on link click & smooth scroll
   navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
+      if (navMenu) navMenu.classList.remove('mobile-open');
       const targetId = link.getAttribute('href');
       if (targetId && targetId.startsWith('#')) {
         e.preventDefault();
@@ -47,13 +35,29 @@ function initNavigation() {
       }
     });
   });
+}
+
+function initNavigation() {
+  navSections = document.querySelectorAll('section[id]');
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navMenu = document.getElementById('navMenu');
+
+  // Mobile menu toggle
+  if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('mobile-open');
+    });
+  }
+
+  bindNavEvents();
 
   // ScrollSpy
   window.addEventListener('scroll', () => {
     let currentId = '';
     const scrollPos = window.scrollY + 120;
 
-    sections.forEach(section => {
+    navSections.forEach(section => {
+      if (section.offsetParent === null) return; // ignore hidden sections
       const top = section.offsetTop;
       const height = section.offsetHeight;
       if (scrollPos >= top && scrollPos < top + height) {
@@ -61,7 +65,8 @@ function initNavigation() {
       }
     });
 
-    navLinks.forEach(link => {
+    const activeLinks = document.querySelectorAll('.nav-link');
+    activeLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${currentId}`) {
         link.classList.add('active');
@@ -545,22 +550,46 @@ function initTeamSwitcher() {
   const btnRbr = document.getElementById('teamBtnRbr');
   if (!btnFerrari || !btnRbr) return;
 
-  // Ferrari-specific sections (visible by default)
+  // Ferrari-specific sections (visible in Ferrari mode)
   const ferrariSections = [
     document.getElementById('overview'),
     document.getElementById('telemetry'),
     document.getElementById('experiments'),
-    document.getElementById('method'),
     document.getElementById('results'),
     document.getElementById('conclusion'),
-    document.getElementById('about'),
   ].filter(Boolean);
 
-  // Red Bull-specific sections (hidden by default)
+  // Red Bull-specific sections (visible in Red Bull mode)
   const rbrSections = [
     document.getElementById('redbull-study'),
     document.getElementById('cross-team'),
   ].filter(Boolean);
+
+  function updateNavForTeam(isRbr) {
+    const navMenu = document.getElementById('navMenu');
+    if (!navMenu) return;
+    if (isRbr) {
+      navMenu.innerHTML = `
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#redbull-study" class="nav-link">RBR Study</a></li>
+        <li><a href="#cross-team" class="nav-link">Cross-Team</a></li>
+        <li><a href="#method" class="nav-link">Methodology</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      `;
+    } else {
+      navMenu.innerHTML = `
+        <li><a href="#home" class="nav-link active">Home</a></li>
+        <li><a href="#overview" class="nav-link">Overview</a></li>
+        <li><a href="#telemetry" class="nav-link">Telemetry</a></li>
+        <li><a href="#experiments" class="nav-link">Experiments</a></li>
+        <li><a href="#method" class="nav-link">Methodology</a></li>
+        <li><a href="#results" class="nav-link">Results</a></li>
+        <li><a href="#conclusion" class="nav-link">Conclusion</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+      `;
+    }
+    bindNavEvents();
+  }
 
   function applyTeam(team) {
     const isRbr = (team === 'rbr');
@@ -581,6 +610,16 @@ function initTeamSwitcher() {
         ? '<span class="hero-badge-dot"></span>ORACLE RED BULL RACING RB19 &bull; 2023 BAHRAIN GP Q3'
         : '<span class="hero-badge-dot"></span>SCUDERIA FERRARI SF-23 &bull; 2023 BAHRAIN GP Q3';
     }
+
+    // Hero actions
+    const heroExplore = document.querySelector('.hero-actions a.btn-primary');
+    if (heroExplore) {
+      heroExplore.setAttribute('href', isRbr ? '#redbull-study' : '#overview');
+      heroExplore.innerHTML = isRbr ? 'Explore Red Bull Study &rarr;' : 'Explore the Research &rarr;';
+    }
+
+    // Dynamic Navbar
+    updateNavForTeam(isRbr);
 
     // Stat bar update
     const data = isRbr ? window.RBR_RESEARCH_DATA : window.F1_RESEARCH_DATA;
