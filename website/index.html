@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- KaTeX Mathematical Typesetting -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -16,13 +18,19 @@
   <!-- Sticky Top Navigation -->
   <header class="top-nav" id="topNav">
     <div class="nav-container">
-      <a href="#home" class="brand-link">
-        <div class="brand-mark">F1</div>
-        <div class="brand-title">
-          <span>Physics-Constrained F1 Lap Analysis</span>
-          <span class="brand-subtitle">2023 Bahrain GP Q3 &bull; Technical Research Publication</span>
+      <div class="brand-wrapper">
+        <a href="#home" class="brand-link">
+          <div class="brand-mark">F1</div>
+          <div class="brand-title">
+            <span class="brand-main">Physics-Constrained F1 Lap Analysis</span>
+          </div>
+        </a>
+        <div class="brand-meta" aria-hidden="true">
+          <span class="session-badge">2023 Bahrain GP &bull; Q3</span>
+          <span class="meta-separator">/</span>
+          <span>Technical Research Publication</span>
         </div>
-      </a>
+      </div>
 
       <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle navigation menu">
         &#9776;
@@ -93,8 +101,8 @@
           <div class="schematic-figure">
             <img src="assets/track_schematic.svg" alt="Bahrain International Circuit Track Schematic" style="width:100%; height:100%; object-fit:contain;">
           </div>
-          <div class="schematic-caption">
-            Bahrain International Circuit (Sakhir). 54 canonical 100m mini-sectors mapped to continuous track distance coordinate <em>s</em>.
+          <div class="schematic-caption" id="schematicCaption">
+            <strong>Schematic Circuit Illustration:</strong> Bahrain International Circuit (Sakhir). Note: Illustrates corner layout and mini-sector segmentation. Physical vehicle dynamics computations are conducted strictly along 1D continuous distance coordinates \(s\) (5369.0 m for Ferrari, 5358.0 m for Red Bull due to empirical trajectory integration differences) with local curvature \(\kappa(s)\), not 2D idealized track center-line geometry.
           </div>
         </div>
       </div>
@@ -148,7 +156,7 @@
         <span class="section-label">01 &bull; Scientific Motivation</span>
         <h2 class="section-title">Research Overview & Problem Formulation</h2>
         <p class="section-lead">
-          Why "ideal" lap times constructed by splicing fastest sectors represent a dynamic impossibility under continuous vehicle physics.
+          Why "ideal" lap times constructed by splicing fastest sectors are physically inconsistent under continuous vehicle dynamics, as demonstrated on 2023 Bahrain GP Q3 telemetry.
         </p>
       </div>
 
@@ -465,17 +473,39 @@
 
         <div class="card">
           <h3 class="card-title">Three-Tier Model Validation Hierarchy</h3>
-          <div style="font-size:0.88rem; line-height:1.6; color:var(--color-text-secondary);">
-            <div style="margin-bottom:0.75rem;">
-              <strong style="color:var(--color-text-main);">Level 0 (Pure Longitudinal):</strong> No aero drag, no downforce. Lap time error &gt;11s, speed RMSE &gt;10 m/s &rarr; <span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span>
+          <div style="font-size:0.86rem; line-height:1.6; color:var(--color-text-secondary);">
+            <div style="margin-bottom:0.75rem; padding-bottom:0.6rem; border-bottom:1px solid var(--color-border-light);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                <strong style="color:var(--color-text-main);">Level 0: Pure Longitudinal Point-Mass</strong>
+                <span class="badge badge-verdict-fail">FAILED_UNTRUSTABLE</span>
+              </div>
+              <div><strong>Verdict Meaning &amp; Rejection Reason:</strong> Omits aero drag and downforce entirely. Unchecked straightaway acceleration and cornering without aero grip cause lap time errors &gt;+11.6 s and speed RMSE &gt;10.9 m/s. Rejected as physically unviable.</div>
             </div>
-            <div style="margin-bottom:0.75rem;">
-              <strong style="color:var(--color-text-main);">Level 1 (Longitudinal + Aero):</strong> Aero drag and downforce without friction coupling. Over-predicts straight-line braking &rarr; <span class="badge badge-verdict-inadequate">INADEQUATE</span>
+            <div style="margin-bottom:0.75rem; padding-bottom:0.6rem; border-bottom:1px solid var(--color-border-light);">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                <strong style="color:var(--color-text-main);">Level 1: Longitudinal + Aero (Decoupled)</strong>
+                <span class="badge badge-verdict-inadequate">INADEQUATE</span>
+              </div>
+              <div><strong>Verdict Meaning &amp; Rejection Reason:</strong> Includes aerodynamic drag and downforce but calculates lateral and longitudinal grip uncoupled. Allows maximum braking while cornering at maximum lateral load, over-predicting corner-entry deceleration and failing cross-validation.</div>
             </div>
             <div>
-              <strong style="color:var(--color-text-main);">Level 2 (Coupled + Friction Ellipse):</strong> Full lateral-longitudinal coupling. Speed RMSE &le;4.9 m/s &rarr; <span class="badge badge-verdict-pass">FEASIBILITY MODEL</span>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2px;">
+                <strong style="color:var(--color-text-main);">Level 2: Coupled Dynamics + Friction Ellipse</strong>
+                <span class="badge badge-verdict-pass">FEASIBILITY MODEL</span>
+              </div>
+              <div><strong>Qualification:</strong> Enforces dynamic downforce \(F_z = mg + k_{\text{down}} v^2\) and coupled tire friction ellipse. Validated under Policy A (\(\mu_x = 1.700\) fixed), achieving speed RMSE \(\le 4.908\text{ m/s}\) across both driver pairings.</div>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Level 2 Model Scope & Limitations Callout -->
+      <div class="callout" style="background:#EDE8DE; border-left-color:var(--color-accent-red); margin-top:1.5rem;">
+        <div class="callout-title" style="color:var(--color-accent-red);">Qualified Model Scope &amp; Engineering Limitations of Level 2</div>
+        <div class="callout-text" style="font-size:0.86rem; color:var(--color-text-secondary); line-height:1.6;">
+          <strong>Important Model Distinction:</strong> Level 2 is utilized strictly as a <em>macroscopic feasibility model</em>, <strong>not a high-fidelity vehicle dynamics simulator</strong>.
+          As a 1D point-mass solver, it intentionally omits multi-body suspension kinematics, dynamic load transfer across axles, chassis roll/pitch modes, tire thermal states (bulk/surface degradation), and transient powertrain/ERS lag.
+          Its qualified purpose is solely to evaluate first-order kinetic energy continuity, donor velocity limits, and longitudinal boundary feasibility—demonstrating that even under favorable point-mass assumptions, naive theoretical composites are physically unachievable.
         </div>
       </div>
     </div>
@@ -610,6 +640,9 @@
                   </tr>
                 </tbody>
               </table>
+            </div>
+            <div style="font-size:0.83rem; color:var(--color-text-secondary); line-height:1.55; margin-top:1rem; padding:0.85rem 1rem; background:#EDE8DE; border-radius:var(--radius-sm); border-left:3px solid var(--color-accent-red);">
+              <strong>Validation Verdict Interpretation:</strong> Level 0 received <code>FAILED_UNTRUSTABLE</code> (+11.675 s error, 10.975 m/s RMSE) due to the complete absence of aerodynamic downforce and drag. Level 1 was rejected as <code>INADEQUATE</code> because independent friction modeling allows maximum braking while cornering under full lateral load, overestimating deceleration capability. Level 2 (coupled dynamics + friction ellipse) meets validation criteria (RMSE &le; 4.699 m/s) and is accepted strictly as a qualified macroscopic feasibility model (omitting multi-body suspension kinematics and tire thermal dynamics).
             </div>
             <div style="margin-top:1.25rem;">
               <div class="plot-img-container">
@@ -886,6 +919,9 @@
                 </tbody>
               </table>
             </div>
+            <div style="font-size:0.83rem; color:var(--color-text-secondary); line-height:1.55; margin-top:1rem; padding:0.85rem 1rem; background:#EDE8DE; border-radius:var(--radius-sm); border-left:3px solid var(--color-rbr-accent);">
+              <strong>Validation Verdict Interpretation:</strong> Level 0 received <code>FAILED_UNTRUSTABLE</code> (+11.760 s error, 11.369 m/s RMSE) because zero-aero physics cannot simulate F1 speeds. Level 1 was rejected as <code>INADEQUATE</code> (3.846 m/s RMSE) due to uncoupled longitudinal-lateral grip limits allowing unrealistic braking under cornering loads. Level 2 meets qualification thresholds (&le; 5.453 m/s RMSE on cross-validation) and serves as an empirical point-mass feasibility tool without claiming high-fidelity chassis, suspension, or thermal modeling.
+            </div>
             <div style="margin-top:1.25rem;">
               <div class="plot-img-container">
                 <img src="assets/plots/redbull/redbull_validation_Max_Verstappen.png" alt="Red Bull Validation Plot" class="plot-img" loading="lazy">
@@ -1028,7 +1064,7 @@
               </table>
             </div>
             <div style="font-size:0.85rem; color:var(--color-text-secondary); margin-top:1rem;">
-              <strong>Key Finding:</strong> In Red Bull Racing, the feasibility penalty (+4.136 s to +4.177 s) also universally exceeds the theoretical gain (+0.916 s) across all resolutions.
+              <strong>Key Finding:</strong> In Red Bull Racing, the feasibility penalty (+4.136 s to +4.177 s) consistently exceeds the theoretical gain (+0.916 s) across all three tested resolutions.
             </div>
           </div>
         </div>
@@ -1059,7 +1095,7 @@
                 <th>Driver 2 Observed</th>
                 <th>Theoretical Composite</th>
                 <th>Physics-Feasible Lap</th>
-                <th>Feasibility Gap (&Delta;T)</th>
+                <th>Feasibility Gap (\(\Delta T\))</th>
                 <th>Switches</th>
                 <th>Dominant Diagnostic Term</th>
               </tr>
@@ -1073,17 +1109,17 @@
                 <td class="mono" style="color:var(--color-accent-red); font-weight:700;">91.583 s</td>
                 <td class="mono" style="color:var(--color-accent-red); font-weight:700;">+2.714 s</td>
                 <td class="mono">15</td>
-                <td class="mono">&Delta;T_residual (+1.861 s, 68.6%)</td>
+                <td class="mono">\(\Delta T_{\text{residual}}\) (+1.861 s, 68.6%)</td>
               </tr>
               <tr style="background:rgba(59,125,216,0.12);" id="resultsRowRbr">
                 <td><strong>Red Bull Racing RB19</strong></td>
                 <td class="mono">89.590 s (VER)</td>
                 <td class="mono">89.623 s (PER)</td>
-                <td class="mono">88.674 s (-0.916s)</td>
+                <td class="mono">88.674 s (&minus;0.916s)</td>
                 <td class="mono" style="color:#7AB3F0; font-weight:700;">92.810 s</td>
                 <td class="mono" style="color:#7AB3F0; font-weight:700;">+4.136 s</td>
                 <td class="mono">13</td>
-                <td class="mono">&Delta;T_residual (+3.808 s, 92.1%)</td>
+                <td class="mono">\(\Delta T_{\text{residual}}\) (+3.808 s, 92.1%)</td>
               </tr>
             </tbody>
           </table>
@@ -1381,7 +1417,7 @@
             <strong>Critical Methodological Notice:</strong> These results do NOT prove that one constructor, car, or driver is superior to another.
           </p>
           <p class="card-body" style="font-size:0.88rem; color:var(--color-text-secondary);">
-            Each study was conducted under an independent calibration on empirical qualifying trajectories. Telemetry from Ferrari and Red Bull is never combined into a single hybrid composite. The two studies serve solely to demonstrate that the failure of naive theoretical composite laps is an invariant phenomenon observed across different chassis and driving pairs.
+            Each study was conducted under an independent calibration on empirical qualifying trajectories. Telemetry from Ferrari and Red Bull is never combined into a single hybrid composite. The two studies serve to demonstrate that the infeasibility of naive theoretical composite laps is a consistently observed pattern across both of the chassis and driver pairings analysed here, under the stated point-mass model assumptions.
           </p>
         </div>
       </div>
@@ -1460,11 +1496,11 @@
         <div class="card">
           <h3 class="card-title">Demonstrated Findings</h3>
           <ul style="padding-left:1.25rem; font-size:0.88rem; color:var(--color-text-secondary); line-height:1.65;">
-            <li><strong>Theoretical Best is a Dynamic Fallacy:</strong> Combining fastest mini-sectors produces unphysical boundary discontinuities (\(\Delta v\) up to 11.70 km/h and \(\Delta KE\) up to 832 kJ) that require infinite acceleration to traverse.</li>
-            <li><strong>Feasibility Penalty Exceeds Theoretical Gain:</strong> Enforcing Level-2 coupled vehicle physics and continuity imposes a penalty of +2.714 s (Ferrari) and +4.136 s (Red Bull), completely extinguishing the theoretical advantage.</li>
-            <li><strong>Net Performance Deficit:</strong> In both constructors, the physically feasible continuous composite is significantly slower than the fastest individual driver (-1.661 s for Ferrari, -3.220 s for Red Bull).</li>
-            <li><strong>Downstream Speed Debt Dominates:</strong> Residual state propagation (\(\Delta T_{\text{residual}}\)) accounts for 68% to 92% of the total gap, proving that boundary reconciliation compromises downstream straightaway velocity.</li>
-            <li><strong>Scale Invariance:</strong> Findings persist across 50m, 100m, and 250m discretizations.</li>
+            <li><strong>Theoretical Composite Physical Inconsistency:</strong> Combining fastest mini-sectors produces unphysical boundary discontinuities (\(\Delta v\) up to 11.70 km/h and \(\Delta KE\) up to 832 kJ in the studied cases) that require instantaneous speed changes incompatible with tire-limited dynamics.</li>
+            <li><strong>Feasibility Penalty Exceeds Theoretical Gain:</strong> Enforcing Level-2 coupled vehicle physics and boundary continuity imposes a penalty of +2.714 s (Ferrari) and +4.136 s (Red Bull), completely offsetting the theoretical advantage in both studied pairings.</li>
+            <li><strong>Net Performance Deficit:</strong> In both constructors analysed, the physics-feasible continuous composite is slower than the fastest individual driver (&minus;1.661 s for Ferrari, &minus;3.220 s for Red Bull).</li>
+            <li><strong>Downstream Speed Debt Dominates:</strong> Residual state propagation (\(\Delta T_{\text{residual}}\)) accounts for 68% to 92% of the total gap, indicating that boundary reconciliation consistently compromises downstream speed in these studied cases.</li>
+            <li><strong>Discretization Robustness:</strong> Results persist consistently across 50 m, 100 m, and 250 m spatial discretizations for both constructor studies.</li>
           </ul>
         </div>
 
@@ -1512,23 +1548,21 @@
 
         <div class="card">
           <h3 class="card-title">Repository Structure &amp; Organization</h3>
-          <div style="font-family:var(--font-mono); font-size:0.8rem; background:#EDE8DE; padding:1.25rem; border-radius:var(--radius-sm); line-height:1.55;">
-            F1-Physics-Constrained-Lap-Analysis/<br>
-            &boxvr;&boxh;&boxh; src/<br>
-            &boxvert;   &boxvr;&boxh;&boxh; ingestion/       # FastF1 fetcher &amp; lap curator<br>
-            &boxvert;   &boxvr;&boxh;&boxh; preprocessing/   # PCHIP resampler &amp; segmentation<br>
-            &boxvert;   &boxvr;&boxh;&boxh; vehicle_model/   # Level 0, 1, 2 dynamics &amp; solver<br>
-            &boxvert;   &boxvr;&boxh;&boxh; composite/       # Theoretical &amp; physics builders<br>
-            &boxvert;   &boxvr;&boxh;&boxh; synthesis/       # Gap attribution analyzer<br>
-            &boxvert;   &boxur;&boxh;&boxh; configs/         # Ferrari &amp; Red Bull configurations<br>
-            &boxvr;&boxh;&boxh; experiments/<br>
-            &boxvert;   &boxvr;&boxh;&boxh; 00-04_*.py       # Ferrari research pipeline<br>
-            &boxvert;   &boxur;&boxh;&boxh; redbull/         # Red Bull research pipeline (RB-00 to 04)<br>
-            &boxvr;&boxh;&boxh; data/processed/     # Canonical CSV experimental artifacts<br>
-            &boxvr;&boxh;&boxh; outputs/plots/      # Verified scientific plot figures<br>
-            &boxvr;&boxh;&boxh; tests/              # 97 passing automated tests<br>
-            &boxur;&boxh;&boxh; website/            # Standalone technical research publication
-          </div>
+          <pre class="repo-tree">F1-Physics-Constrained-Lap-Analysis/
+├── src/
+│   ├── ingestion/       # FastF1 fetcher &amp; lap curator
+│   ├── preprocessing/   # PCHIP resampler &amp; segmentation
+│   ├── vehicle_model/   # Level 0, 1, 2 dynamics &amp; solver
+│   ├── composite/       # Theoretical &amp; physics builders
+│   ├── synthesis/       # Gap attribution analyzer
+│   └── configs/         # Ferrari &amp; Red Bull configurations
+├── experiments/
+│   ├── 00-04_*.py       # Ferrari research pipeline
+│   └── redbull/         # Red Bull research pipeline (RB-00 to 04)
+├── data/processed/      # Canonical CSV experimental artifacts
+├── outputs/plots/       # Verified scientific plot figures
+├── tests/               # 97 passing automated tests
+└── website/             # Standalone technical research publication</pre>
         </div>
       </div>
 
@@ -1570,8 +1604,13 @@
   <div class="modal-overlay" id="plotModal" role="dialog" aria-modal="true">
     <div class="modal-content">
       <button class="modal-close" id="modalClose" aria-label="Close modal">&times;</button>
-      <img src="" alt="Enlarged Plot" class="modal-img" id="modalImg">
-      <div class="modal-caption" id="modalCaption"></div>
+      <div class="modal-body">
+        <img src="" alt="Enlarged Plot" class="modal-img" id="modalImg">
+      </div>
+      <div class="modal-caption">
+        <span id="modalCaption"></span>
+        <span class="modal-caption-hint">Scroll or pan to inspect fine details &bull; Esc to close</span>
+      </div>
     </div>
   </div>
 
@@ -1596,6 +1635,9 @@
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/data_redbull.js"></script>
+  <!-- KaTeX auto-render extension with offline/CDN fallback -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" onerror="window._katexFailed=true; if(window.renderMath) window.renderMath();"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onerror="window._katexFailed=true; if(window.renderMath) window.renderMath();"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,7 +1,64 @@
 /**
- * F1 Physics-Constrained Lap Analysis
- * Application Logic, Interactive Scientific Data Visualizations & Team Switching
+ * Safe Mathematical Typesetting via KaTeX with Offline/CDN Fallback
  */
+function renderMath(targetElement) {
+  const el = targetElement || document.body;
+  if (typeof renderMathInElement === 'function') {
+    try {
+      renderMathInElement(el, {
+        delimiters: [
+          { left: '$$', right: '$$', display: true },
+          { left: '\\[', right: '\\]', display: true },
+          { left: '\\(', right: '\\)', display: false },
+          { left: '$', right: '$', display: false }
+        ],
+        ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+        throwOnError: false
+      });
+      return;
+    } catch (err) {
+      console.warn('KaTeX math typesetting encountered an issue, activating fallback:', err);
+    }
+  }
+  // Graceful offline fallback formatter
+  applyMathFallback(el);
+}
+
+function applyMathFallback(container) {
+  if (!container) return;
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, null, false);
+  const textNodes = [];
+  while (walker.nextNode()) {
+    const node = walker.currentNode;
+    if (node.parentElement && !['SCRIPT', 'STYLE', 'PRE', 'CODE', 'NOSCRIPT', 'TEXTAREA'].includes(node.parentElement.tagName)) {
+      if (node.nodeValue && (node.nodeValue.includes('\\(') || node.nodeValue.includes('\\['))) {
+        textNodes.push(node);
+      }
+    }
+  }
+
+  textNodes.forEach(node => {
+    let text = node.nodeValue;
+    text = text.replace(/\\\(|\\\[/g, '').replace(/\\\)|\\\]/g, '');
+    text = text.replace(/\\Delta\s*/g, '&Delta;');
+    text = text.replace(/\\mu\s*/g, '&mu;');
+    text = text.replace(/\\kappa\s*/g, '&kappa;');
+    text = text.replace(/\\le\s*/g, '&le;');
+    text = text.replace(/\\ge\s*/g, '&ge;');
+    text = text.replace(/\\times\s*/g, '&times;');
+    text = text.replace(/\\text\{([^}]+)\}/g, '$1');
+    text = text.replace(/_\{([^}]+)\}/g, '<sub>$1</sub>');
+    text = text.replace(/_([a-zA-Z0-9])/g, '<sub>$1</sub>');
+    text = text.replace(/\^2/g, '<sup>2</sup>');
+
+    const span = document.createElement('span');
+    span.className = 'math-fallback';
+    span.innerHTML = text;
+    if (node.parentNode) {
+      node.parentNode.replaceChild(span, node);
+    }
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
@@ -11,6 +68,11 @@ document.addEventListener('DOMContentLoaded', () => {
   initSensitivityControls();
   initPlotLightbox();
   initTeamSwitcher(); // default initializes Ferrari
+  renderMath();
+});
+
+window.addEventListener('load', () => {
+  renderMath();
 });
 
 // ==========================================================================
@@ -99,6 +161,9 @@ function switchExperimentTab(idx) {
   panes.forEach((pane, i) => {
     pane.classList.toggle('active', i === idx);
   });
+
+  // Re-render math formulas in the newly displayed pane
+  renderMath(activeContainer);
 }
 
 // ==========================================================================
@@ -295,9 +360,9 @@ function initTelemetryChart() {
     }
   }
 
-  canvas.addEventListener('mousemove', (e) => {
+  function handlePointer(clientX, clientY) {
     const rect = canvas.getBoundingClientRect();
-    const mouseX = e.clientX - rect.left;
+    const mouseX = clientX - rect.left;
     const chartW = rect.width - padding.left - padding.right;
     const maxDist = activeData.length > 0 ? activeData[activeData.length - 1].s : 5369.0;
 
@@ -325,8 +390,8 @@ function initTelemetryChart() {
 
     const deltaV = (pt.v_donor - pt.v_feas).toFixed(1);
     tooltip.style.display = 'block';
-    tooltip.style.left = `${Math.min(e.clientX - rect.left + 15, rect.width - 200)}px`;
-    tooltip.style.top = `${e.clientY - rect.top - 10}px`;
+    tooltip.style.left = `${Math.min(clientX - rect.left + 15, rect.width - 200)}px`;
+    tooltip.style.top = `${clientY - rect.top - 10}px`;
 
     const d1Code = activeTeam === 'rbr' ? 'VER' : 'LEC';
     const d1Label = activeTeam === 'rbr' ? 'Verstappen' : 'Leclerc';
@@ -342,9 +407,27 @@ function initTelemetryChart() {
       <div style="color:#A3A199;">Donor: <span style="color:${pt.driver === d1Code ? d1Color : d2Color}">${pt.driver === d1Code ? d1Label : d2Label}</span></div>
       <div style="color:#85847F; font-size:10px;">Curvature: ${pt.kappa.toFixed(5)} m⁻¹</div>
     `;
+  }
+
+  canvas.addEventListener('mousemove', (e) => handlePointer(e.clientX, e.clientY));
+  canvas.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+    render(-1);
   });
 
-  canvas.addEventListener('mouseleave', () => {
+  canvas.addEventListener('touchstart', (e) => {
+    if (e.touches && e.touches[0]) {
+      handlePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  canvas.addEventListener('touchmove', (e) => {
+    if (e.touches && e.touches[0]) {
+      handlePointer(e.touches[0].clientX, e.touches[0].clientY);
+    }
+  }, { passive: true });
+
+  canvas.addEventListener('touchend', () => {
     tooltip.style.display = 'none';
     render(-1);
   });
@@ -378,10 +461,15 @@ function initWaterfallChart() {
     data.forEach((item, idx) => {
       const pct = ((item.value / totalGap) * 100).toFixed(1);
       const colorClass = idx === 0 ? 'red' : idx === 1 ? 'blue' : idx === 2 ? 'green' : 'total';
+      let texSymbol = item.symbol;
+      if (texSymbol.includes('T_')) {
+        const sub = texSymbol.split('T_')[1];
+        texSymbol = `\\Delta T_{\\text{${sub}}}`;
+      }
       html += `
         <div class="waterfall-item">
           <div class="waterfall-header">
-            <span><strong>${item.symbol}:</strong> ${item.name}</span>
+            <span><strong>\\(${texSymbol}\\):</strong> ${item.name}</span>
             <span class="mono"><strong>+${item.value.toFixed(3)} s</strong> (${pct}%)</span>
           </div>
           <div class="waterfall-bar-track">
@@ -397,7 +485,7 @@ function initWaterfallChart() {
     html += `
       <div class="waterfall-item" style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--color-border-dark);">
         <div class="waterfall-header">
-          <span><strong>Total Feasibility Gap:</strong> (T_feasible &minus; T_theoretical)</span>
+          <span><strong>Total Feasibility Gap:</strong> \\(\\Delta T_{\\text{gap}} = T_{\\text{feas}} - T_{\\text{theo}}\\)</span>
           <span class="mono" style="color:var(--color-accent-red); font-size:1rem;"><strong>+${totalGap.toFixed(3)} s</strong> (100.0%)</span>
         </div>
         <div class="waterfall-bar-track">
@@ -409,6 +497,7 @@ function initWaterfallChart() {
     `;
 
     container.innerHTML = html;
+    renderMath(container);
   }
 
   renderWaterfall('ferrari');
@@ -471,6 +560,7 @@ function initSensitivityControls() {
         Driver distance allocation: ${d1Label} <strong>${item[d1Key]}%</strong> &bull; ${d2Label} <strong>${item[d2Key]}%</strong>.
       </div>
     `;
+    renderMath(detailsContainer);
   }
 
   buttons.forEach(btn => {
@@ -684,6 +774,9 @@ function initTeamSwitcher() {
     if (window._telemSwitchFn) window._telemSwitchFn(team);
     if (window._waterfallSwitchFn) window._waterfallSwitchFn(team);
     if (window._sensSwitchFn) window._sensSwitchFn(team);
+
+    // Re-render math formulas across the document after dynamic DOM mutations
+    renderMath();
   }
 
   btnFerrari.addEventListener('click', () => applyTeam('ferrari'));
